@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <body style="background-color:#333333;">
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>r/ThinkPad Buying Advice Template</title>
+    <style>
+        main{
+            background-color: silver;
+            padding: 1rem;
+            min-width: 400px;
+	max-width: 1000px;
+            /* width means fixed */
+	margin-left: auto;
+	margin-right: auto;
+        }
+        main p{
+            margin: 1rem auto;
+            background-color: silver;
+            padding: 1rem;
+        }
+        main p:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main p:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main ol{
+            margin: 1rem auto;
+            background-color: silver;
+            padding: 1rem;
+        }
+	main ol:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main ol:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main h3{
+            margin: 1rem auto;
+            background-color: dimgrey;
+		color: Gainsboro;
+            padding: 1rem;
+        }
+	main h3:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main h3:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main img{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	header{
+            background-color: #da1e28;
+            padding: 1rem;
+            min-width: 400px;
+	max-width: 1000px;
+            /* width means fixed */
+	margin: auto;
+	
+        }
+	header h1{
+		margin: auto;
+	
+		 
+            background-color: #da1e28;
+		color: black;
+            
+	}
+	header h1:nth-child(1){
+            min-width: 400px;
+            
+        }
+        header h1:nth-child(2){
+            max-width: 1500px;
+	}
+	header h4{
+		margin: auto;
+		
+		background-color: #da1e28;
+		color: black;
+	}
+header h4:nth-child(1){
+            min-width: 400px;
+            
+        }
+        header h4:nth-child(2){
+            max-width: 1500px;
+	}
+    </style>
+</head>
+<body>
+<header>
+      <h4><a href="https://www.reddit.com/r/thinkpad/">Return to r/ThinkPad</a><br><br></h4>
+        <h1>r/ThinkPad Buying Advice Template</h1>
+</header>
+<main>
+
+
+<h3>Step 1 - Fill Out Questionaire</h3>
+
+	<p><b>In which country will you be making your purchase?</b></p>
+ 
+	<input type="text" id="loc" name="loc"><br><br>
+
+	<p><b>What is your budget in your local currency?</b></p>
+
+	<input type="text" id="curr" name="curr"><br><br>
+
+	<p><b>Are you willing to buy used/refurbished?</b></p>
+
+	<input type="text" id="cond" name="cond"><br><br>
+  
+	<p><b>What type of applications to you intend to run?</b></p>
+
+ 	<textarea id="apps" name="apps" rows="4" cols="50"></textarea>
+  
+	<p><b>Are there any special hardware features that you require? (quad core CPU, high resolution display, etc…)</b></p>
+
+	<textarea id="hdwf" name="hdwf" rows="4" cols="50"></textarea>
+  
+	<p><b>What is your ideal display size and/or ideal device weight?</b></p>
+
+	<input type="text" id="dispwei" name="dispwei"><br><br>
+  
+	<p><b>Are there any models that you are currently considering?</b></p>
+
+	<input type="text" id="models" name="models"><br><br>
+  
+	<p><b>Is there any other relevant information that you wish to share?</b></p>
+
+	<textarea id="relinf" name="relinf" rows="4" cols="50"></textarea>
+
+	<br><br><br>
+	
+<h3>Step 2 - Add Completed Questions to r/ThinkPad Post</h3>
+<p><b>Once you have filled out all the questions, copy the text below by pressing the copy text button, and paste into a markdown mode formatted reddit post or comment. Once copied, <a href="https://www.reddit.com/r/thinkpad/submita">click here to create a post on r/ThinkPad</a></b></p>
+<button onclick="copyText()">Copy text</button>
+<br><br>
+	<textarea id="output" name="output" rows="40" cols="50"></textarea>
+	
+   
+<script>
+function updateOutput() {
+    // Update the output textarea 
+    document.getElementById("output").value = ">In which country will you be making your purchase?\n\n" + document.getElementById("loc").value + "\n\n>What is your budget in your local currency?\n\n" + document.getElementById("curr").value + "\n\n>Are you willing to buy used/refurbished?\n\n" + document.getElementById("cond").value + "\n\n>What type of applications to you intend to run?\n\n" + document.getElementById("apps").value +"\n\n>Are there any special hardware features that you require?\n\n" + document.getElementById("hdwf").value + "\n\n>What is your ideal display size and/or ideal device weight?\n\n" + document.getElementById("dispwei").value + "\n\n>Are there any models that you are currently considering?\n\n" + document.getElementById("models").value + "\n\n>Is there any other relevant information that you wish to share?\n\n" + document.getElementById("relinf").value;
+}
+
+function copyText() {
+  var copyText = document.getElementById("output");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+}
+
+// Bind event listeners to update the output textarea
+document.getElementById("loc").addEventListener("input", updateOutput);
+document.getElementById("curr").addEventListener("input", updateOutput);
+document.getElementById("cond").addEventListener("input", updateOutput);
+document.getElementById("apps").addEventListener("input", updateOutput);
+document.getElementById("hdwf").addEventListener("input", updateOutput);
+document.getElementById("dispwei").addEventListener("input", updateOutput);
+document.getElementById("models").addEventListener("input", updateOutput);
+document.getElementById("relinf").addEventListener("input", updateOutput);
+</script>
+
+</main>
+</body>
+</html>
