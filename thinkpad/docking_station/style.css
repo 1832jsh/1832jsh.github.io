@@ -1,16 +1,19 @@
 #entryBoxDiv {
   margin: auto;
-  width: 75%;
+  min-width: 400px;
+	max-width: 1000px;
   display: none;
 }
 #entryBox {
   font-size: 3em;
-  width: 100%;
+  min-width: 400px;
+	max-width: 1000px;
   font-family: sans-serif;
 }
 #logoInfo {
   margin: auto;
-  width: 75%;
+  min-width: 400px;
+	max-width: 1000px;
 }
 
 #notFound {
