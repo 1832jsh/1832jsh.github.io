@@ -1,6 +1,6 @@
 laptop_info = [];
 
-Papa.parse("bios-requirements.csv", {
+Papa.parse("dock_compatability.csv", {
   download: true,
   header: true,
   dynamicTyping: true,
