@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <body style="background-color:#FFFFFF;">
+  </body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ThinkPad BIOS Logo Guide</title>
+    <style>
+        main{
+            background-color: silver;
+            padding: 1rem;
+            min-width: 400px;
+	max-width: 1000px;
+            /* width means fixed */
+	margin-left: auto;
+	margin-right: auto;
+        }
+        main p{
+            margin: 1rem auto;
+            background-color: silver;
+            padding: 1rem;
+        }
+        main p:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main p:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main ol{
+            margin: 1rem auto;
+            background-color: silver;
+            padding: 1rem;
+        }
+	main ol:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main ol:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main h2{
+            margin: 1rem auto;
+            background-color: dimgrey;
+		color: Gainsboro;
+            padding: 1rem;
+        }
+	main h2:nth-child(1){
+            min-width: 400px;
+            
+        }
+        main h2:nth-child(2){
+            max-width: 1500px;
+            
+        }
+	main img{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	header{
+            background-color: cadetblue;
+            padding: 1rem;
+            min-width: 400px;
+	max-width: 1000px;
+            /* width means fixed */
+	margin: auto;
+	
+        }
+	header h1{
+		margin: auto;
+	
+		 
+            background-color: cadetblue;
+		color: black;
+            
+	}
+	header h1:nth-child(1){
+            min-width: 400px;
+            
+        }
+        header h1:nth-child(2){
+            max-width: 1500px;
+	}
+	header h4{
+		margin: auto;
+		
+		background-color: cadetblue;
+		color: black;
+	}
+header h4:nth-child(1){
+            min-width: 400px;
+            
+        }
+        header h4:nth-child(2){
+            max-width: 1500px;
+	}
+    </style>
+</head>
+<header>
+<h4><br><br></h4>
+<h1>ThinkPad BIOS Logo Guide</h1>
+</header>
+<main>
+  
+  <h2>How to Create and install a custom bios logo on a Thinkpad</h2>
+  <p>
+*This guide only covers how to perform this process from within windows.
+Step 1: determine the requirements for the image
+BIOS logos for ThinkPads have a variety of different requirements based upon the model and/or
+display resolution. Begin by checking the logo requirements of your ThinkPad (here)
+https://wilkgr76.github.io/tp_logo/ or you can download the bios and look for the file README.txt
+or BIOS_LOGO.txt which will contain the image requirements
+Step 2: creating the image
+Based on the requirements for the image determined in step 1, use a raster graphics
+editor such as Photoshop or GIMP to create the logo of you choosing. Ensure that the
+canvas is set to the correct size, and remember to export in one of the supported file
+types for your model of Thinkpad.
+Tips to reduce the file size:
+- Reduce the number of colours in the image
+- Index colours to the absolute minimum needed for the image
+- If possible, export the image as a .gif
+Step 3: installing the image
+Begin by visiting www.pcsupport.lenovo.com (for models 20 generation and newer) or
+www.download.lenovo.com/eol/ (for models 10 generation and older) and navigate to
+the page for your laptop. Next, download the latest bios update,
+*Note: if you are already on the latest bios version, you may have to disable secure
+rollback prevention in the bios
+For windows:
+1. Run the .exe file that was downloaded
+2. When asked if you want to extract or install, select Extract Only
+3. click through the rest of the program
+4. Navigate to C:\DRIVERS\FLASH and open the folder for the bios version that
+you installed
+5. On some versions, the files may be contained in a subfolder that needs to be
+opened.
+6. Copy in the logo that you created, and rename it to LOGO
+7. To install the bios, on a 32 bit system run winuptp.exe and on a 64 bit system
+winuptp64.exe
+8. If the image is properly placed in the folder, you should see a popup asking if you
+want to apply a custom bios logo, click yes and update the bios
+9. Congratulations, you have installed a custom bios logo!
+  
+  </p>
+  </main>
