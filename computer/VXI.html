@@ -112,6 +112,9 @@ header h4:nth-child(1){
         VXI (VME Extensions for Instrumentation) is an interconnection bus used in test and measurement applications. VXI was originally conceived in 1987 by HP and several other test equipment manufacturers as a standard way that their products could connect together and replace the aging GPIB/HP-IB interface. Many of the key architectural elements of the VMEbus standard were carried over to VXI, such as the P1 connector pinout and standard module sizes. However, it should be noted that while mechanically compatible, VXI modules are <strong>NOT</strong> electrically compatible with VME systems and vice versa. 
     </ul>
     <h2>VXI Embedded Controllers</h2>
+    <ul>
+        HP Produced three models of non-x86 VXI embedded controllers, the first two, V/360 and V/382 were based upon the HP 9000 300 series of workstations using Motorola 68K series CPUs, specifically the model 360 and 382 respectively. The final model, V/743, was baseed upon the HP 9000 700 series workstations using PA-RISC CPUs, specifically the model 715. Later on HP would resell x86 based embedded controllers produced by Radisys, then a few models of x86 based embedded controllers developed in-house.
+    </ul>
     <table align="center" border="1" cellpadding="1" cellspacing="1" style="width:600px">
         <tbody>
             <tr>
@@ -162,8 +165,67 @@ header h4:nth-child(1){
     </ul>
     <h3>HP V/743 (E1497A/E1498A)</h3>
     <ul>
-        More info coming soon!
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tbody>
+                <tr>
+                    <th><p><img src="https://1832jsh.github.io/computer/media/vxi/V743_front.jpeg" alt="" width=100% height=100% /></p></th>
+                </tr>
+                <tr>
+                    <td align="center">Horizontal (top) and vertical (bottom) front panel options</td>
+                </tr>
+            </tbody>
+        </table>
+        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:100%">
+            <tbody>
+                <tr>
+                    <th><p><img src="https://1832jsh.github.io/computer/media/vxi/V743_board.jpeg" alt="" width=100% height=100% /></p></th>
+                    <th><p><img src="https://1832jsh.github.io/computer/media/vxi/V743_top.jpeg" alt="" width=100% height=100% /></p></th>
+                </tr>
+                <tr>
+                    <td align="center">Board of a V/743 Equipped with 128MB of RAM and a 100MHz CPU</td>
+                    <td align="center">Top case of a V/743 with power and configration information</td>
+                </tr>
+            </tbody>
+        </table>
     </ul>
+    <h4>Cabling</h4>
+    <ul>
+        Apart fron the SCSI, PS/2, and speaker cconnections, all of the data IO ports on the front panel of the V/743 use ITT Cannon Micro-D connectors, Micro-D cabling is quite hard to come by and it is important that the cables have the proper internal connections.
+    </ul>
+    <table align="center" border="1" cellpadding="1" cellspacing="1" style="width:600px">
+        <tbody>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">Connector</th>
+                <th style="background-color: rgb(170, 170, 170);">HP Cable P/N</th>
+                <th style="background-color: rgb(170, 170, 170);">Alternative Cable</th>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">RS232</th>
+                <td style="background-color:#ffffff">A2636-61601</td>
+                <td style="background-color:#ffffff">Molex 834219036 </td>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">Video (VGA)</th>
+                <td style="background-color:#ffffff">A2636-61603</td>
+                <td style="background-color:#ffffff">N/A</td>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">AUI</th>
+                <td style="background-color:#ffffff">A2636-61602</td>
+                <td style="background-color:#ffffff">N/A</td>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">Digital Video</th>
+                <td style="background-color:#ffffff">N/A</td>
+                <td style="background-color:#ffffff">N/A </td>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(170, 170, 170);">HP-IB (GPIB)</th>
+                <td style="background-color:#ffffff">A2636-61607</td>
+                <td style="background-color:#ffffff">NI 183285-01</td>
+            </tr>
+        </tbody>
+    </table>
     <h3>HP Branded Radisys Controllers</h3>
     <ul>
         More info coming soon!
