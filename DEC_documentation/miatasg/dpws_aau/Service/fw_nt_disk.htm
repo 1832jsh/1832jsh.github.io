@@ -1,0 +1,99 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> Disk Partitioning</TITLE>
+</HEAD>
+
+<BODY>
+<h3>Disk Partitioning</H3>
+<A HREF="#create_partitions">Manually Creating and Deleting Partitions</A><BR>
+<A HREF="#disk_error">Error Conditions</A><BR>
+<A HREF="#partitions_back">Partitioning Background</A><BR>
+<A HREF="#partitions_abios">Understanding How AlphaBIOS Works with System Partitions</A>
+
+<P>
+The recommended hard-disk partition arrangement on the first hard disk in your system is as follows:
+
+<UL>
+<LI>Partition 1: Six MB less than the total size of the drive. This large partition holds the operating system and application/data files.</LI>
+<LI>Partition 2: Remaining 6 MB. This small partition holds only the few files necessary for the system to boot.</LI>
+</UL>
+
+This arrangement provides two benefits:
+<OL>
+<LI>Windows NT requires that a boot partition be formatted with the FAT file system. However, the Windows NT file system (NTFS) provides advantages over FAT, such as additional security and more efficient use of disk space. By keeping the FAT boot partition as small as possible, the maximum amount of space is left available for use as an NTFS partition.</LI>
+<LI>Most applications install themselves onto drive C by default. Although the program installation drive is usually configurable by the user, many users accept the default of drive C. By making the first partition large, drive C becomes the larger drive. 
+This arrangement makes program installation easier and avoids time-consuming insufficient-disk-space mistakes.</LI>
+</OL>
+
+<HR>
+
+<A NAME="create_partitions"><H3>Manually Creating and Deleting Partitions</H3></A>
+<P>The following information is useful if you need to create a custom hard disk partition arrangement or otherwise manually manage your hard disk partitions. These procedures assume that you already have the Hard Disk Setup screen displayed.
+</P>
+To create a partition:
+<OL>
+<LI>Select the disk on which to create the partition.</LI>
+<LI>If one or more partitions already exist on the disk, select the unpartitioned space.</LI>
+<LI>Press the [Insert] key. A dialog box appears, similar to the one in the figure below.</LI>
+<LI>Type the size of the partition to create and press [Enter].</LI>
+</OL>
+
+To delete a partition:
+<OL>
+<LI>Select the partition to be deleted.</LI>
+<LI>Press the [Delete] key. A dialog box appears, similar to the one in the figure below.</LI>
+<LI>Press [F10] to confirm the deletion.</LI>
+</OL>
+
+<HR>
+
+<A NAME="disk_error"><H3>Error Conditions</H3></A>
+
+<STRONG>Disk Initialization Failed</STRONG>
+When you start hard disk setup, if you receive an "internal error occurred" message, it means that a disk was found, but there was an error in communicating with the disk. The likely conditions that can cause this error are:
+<UL>
+<LI>Incompatible or failed disk cables. You may not have the correct cable installed, or the cable might have a broken lead or connector. Try another cable that you know is good.</LI>
+<LI>Disk controller not configured. You may have to run a configuration utility to set up your hard-disk controller. Check your controller documentation.</LI>
+<LI>Disk controller malfunction. Most controllers come with a diagnostic utility to test controller functioning. If a controller error is found, call the manufacturer for a replacement.</LI>
+<LI>Improper SCSI termination. Many SCSI controllers require that the terminating resistor packs be removed from all drives between the controller and last drive. Only the controller itself, and the last drive connected to the controller (the ends of the “chain”), should have terminating resistor packs left on.</LI>
+</UL>
+
+
+<STRONG>No Hard Disks Found</STRONG>
+When you start hard disk setup, if you receive a "No hard drives were found connected to your computer" message, it means that AlphaBIOS could not locate a hard drive. If a hard drive is installed in your system, the likely conditions that cause this error are:
+
+<UL>
+<LI>No hard disk installed. Install a hard disk.</LI>
+<LI>Cable not connected to either the disk or controller. The cable may have worked loose from the connector on the controller or disk drive. Check the cable connections, making sure the cable connectors are seated fully.</LI>
+<LI>No power to the drive. The power connector may have worked loose from the receptacle on the drive, or the power cable itself may be malfunctioning. Check the cable connections, making sure the cable connectors are fully seated. Try connecting the drive to a different power connector.</LI>
+<LI>Disk drive malfunction. The disk drive itself may be malfunctioning and not responding to requests from the controller. If this is the problem, then it would appear as though the disk was absent. Replace the drive with a good drive.  If the known good drive is correctly detected, then your hard drive is defective. Contact the 
+manufacturer for a replacement.</LI>
+</UL>
+
+<STRONG>No Partitions on Disk</STRONG>
+If hard disk 0 does not have any partitions defined, then a message will display when you start hard disk setup, asking if you want to perform an express disk setup. Express disk setup automatically creates the default disk partition arrangement on hard disk 0.
+
+<HR>
+
+<A NAME="partitions_back"><H3>Partitioning Background</H3></A>
+In order to install Windows NT, a system partition must be defined. On an Alpha system, a system partition is set silently in the background by AlphaBIOS when you install Windows NT for the first time.</P>
+
+<P>The purpose of the system partition is twofold. First, it tells the Windows NT installation program where to place the OS Loader and hardware support files. Second, on subsequent restarts of Windows NT, the system partition definition tells AlphaBIOS where the OSLOADER.EXE file is so it can successfully hand off control to the OS Loader 
+and continue the boot process.</P>
+
+<P>The system partition can be the same partition into which Windows NT is installed, or it can be separate. However, the system partition must be formatted with the FAT file system. Because the default recommended partition arrangement on Alpha calls for the partition into which Windows NT is installed to be an NTFS partition, the system partition will almost always be a small (4- to 6-MB) FAT partition on the same disk onto which Windows NT is installed. </P>
+
+<HR>
+
+<A NAME="partitions_abios"><H3>Understanding How AlphaBIOS Works with System Partitions</H3></A>
+
+<P>If you have previously installed Windows NT on your system, then a system partition will have already been defined and Windows NT will know where to place the OSLOADER and hardware support files. However, if you are installing Windows NT for the first time, AlphaBIOS will determine that a system partition has not been defined when you select 
+Install Windows NT in the AlphaBIOS Setup screen. When this occurs, AlphaBIOS searches for all FAT partitions on the system. If only one FAT partition exists (which would be the situation if you have only one hard drive installed and just performed an express hard-disk setup), then AlphaBIOS designates that FAT partition as the system partition and continues with the Windows NT installation. If more than one FAT partition exists on your system, AlphaBIOS displays the list of FAT partitions from which you can choose the system partition. After you select the system partition, the installation process 
+continues.</P>
+
+
+</BODY>
+</HTML>

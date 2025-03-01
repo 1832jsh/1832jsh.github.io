@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Memory Clock Mask Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Memory Clock Mask Register (MCMR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.5000.0040<BR>
+This register controls the DRAM_CLK pins and SRAM_CLK pins.  These bits are initialized to "1" at reset.  Note that DRAM_CLK[12] generally should not be turned off because this bit is connected to DRAM_CLK_IN and controls the operation of the clock delay circuit.<BR><BR>.
+When a bit is programmed to a 0 (zero), the corresponding output is driven low.   Any clock that is not used should be turned off and the corresponding bit set to 0 (zero). This will limit power dissipation and lower the EMI.
+
+</TD></TR>
+
+<TR VALIGN=TOP><TD>MCMR&lt;15&gt;</TD><TD ALIGN=CENTER>&lt;15&gt;RW</TD>
+<TD>SRAM_CLK[2]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;14&gt;</TD><TD ALIGN=CENTER>&lt;14&gt;RW</TD>
+<TD>SRAM_CLK[1]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;13&gt;</TD><TD ALIGN=CENTER>&lt;13&gt;RW</TD>
+<TD>SRAM_CLK[0]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;12&gt;</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>DRAM_CLK[12]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;11&gt;</TD><TD ALIGN=CENTER>&lt;11&gt;RW</TD>
+<TD>DRAM_CLK[11]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;10&gt;</TD><TD ALIGN=CENTER>&lt;10&gt;RW</TD>
+<TD>DRAM_CLK[10]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;9&gt;</TD><TD ALIGN=CENTER>&lt;9&gt;RW</TD>
+<TD>DRAM_CLK[9]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;8&gt;</TD><TD ALIGN=CENTER>&lt;8&gt;RW</TD>
+<TD>DRAM_CLK[8]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;7&gt;</TD><TD ALIGN=CENTER>&lt;7&gt;RW</TD>
+<TD>DRAM_CLK[7]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;6&gt;</TD><TD ALIGN=CENTER>&lt;6&gt;RW</TD>
+<TD>DRAM_CLK[6]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;5&gt;</TD><TD ALIGN=CENTER>&lt;5&gt;RW</TD>
+<TD>DRAM_CLK[5]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;4&gt;</TD><TD ALIGN=CENTER>&lt;4&gt;RW</TD>
+<TD>DRAM_CLK[4]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;3&gt;</TD><TD ALIGN=CENTER>&lt;3&gt;RW</TD>
+<TD>DRAM_CLK[3]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;2&gt;</TD><TD ALIGN=CENTER>&lt;2&gt;RW</TD>
+<TD>DRAM_CLK[2]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;1&gt;</TD><TD ALIGN=CENTER>&lt;1&gt;RW</TD>
+<TD>DRAM_CLK[1]</TD></TR>
+<TR VALIGN=TOP><TD>MCMR&lt;0&gt;</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>DRAM_CLK[0]</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

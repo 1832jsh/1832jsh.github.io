@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Performance Monitor Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Performance Monitor Register (PERF_MONITOR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.4000<BR>
+The PERF_MONITOR CSR is really two 16-bit counters that can be programmed 
+to count a variety of events. Setting up the counters is done through the 
+PERF_CONTROL CSR. Each counter can be programmed to count events 
+such as EV56 Read Misses received by PYXIS or DMA Writes. The 
+PERF_MONITOR can also be set up as a single 32-bit counter (by telling 
+the high_count to count the low_counter overflow).</TD></TR>
+<TR VALIGN=TOP><TD>HIGH_COUNT</TD><TD ALIGN=CENTER>&lt;31:16&gt;RO</TD>
+<TD>This is the value of the high counter.</TD></TR>
+<TR VALIGN=TOP><TD>LOW_COUNT</TD><TD ALIGN=CENTER>&lt;15:0&gt;RO</TD>
+<TD>This is the value of the low counter.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

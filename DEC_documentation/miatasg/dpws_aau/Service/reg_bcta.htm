@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Bcache Tag Address Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Bcache Tag Address Register (BC_TAG_ADDR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR CBU, FF.FFF0.0108<BR>
+The backup cache tag register is a read-only register.  Unless it is locked, the BC_TAG register is loaded with the results of every backup cache tag probe.  When a tag or tag control parity
+error occurs, this register is locked against further updates.  Software may read this register 
+by using the 21164-specific I/O space address instruction.  The register is unlocked whenever 
+the EI_STAT register is read or when the user enters BC_FHIT mode.  Unused tag bits in the TAG 
+field of this register are always zero, based on the size of Bcache as determined by the 
+BC_SIZE field in the BC_CONTROL register.</TD></TR>
+
+<TR VALIGN=TOP><TD>TAG&lt38:20&gt</TD><TD ALIGN=CENTER>&lt38:20&gtR</TD><TD>The backup cache tag field.</TD></TR>
+<TR VALIGN=TOP><TD>TAG_P</TD><TD ALIGN=CENTER>&lt17&gtR</TD><TD>Parity bit for the backup cache tag.</TD></TR>
+<TR VALIGN=TOP><TD>TAGCTL_V</TD><TD ALIGN=CENTER>&lt16&gtR</TD><TD>The tag valid bit.</TD></TR>
+<TR VALIGN=TOP><TD>TAGCTL_S</TD><TD ALIGN=CENTER>&lt15&gtR</TD><TD>The shared bit.  When clear, the entry is private.</TD></TR>
+<TR VALIGN=TOP><TD>TAGCTL_D</TD><TD ALIGN=CENTER>&lt14&gtR</TD><TD>The dirty bit.</TD></TR>
+<TR VALIGN=TOP><TD>TAGCTL_P</TD><TD ALIGN=CENTER>&lt13&gtR</TD><TD>Parity bit for the tag control bits.</TD></TR>
+<TR VALIGN=TOP><TD>HIT</TD><TD ALIGN=CENTER>&lt12&gtR</TD><TD>If set, the Bcache access resulted in a hit.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

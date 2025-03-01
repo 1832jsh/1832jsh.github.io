@@ -1,0 +1,20 @@
+<HTML>
+<HEAD><TITLE>Error</TITLE></HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<H1>Error</H1>
+<BLOCKQUOTE><B>
+<HR SIZE=4><P>
+The requested item could not be loaded by the proxy.<P>
+Netscape Proxy's network connection was refused by the server:
+  .
+The server may not be accepting connections or
+may be busy.
+
+Try connecting again later.<P>
+
+<HR SIZE=4>
+</B></BLOCKQUOTE>
+
+<P>
+<ADDRESS>Proxy server at www-proxy.das-x.dec.com on port 8080</ADDRESS>
+</BODY></HTML>

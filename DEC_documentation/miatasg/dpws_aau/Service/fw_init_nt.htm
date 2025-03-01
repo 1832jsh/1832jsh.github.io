@@ -1,0 +1,61 @@
+<HTML>
+<!-- This file created by Terry Donald and Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1997 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a-Series</EM> Firmware</TITLE>
+</HEAD>
+
+<BODY>
+<h3>AlphaBIOS Initialization</H3>
+
+<P>AlphaBIOS is a program used to help initialize and configure the Personal 
+Workstation <EM>a-Series</EM> system. The AlphaBIOS
+code resides in the system flashROM.</P>
+
+<P>When the system is powered on, and POST finishes its tasks, AlphaBIOS is loaded and
+started.  AlphaBIOS continues the system-initialization process by initializing the I/O 
+system. This includes the PCI bus and connected devices such as SCSI disk controllers, 
+video display controller, floppy drive, and keyboard.</P>
+
+<P>The video and keyboard devices are initialized first. If either the keyboard or the video 
+device is not present or not functioning, AlphaBIOS directs its output to the COM1 
+serial port. This feature exists primarily to support the manufacturing process for the 
+computer, but you may find it useful during the troubleshooting process. 
+If AlphaBIOS does not start on your computer, first check that the keyboard is plugged in 
+and  operational.  Ensure that the video card and monitor are 
+properly connected and working. </P>
+
+<P>
+After the video and keyboard are initialized, AlphaBIOS displays a windowed, 
+graphical-style user interface. As initialization continues, progress is displayed 
+on the screen.</P>
+
+<P>Next, memory is tested. While running, the memory test 
+shows its progress for each megabyte (MB) of memory tested. 
+Memory testing can be disabled at the Advanced CMOS Setup screen.
+You can also cancel the memory test while it is running by pressing 
+the spacebar.</P>
+
+<P>After memory is tested, AlphaBIOS detects and initializes SCSI disk controllers connected
+to the system. AlphaBIOS probes each controller's SCSI bus and reports 
+each of the detected devices.</P>
+
+<P>Finally, after the SCSI initialization is complete, AlphaBIOS closes the initialization 
+window and displays the boot screen. The boot screen lists each of the operating systems that 
+have been set up on the system. Boot by choosing the desired operating system. </P>
+
+<H3>How a Windows NT Boot Starts</H3>
+
+<P>AlphaBIOS boots Windows NT in two stages. The first stage involves reading an OS 
+Loader program from a disk (OSLOADER.EXE).  
+The selection parameters for the operating system must describe the 
+path AlphaBIOS uses to find OSLOADER.EXE. The OS Loader program 
+must be located in a FAT-formatted partition.</P>
+
+<P>Once the OS Loader program executes, it uses the services provided by AlphaBIOS to 
+load the operating system components. After the operating system is loaded, the OS 
+Loader starts execution of the operating system.</P>
+
+</BODY>
+</HTML>

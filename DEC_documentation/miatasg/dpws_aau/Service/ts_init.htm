@@ -1,0 +1,268 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<A NAME="top_init"><H3>Initialization</H3></A>
+<P>During initialization, status codes are used to show the
+current step and indicate initialization problems. Three methods are used:
+
+<UL>
+<LI><A HREF="#ts_steps">Initialization Steps
+<LI><A HREF="#ts_leds">LED Status Codes</A>
+<LI><A HREF="#ts_beeps">Beep Codes</A>
+</UL>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="ts_steps"></A>Initialization Steps</H3></TD>
+<TD align=right valign=top><A HREF="#top_init"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+<TABLE BORDER=1>
+<TR><TH>Initialization<BR>Routine</TH><TH>Description</TH></TR>
+<TR><TD>Test the PCI</TD><TD>Data path test in PCI configuration space. Read the Vendor ID and Device ID fields from the PCI Configuration Header of the PCI/ISA 
+Bridge chip. Check  against expected values.</TD></TR>
+<TR><TD>Size the Bcache</TD><TD>Init the CPU Scache and then determine if Bcache is present. If present, determine Bcache size and speed. If not present, set CPU 
+to make all off-chip references to main memory.</TD></TR>
+<TR><TD>Size memory</TD><TD>Size the main memory on a bank-per-bank basis. The IIC ROM is read from each DIMM.  Banks with mismatched DIMMs will cause an error
+beep code</TD></TR>
+<TR><TD>Configure memory</TD><TD>Configure memory so the large banks are in low memory and the smaller banks are in high memory.</TD></TR>
+<TR><TD>Test memory</TD><TD>Test memory data paths, address lines, and memory cells.</TD></TR>
+<TR><TD>Initialize memory</TD><TD>Initialize all of configured memory with zeroes. If the Bcache is present, it is flooded to force the highest tags out of Bcache and into memory.</TD></TR>
+<TR><TD>Load the console firmware</TD><TD>Verify the data path and checksum and  then load the system console firmware from the flashROM into memory at the PAL base address.</TD></TR>
+<TR><TD>Initialize the system interface</TD><TD>The system CPU/system interface consists of the PYXIS chip and the PCI/ISA bridge chip. Zero the window base registers, init the PYXIS, and zero the IRQ.</TD></TR>
+<TR><TD>Set up the mailbox.</TD><TD>
+Build the mailbox containing system information to leave in memory for the console firmware and/or the OS.</TD></TR>
+</TABLE>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="ts_leds"></A>LED Status Codes</H3></TD>
+<TD align=right valign=top><A HREF="#top_init"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>When power is turned on, SROM code initializes the CPU, core logic, and memory.  After successful initialization, the SROM code loads and starts the AlphaBIOS firmware. The SROM powerup status codes, visible in LEDs on the MLB, are divided into three main categories:</P>
+
+<OL>
+<LI>FF to F0 Fatal error codes (powerup program halts with no further activity).
+<LI>EF to E0 Error codes (may not prevent AlphaBIOS from starting).
+<LI>DF to CC Status codes (identify current process in the powerup sequence).
+</OL>
+
+<TABLE BORDER=1>
+<TR><TH colspan=2>Powerup Codes</TH><TH rowspan=2>Description</TH></TR>
+<TR><TH>LEDs</TH><TH>Hex</TH></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>FF</TD><TD>No Scache bits set in SC_CTL register.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>FA</TD><TD>No usable memory detected.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F9</TD><TD>System initialization failure.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F8</TD><TD>PCI data path error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F5</TD><TD>Bcache data path error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F4</TD><TD>Bcache address line error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F3</TD><TD>Bcache cell error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>F1</TD><TD>FlashROM data path read error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>E5</TD><TD>Memory data path error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>E4</TD><TD>Memory address line error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>E0</TD><TD>FlashROM checksum error.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>DE</TD><TD> Init the CPU/system interface.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>DC</TD><TD>Sizing the scache.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>DB</TD><TD>Testing the PCI data path.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>DA</TD><TD>Bcache sizing in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D9</TD><TD>Memory sizing in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D8</TD><TD>Memory configuration in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D7</TD><TD>Memory test initialization in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D6</TD><TD> Bcache bits test in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D5</TD><TD>Memory bits test in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D4</TD><TD>Bcache address test in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D3</TD><TD>Memory address test in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D2</TD><TD>Bcache cell test in progress.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>D0</TD><TD> Initialize all of memory.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>CF</TD><TD>Console firmware loading.</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_lwr.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>CE</TD><TD>Re-init the CPU/system interface (if inited before).</TD></TR>
+<TR><TD>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_both.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_off.gif" WIDTH=11 HEIGHT=13>
+<IMG SRC="../images/led_uppr.gif" WIDTH=11 HEIGHT=13>
+</TD>
+<TD>CD</TD><TD>SROM code execution complete, transfer control to the console firmware.</TD></TR>
+</TABLE><BR>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="ts_beeps"></A>Beep Codes</H3></TD>
+<TD align=right valign=top><A HREF="#top_init"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<TABLE BORDER=1>
+<TR><TH>Beep Code</TH><TH>Description</TH></TR>
+<TR><TD>1-2-4</TD><TD>SROM code detected a memory error.</TD></TR>
+<TR><TD>1-3-3</TD><TD>No memory was detected; or there was memory, but during testing it failed and was marked unavailable.</TD></TR>
+<TR><TD>1-1-4</TD><TD>Bad flashROM data path (manufacturing data pattern did not match the expected pattern, or there was a checksum error).</TD></TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

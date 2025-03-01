@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Interrupt Summary Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME="isr"><STRONG>Interrupt Summary Register (ISR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR Ibox, Index=100<BR>
+The interrupt summary register is a read-only register that provides a record of all currently outstanding hardware, software, and asynchronous system trap (AST) interrupt requests and summary bits at the time of a read.</TD></TR>
+<TR VALIGN=TOP><TD>HLT</TD><TD ALIGN=CENTER>&lt;34&gt;R</TD><TD>External hardware interrupt - halt.</TD></TR>
+<TR VALIGN=TOP><TD>SLI</TD><TD ALIGN=CENTER>&lt;33&gt;R</TD><TD>Serial line interrupt request.</TD></TR>
+<TR VALIGN=TOP><TD>CRD</TD><TD ALIGN=CENTER>&lt;32&gt;R</TD><TD>Correctable read error interrupt request.</TD></TR>
+<TR VALIGN=TOP><TD>MCK</TD><TD ALIGN=CENTER>&lt;31&gt;R</TD><TD>External hardware interrupt--system machine check.</TD></TR>
+<TR VALIGN=TOP><TD>PFL</TD><TD ALIGN=CENTER>&lt;30&gt;R</TD><TD>External hardware interrupt--power fail.</TD></TR>
+<TR VALIGN=TOP><TD>PC2</TD><TD ALIGN=CENTER>&lt;29&gt;R</TD><TD>Performance counter 2 interrupt request.</TD></TR>
+<TR VALIGN=TOP><TD>PC1</TD><TD ALIGN=CENTER>&lt;28&gt;R</TD><TD>Performance counter 1 interrupt request.</TD></TR>
+<TR VALIGN=TOP><TD>PC0</TD><TD ALIGN=CENTER>&lt;27&gt;R</TD><TD>Performance counter 0 interrupt request.</TD></TR>
+<TR VALIGN=TOP><TD>I23</TD><TD ALIGN=CENTER>&lt;23&gt;R</TD><TD>External hardware interrupt - irq_h&lt;3&gt;</TD></TR>
+<TR VALIGN=TOP><TD>I22</TD><TD ALIGN=CENTER>&lt;22&gt;R</TD><TD>External hardware interrupt - irq_h<2>.</TD></TR>
+<TR VALIGN=TOP><TD>I21</TD><TD ALIGN=CENTER>&lt;21&gt;R</TD><TD>External hardware interrupt - irq_h<1>.</TD></TR>
+<TR VALIGN=TOP><TD>I20</TD><TD ALIGN=CENTER>&lt;20&gt;R</TD><TD>External hardware interrupt - irq_h<0>.</TD></TR>
+<TR VALIGN=TOP><TD>ATR</TD><TD ALIGN=CENTER>&lt;19&gt;R</TD><TD>This bit is set if any AST request and corresponding enable is set.  This bit also requires that the processor mode is equal to or higher than the request mode.</TD></TR>
+<TR VALIGN=TOP><TD>SIRR&lt;15:01&gt;</TD><TD ALIGN=CENTER>&lt;18:04&gt;</TD><TD>Corresponds to software interrupt requests 15 to 1.</TD></TR>
+<TR VALIGN=TOP><TD>ASTER and ASTRR</TD><TD ALIGN=CENTER>&lt;03:00&gt;</TD><TD>Boolean AND of ASTRR<USEK> with ASTER<USEK> used to indicate enabled AST requests.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

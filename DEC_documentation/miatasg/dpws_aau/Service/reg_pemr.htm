@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Pyxis Error Mask Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Error Mask Register (ERR_MASK)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8240<BR>
+The ERR MASK is used to disable the logging and reporting of errors. On power-up, the 
+default is for error logging to be disabled (ERR_MASK = 0). For each bit, a zero (0) disables the logging/reporting of that error, and a one (1) enables the corresponding error logging and reporting.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:12&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>IOA_<BR>TIMEOUT</TD><TD ALIGN=CENTER>&lt;11&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for I/O timeout errors.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;10&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PA_PTE_INV</TD><TD ALIGN=CENTER>&lt;9&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for invalid PTE errors.</TD></TR>
+<TR VALIGN=TOP><TD>RCVD<BR>_TAR_ABT</TD><TD ALIGN=CENTER>&lt;8&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for logging/reporting for PCI Target Abort errors.</TD></TR>
+<TR VALIGN=TOP><TD>RCVD<BR>_MAS_ABT</TD><TD ALIGN=CENTER>&lt;7&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for PCI Master Abort Errors.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_ADDR_PE</TD><TD ALIGN=CENTER>&lt;6&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for PCI Address Parity errors.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_PERR</TD><TD ALIGN=CENTER>&lt;5&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for PCI Data Parity errors.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_SERR</TD><TD ALIGN=CENTER>&lt;4&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for PCI SERR errors.</TD></TR>
+<TR VALIGN=TOP><TD>MEM_NEM</TD><TD ALIGN=CENTER>&lt;3&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for Nonexistent Memory access errors.</TD></TR>
+<TR VALIGN=TOP><TD>CPU_PE</TD><TD ALIGN=CENTER>&lt;2&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for CPU Parity errors</TD></TR>
+<TR VALIGN=TOP><TD>UN_COR_ERR</TD><TD ALIGN=CENTER>&lt;1&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for uncorrectable ECC errors.</TD></TR>
+<TR VALIGN=TOP><TD>COR_ERR</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>Disable/enable error logging/reporting for correctable ECC errors.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

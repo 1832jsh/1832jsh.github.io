@@ -1,0 +1,75 @@
+<HTML>
+<!-- This file created by Terry Donald and Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1997 Digital Equipment Corporation-->
+
+<HEAD>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>Troubleshooting Tools</H3>
+<P>There are several troubleshooting tools available. Some tools test and exercise the system, whereas others gather and format information.</P>
+
+
+<P>The DEC Verifier and Exerciser Tool (DEC VET) falls into the first category.  DEC VET is 
+an online tool for verifying system installations and acceptance.  It is also used to maintain 
+and troubleshoot systems, and perform load and stress tests on single devices, systems, 
+and networks.  There are versions of DEC VET for different operating 
+systems (OS).  For more information, see the following guides:</P>
+
+<UL>
+<LI><EM>DEC Verifier and Exerciser Tool User's Guide for DIGITAL UNIX</EM>.
+<LI><EM>DEC Verifier and Exerciser Tool User's Guide for OpenVMS</EM>.
+</UL>
+
+<P>Each OS has a specific mechanism for capturing and logging error 
+information.  To access an OS error log, click on one of the following 
+buttons:</P>
+
+<A HREF="#unix_errlog"><IMG SRC="../images/bullet.gif" WIDTH=10 HEIGHT=10 BORDER=0> DIGITAL UNIX</A><BR>
+<A HREF="#vms_errlog"><IMG SRC="../images/bullet.gif" WIDTH=10 HEIGHT=10 BORDER=0> OpenVMS</A><BR>
+
+<HR>
+<A NAME="unix_errlog"><H3>Accessing the DIGITAL UNIX Error Log</H3></A>
+<P>The event report formatter for DIGITAL UNIX is uerf (In the future, DECevent, a new tool, 
+will replace uerf.) The syntax of the command is:
+<STRONG> /usr/sbin/uerf [ options ... ]</STRONG></P>
+
+<P>The uerf command uses the uerf.bin, uerf.hlp, and uerf.err data files.  The uerf.bin file is the event 
+information database. The uerf.hlp file is the help file. The uerf.err file is the event message file.  The uerf 
+command expects to find the data files in the /usr/sbin directory.
+By default, the uerf command outputs the contents of the event log file specified by the *.* entry in the 
+/etc/binlog.conf configuration file.  To report on any other event log file or if there is no *.* entry, you must 
+use the uerf command with the -f option. </P>
+
+<STRONG>NOTE:</STRONG> For further information, see the uerf Man pages. (Type "man uerf" at the prompt.)</P>
+
+<HR>
+<A NAME="vms_errlog"><H3>Accessing the OpenVMS Error Log</H3></A>
+
+<P>Access the OpenVMS Errorlog Report Formatter (ERF) with the ANALYZE/ERROR_LOG command.(In the future, DECevent, a new tool, will replace ERF.)  The syntax is:<BR>
+
+<STRONG>ANALYZE/ERROR_LOG [filespec[,...]]</STRONG><BR>
+For more information, see the <EM>VMS Error Log Utility Reference Manual</EM>.</P>
+
+<P>
+EXAMPLES
+The following example uses all of the defaults:<BR>
+$ ANALYZE/ERROR_LOG<BR>
+The next example limits the entry range generated from the file ERRLOG.SYS 
+to entries from 1 to 18:<BR>
+$ ANALYZE/ERROR_LOG/ENTRY=(START:1,END:18) ERRLOG.SYS<BR>
+This example shows how to exclude a given class of event information 
+(disk information, in this case):<BR>
+
+$ ANALYZE/ERROR_LOG/EXCLUDE=(DISK)<BR>
+The following example will furnish a report containing only disk-related information:<BR>
+$ ANALYZE/ERROR_LOG/INCLUDE=(DISK)
+</P>
+
+<HR>
+</P>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PCI Error Register 0 Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PCI Error Register 0 (PCI_ERR0)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8800<BR>
+The PCI_ERR0 register is used by the PYXIS to log information pertaining to the state of the PCI interface when an error condition is detected by PYXIS.  The CSR is locked, as are all PYXIS error registers, when the PYXIS detects an error.  The CSR is unlocked when the PYXIS_ERR_CSR is cleared.  When the register is not locked, the contents are unpredictable.
+<BR><BR>
+The data in the WINDOW, DMA_DAC, and DMA_CMD fields is associated with the address stored in the PCI_ERR1 register. This group and PCI_ERR1 hold information related to the following errors associated with the memory while the PYXIS is handling a DMA: 
+<UL>
+<LI>Correctable ECC error (PYXIS_ERR&lt;0&gt;)
+<LI>Uncorrectable ECC error (PYXIS_ERR&lt;l&gt;)
+<LI>Access to nonexistent memory (PYXIS_ERR&lt;3&gt;)
+<LI>Invalid Page Table entry (PYXIS_ERR&lt;9&gt;)
+</UL>
+The data in the PCI_DAC, PCI_CMD, TARGET_STATE, and MASTER_STATE fields is 
+associated with the address stored in the PCI_ERR2 register. This group and the 
+PCI_ERR2 register hold information related to the following error conditions associated 
+with the PCI bus:
+<UL>
+<LI>PCI Data Parity error(PYXIS ERR&lt;5&gt;)
+<LI>PCI Address Parity Error (PYXIS_ERR&lt;6&gt;)
+<LI>PCI Master Abort (PYXIS_ERR&lt;7&gt;)
+<LI>PCI Target Abort (PYXIS_ERR&lt;8&gt;)
+<LI>IOA Timeout (PYXIS_ERR&lt;11&gt;)
+</UL>
+The LOCK_STATE field is general information about the current state of PYXIS not 
+specifically associated with either PCI_ERR1 or PCI_ERR2.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:29&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PCI_DAC</TD><TD ALIGN=CENTER>&lt;28&gt;RO</TD>
+<TD>If set, then the current PCI command is a dual address cycle command.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_CMD</TD><TD ALIGN=CENTER>&lt;27:24&gt;RO</TD>
+<TD>The current PCI command.</TD></TR>
+<TR VALIGN=TOP><TD>TARGET<BR>_STATE</TD><TD ALIGN=CENTER>&lt;23:20&gt;RO</TD>
+<TD>
+<TABLE BORDER=1>
+<TR><TD>0</TD><TD>Idle</TD></TR>
+<TR><TD>1</TD><TD>Busy</TD></TR>
+<TR><TD>2</TD><TD>Read Data Cycle</TD></TR>
+<TR><TD>3</TD><TD>Write Data Cycle</TD></TR>
+<TR><TD>4</TD><TD>Read Stop Cycle</TD></TR>
+<TR><TD>5</TD><TD>Write Stop Cycle</TD></TR>
+<TR><TD>6</TD><TD>Read Turnaround Cycle</TD></TR>
+<TR><TD>7</TD><TD>Write Turnaround Cycle</TD></TR>
+<TR><TD>8</TD><TD>Read Delay Cycle</TD></TR>
+<TR><TD>9</TD><TD>Write Delay Cycle</TD></TR>
+</TABLE>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>MASTER<BR>_STATE</TD><TD ALIGN=CENTER>&lt;19:16&gt;RO</TD>
+<TD>
+<TABLE BORDER=1>
+<TR><TD>0</TD><TD>Idle</TD></TR>
+<TR><TD>1</TD><TD>Drive Bus</TD></TR>
+<TR><TD>2</TD><TD>Address Step Cycle</TD></TR>
+<TR><TD>3</TD><TD>Address Cycle</TD></TR>
+<TR><TD>4</TD><TD>Data Cycle</TD></TR>
+<TR><TD>5</TD><TD>Last Read Data Cycle</TD></TR>
+<TR><TD>6</TD><TD>Last Write Data Cycle </TD></TR>
+<TR><TD>7</TD><TD>Read Stop Cycle</TD></TR>
+<TR><TD>8</TD><TD>Write Stop Cycle</TD></TR>
+<TR><TD>9</TD><TD>Read Turnaround Cycle</TD></TR>
+<TR><TD>A</TD><TD>Write Turnaround Cycle</TD></TR>
+<TR><TD>B</TD><TD>Reserved </TD></TR>
+<TR><TD>C</TD><TD>Reserved</TD></TR>
+<TR><TD>D</TD><TD>Reserved</TD></TR>
+<TR><TD>E</TD><TD>Reserved</TD></TR>
+<TR><TD>F</TD><TD>Unknown State</TD></TR>
+</TABLE>
+</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;15:12&gt;RO</TD>
+<TD>N/A</TD></TR>
+
+<TR VALIGN=TOP><TD>WINDOW</TD><TD ALIGN=CENTER>&lt;11:8&gt;RO</TD>
+<TD>Indicates which window (if any) was selected by the PCI address.
+<TABLE BORDER=1>
+<TR><TD>0000</TD><TD>No window active</TD></TR>
+<TR><TD>0001</TD><TD>Window 0 hit</TD></TR>
+<TR><TD>0010</TD><TD>Window 1 hit</TD></TR>
+<TR><TD>0100</TD><TD>Window 2 hit</TD></TR>
+<TR><TD>1000</TD><TD>Window 3 hit</TD></TR>
+</TABLE>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;7:6&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DMA_DAC</TD><TD ALIGN=CENTER>&lt;5&gt;RO</TD>
+<TD>If set, then the current DMA is a dual address cycle command.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;4&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DMA_CMD</TD><TD ALIGN=CENTER>&lt;3:0&gt;RO</TD>
+<TD>The PCI command of the current DMA.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

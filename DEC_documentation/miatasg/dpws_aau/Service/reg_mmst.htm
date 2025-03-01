@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Dcache Parity Error Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><STRONG>Dstream Memory Management Fault Status Register (MM_STAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR Mbox, Index=205<BR>
+The Dstream memory management fault status register is a read-only register that stores information 
+about Dstream faults and Dcache parity errors.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>OPCODE</TD><TD ALIGN=CENTER>&lt;16:11&gt;R</TD><TD>This field contains the opcode of the faulting instruction.</TD></TR>
+<TR VALIGN=TOP><TD>RA</TD><TD ALIGN=CENTER>&lt;10:06&gt;R</TD><TD>The RA field of the faulting instruction.</TD></TR>
+<TR VALIGN=TOP><TD>BAD_VA</TD><TD ALIGN=CENTER>&lt;05&gt;R</TD><TD>Set if reference had a bad virtual address.</TD></TR>
+<TR VALIGN=TOP><TD>DTB_MISS</TD><TD ALIGN=CENTER>&lt;04&gt;R</TD><TD>Set if reference resulted in a DTB miss.</TD></TR>
+<TR VALIGN=TOP><TD>FOW</TD><TD ALIGN=CENTER>&lt;03&gt;R</TD><TD>This bit is set if the reference was a write and the PTE's FOW bit was set.</TD></TR>
+<TR VALIGN=TOP><TD>FOR</TD><TD ALIGN=CENTER>&lt;02&gt;R</TD><TD>This bit is set if the reference was a read and the PTE's FOR bit was set.</TD></TR>
+<TR VALIGN=TOP><TD>ACV</TD><TD ALIGN=CENTER>&lt;01&gt;R</TD><TD>This bit is set if the reference caused an access violation.</TD></TR>
+<TR VALIGN=TOP><TD>WR</TD><TD ALIGN=CENTER>&lt;00&gt;R</TD><TD>This bit is set if a write reference caused the error.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

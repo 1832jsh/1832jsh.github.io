@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Translated Base Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Translated Base Registers (Tx_BASE, x=0-3)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.6000.0480, 87.6000.0580, 87.6000.0680, 87.6000.0780<BR>
+The Translated Base Register (TBR) is used to map PCI addresses into memory. 
+There are four TBRs: TBR0, TBRl, TBR2, and TBR3, one for 
+each window. If the Scatter/Gather bit of the Window Base Register is set, then 
+the TBR provides the base address of the Scatter/Gather 
+map for this window. If the Scatter/Gather bit is clear, the TBR provides the base physical address of this window.<P>
+The TBR registers should not be modified unless software ensures that no 
+PCI traffic is targeted for the window being modified.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>T_BASE &lt;33:10&gt;</TD><TD ALIGN=CENTER>&lt;31:8&gt;<BR>RW</TD>
+<TD>If Scatter/Gather mapping is disabled, T_BASE&lt;33:10&gt; specifies the base CPU 
+address of the translated PCI address for the PCI Target Window. 
+If Scatter/Gather mapping is enabled, T_BASE&lt;33:10&gt; specifies the base CPU 
+address for the Scatter/Gather map table for the PCI Target Window</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;7:0&gt;<BR>RO</TD>
+<TD>N/A</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

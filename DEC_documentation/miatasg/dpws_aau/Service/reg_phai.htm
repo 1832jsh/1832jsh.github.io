@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Hardware Address Extension Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Hardware Address Extension Register (HAE_IO)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.0440<BR>
+This HAE_IO Hardware Address Extension Register is used to extend a PCI Sparse-space I/O address up to the full 32-bit PCI address. In Sparse Addressing mode, the CPU address provides the PCI addresses up to bit<24> and HAE_IO provides bits&lt;31:25&gt;.  On power-up, this register is set to zero (0). In this case, Sparse I/O region A and region B both map to the lower 32 MB of sparse IO space. Setting HAE_IO to 0x200.0000 will make region A and region B consecutive in the lower 64 MB of PCI IO space.
+
+</TD></TR>
+
+<TR VALIGN=TOP><TD>HAE_IO</TD><TD ALIGN=CENTER>&lt;31:25&gt;RW</TD>
+<TD> </TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

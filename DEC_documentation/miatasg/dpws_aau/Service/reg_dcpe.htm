@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Dcache Parity Error Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><STRONG>Dcache Parity Error Status Register (DC_PERR_STAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR Mbox, Index=212<BR>
+The Dcache parity error status (DC_PERR_STAT) register is a read/write register.  If a Dcache parity 
+error occurs while the DC_PERR_STAT is unlocked, the error status is loaded into 
+&lt;05:02&gt;.  The lock bit is set and the register is locked against further updates (except for the SEO bit) until software writes a 1 
+to clear the lock bit.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>TP1</TD><TD ALIGN=CENTER>&lt;05&gt;R</TD><TD>This bit indicates a tag parity error in Dcache bank 1.</TD></TR>
+<TR VALIGN=TOP><TD>TP0</TD><TD ALIGN=CENTER>&lt;04&gt;R</TD><TD>This bit indicates a tag parity error in Dcache bank 0.</TD></TR>
+<TR VALIGN=TOP><TD>DP1</TD><TD ALIGN=CENTER>&lt;03&gt;R</TD><TD>This bit indicates a data parity error in Dcache bank 1.</TD></TR>
+<TR VALIGN=TOP><TD>DP0</TD><TD ALIGN=CENTER>&lt;02&gt;R</TD><TD>This bit indicates a data parity error in Dcache bank 0.</TD></TR>
+<TR VALIGN=TOP><TD>LOCK</TD><TD ALIGN=CENTER>&lt;01&gt;RW</TD><TD>This bit is set if a parity error occurred in the Dcache.  Bits <05:02> are locked against further updates when this bit is set.</TD></TR>
+<TR VALIGN=TOP><TD>SEO</TD><TD ALIGN=CENTER>&lt;00&gt;RW</TD><TD>Second error occurred.  Set when an error that normally locks the DC_STAT register occurs while the DC_STAT register is locked.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

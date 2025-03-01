@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE></TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (Win16; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<BODY>
+
+<!-- Created Using HTML Notepad, Copyright (c) cranial software 1995-->
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+
+<H3>ISA DMA Configuration</H3>
+
+<P>The floppy interface in the SuperI/O chip is hardwired to DMA channel
+2. The parallel interface is allowed to use DMA channel 3 during certain
+modes of operation. The audio controller chip (ES1888) can use 
+DMA channels 0, 1, or 3 for general DMA and channel 5 for system DMA.</P>
+
+<P>DMA channels 0-3 and 5-7 can be used by any of the three ISA slots on
+the riser card. The following table summarizes the DMA channel assignments
+(H=hardwired, P=program selected):</P>
+
+<CENTER><TABLE BORDER=1 WIDTH="100%" >
+<TR>
+<TH rowspan=2>Device</TH>
+<TH colspan=8>DMA Channels</TH>
+</TR>
+
+<TR>
+<TH>0</TH>
+<TH>1</TH>
+<TH>2</TH>
+<TH>3</TH>
+<TH>4</TH>
+<TH>5</TH>
+<TH>6</TH>
+<TH>7</TH>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD>FDC</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>H</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD>Parallel</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>H</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD>Audio</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>-</TD>
+
+<TD>P</TD>
+
+<TD>-</TD>
+
+<TD>H</TD>
+
+<TD>-</TD>
+
+<TD>-</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD>ISA</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+
+<TD>P</TD>
+</TR>
+</TABLE></CENTER>
+
+</BODY>
+</HTML>

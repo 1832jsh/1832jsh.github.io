@@ -1,0 +1,89 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation--><HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<H3>Power Troubleshooting Checklist</H3>
+</HEAD>
+
+
+<P>The 300-Watt power supply provides six regulated outputs to the system: 
++3.3V, +5.0V, +12.0V, -5.0V, -12.0V, and +5VSB (<A HREF="#power_pinouts">See power pinouts</A>).  
+An output signal, POK_H, is asserted when the +5V output exceeds an undervoltage 
+threshold.  A DC remote ON/OFF signal pin is used to enable or disable all 
+the outputs except +5VSB.  The power supply contains one 80-mm DC fan.</P>
+<P><STRONG>NOTE:</STRONG> When powering off the system, ensure that it remains off for at least 45 seconds before you reapply power.</P>
+
+<TABLE  BORDER=1>
+<TR><TH>Symptom</TH><TH>Check</TH></TR>
+
+<TR>
+<TD  VALIGN=TOP>Power indicator is OFF.</TD>
+<TD>Front-panel power switch was not pressed.<BR>
+Power at wall receptacle. <BR>
+AC cord.<BR>
+Voltage selection switch.</TD>
+</TR>
+	
+<TR><TD  VALIGN=TOP>Power indicator is ON for a few seconds and then goes OFF.</TD>
+<TD>There are three fans in the <EM>a/au-Series</EM> system: two are at the front of the system (one near the 21164 CPU and one near the expansion cards), and one is in the power supply. <BR>
+<STRONG>CAUTION: The power supply shuts OFF within 1 second if its internal fan fails.</STRONG></TD>
+</TR>
+	
+<TR><TD  VALIGN=TOP>Power indicator is ON, and the display monitor is blank.</TD>
+<TD>Monitor power indicator is ON.  Raster present if brightness is turned up.<BR>
+Fuses and circuit breakers.<BR>
+Video controller cable is properly connected.<BR>
+Power is present at system board.</TD>
+</TR>
+
+</TABLE>
+<P></P>
+<HR>
+<A NAME="power_pinouts"><H2>Power Supply Pinouts</H2></A>
+
+<TABLE BORDER=1>
+<TR>
+<TH>Power Supply<BR>Connector</TH>
+<TH>Pin Number</TH>
+<TH>Wire Color</TH>
+<TH>Voltage</TH>
+
+<TR>
+<TD>P10 and P11<BR>Disk Drives</TD>
+<TD ALIGN=CENTER>1<BR>2<BR>3<BR>4</TD>
+<TD>Red<BR>Black<BR>Black<BR>Blue</TD>
+<TD>+5V<BR>Common<BR>Common<BR>+12V</TD>
+</TR>
+
+<TR>
+<TD>P12, P13, P14,<BR>P15, and P16<BR>Disk Drives</TD>
+<TD ALIGN=CENTER>1<BR>2<BR>3<BR>4</TD>
+<TD>Blue<BR>Black<BR>Black<BR>Red</TD>
+<TD>+12V<BR>Common<BR>Common<BR>+5V</TD>
+</TR>
+
+<TR>
+<TD>P1 Riser Card</TD>
+<TD ALIGN=CENTER>1<BR>2<BR>3<BR>4<BR>5<BR>6<BR>7<BR>8<BR>
+9<BR>10<BR>11<BR>12<BR>13<BR>14<BR>15<BR>16<BR>17<BR>18<BR>19<BR>20</TD>
+<TD>Brown<BR>Brown<BR>Black<BR>Red<BR>Black<BR>Red<BR>Black<BR>White<BR>
+Purple<BR>Blue<BR>Brown<BR>Yellow<BR>Black<BR>Green<BR>Black<BR>Black<BR>
+Black<BR>Gray<BR>Red<BR>Red</TD>
+<TD>+3.3V Sense<BR>+3.3V<BR>Common<BR>+5V<BR>Common<BR>+5V<BR>Common<BR>
+POK_H<BR>+5VSB<BR>+12V<BR>+3.3V<BR>-12V<BR>Common<BR>DC_ENABLE<BR>
+Common<BR>Common<BR>Common<BR>-5V<BR>+5V<BR>+5V Sense</TD>
+</TR>
+
+<TR>
+<TD>P2 Riser Card</TD>
+<TD ALIGN=CENTER>1<BR>2<BR>3<BR>4<BR>5<BR>6<BR>7<BR>8<BR>9<BR>10</TD>
+<TD>Green<BR>Black<BR>Black<BR>Brown<BR>Brown<BR>Green<BR>Black<BR>Red<BR>
+Red<BR>Red</TD>
+<TD>Jumper (to pin 6)<BR>Common<BR>Common<BR>+3.3V<BR>+3.3V<BR>Jumper (to pin 1)<BR>
+Common<BR>+5V<BR>+5V<BR>+5V</TD>
+</TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

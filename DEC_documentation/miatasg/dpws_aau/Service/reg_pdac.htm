@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Window DAC Base Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Window DAC Base Register (W_DAC)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.6000.07C0<BR>
+The Window DAC Base register provides the &lt;7:0&gt; address bits for comparison 
+against PCI address &lt;39:32&gt; during a DAC cycle. PCI address &lt;63:40&gt; must be 
+zero for a PCI window hit. The DAC BASE register is used in conjunction with the 
+W_BASE register.<P>
+The DAC BASE register is only applicable to window 3 and only if enabled by the 
+DAC enable bit in W_BASE[3]<P>
+The Target Window is a "Hit" when the following is satisfied:
+<UL>
+<LI>The incoming PCI address bits &lt;31:20&gt; matches one of the four Window Base Registers (WBRs); the W_MASK register determines which bits are involved in the comparison.
+<LI>PCI address &lt;63:40&gt; is zero 
+<LI>PCI address&lt;39:32&gt; match the DAC_BASE&lt;7:0&gt;
+</UL>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:8&gt;<BR>RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DAC_BASE &lt;7:0&gt;</TD><TD ALIGN=CENTER>&lt;7:0&gt;<BR>RW</TD>
+<TD>DAC BASE specifies bits &lt;39:32&gt; of the PCI base address used to 
+determine a hit in the target window for the DAC cycle.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

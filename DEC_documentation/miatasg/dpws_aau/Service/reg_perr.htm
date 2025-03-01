@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Pyxis Error Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Error Register (PYXIS_ERR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8200<BR>
+The PYXIS_ERR register is used to log information pertaining to an error condition
+detected in the PYXIS chip.  All bits of the PYXIS_ERR, except the LOST bits will
+be locked until the PYXIS_ERR is cleared by a software write.  The LOST bits will be set 
+whenever the PYXIS_ERR is already locked and another error is detected.</TD></TR>
+
+<TR VALIGN=TOP><TD>ERR_VALID</TD><TD ALIGN=CENTER>&lt;31&gt;RO</TD>
+<TD>An error has been detected, and the PYXIS_ERR CSR is locked. </TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;30:28&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>LOST_IOA<BR>_TIMEOUT</TD><TD ALIGN=CENTER>&lt;27&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, an I/O timeout occurred. An I/O read/write 
+failed to be executed in 1 second.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;26&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>LOST_PA<BR>_PTE_INV</TD><TD ALIGN=CENTER>&lt;25&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, an invalid Page Table entry on 
+Scatter/Gather access occurred.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_RCVD<BR>_TAR_ABT</TD><TD ALIGN=CENTER>&lt;24&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, the PCI master state machine received a target abort.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_RCVD<BR>_MAS_ABT</TD><TD ALIGN=CENTER>&lt;23&gt;RO</TD>
+<TD>While PYXIS ERR CSR was locked, the PCI master state machine generated a Master Abort.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_PCI<BR>_ADDR_PE</TD><TD ALIGN=CENTER>&lt;22&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, a PCI Address Parity error was detected.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_PERR</TD><TD ALIGN=CENTER>&lt;21&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, a PCI Data Parity error was detected.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;20&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>LOST_MEM<BR>_NEM</TD><TD ALIGN=CENTER>&lt;19&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, an access to nonexistent memory was detected.</TD></TR>
+<TR VALIGN=TOP><TD>LOST<BR>_CPU_PE</TD><TD ALIGN=CENTER>&lt;18&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, a CPU parity error was detected.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_UN<BR>_COR_ERR</TD><TD ALIGN=CENTER>&lt;17&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, an uncorrectable ECC error was detected.</TD></TR>
+<TR VALIGN=TOP><TD>LOST_COR<BR>_ERR</TD><TD ALIGN=CENTER>&lt;16&gt;RO</TD>
+<TD>While PYXIS_ERR CSR was locked, a correctable ECC error was detected.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt15:12;&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>IOA<BR>_TIMEOUT</TD><TD ALIGN=CENTER>&lt;11&gt;RW1C</TD>
+<TD>I/O time-out occurred. I/O read/write failed to be executed in 1 second.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;10&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PA<BR>_PTE_INV</TD><TD ALIGN=CENTER>&lt;9&gt;RW1C</TD>
+<TD>Invalid Page Table entry on Scatter/Gather access.</TD></TR>
+<TR VALIGN=TOP><TD>RCVD<BR>_TAR_ABT</TD><TD ALIGN=CENTER>&lt;8&gt;RW1C</TD>
+<TD>PCI master state machine received target abort.</TD></TR>
+<TR VALIGN=TOP><TD>RCVD<BR>_MAS_ABT</TD><TD ALIGN=CENTER>&lt;7&gt;RW1C</TD>
+<TD>PCI master state machine generated master abort.</TD></TR>
+<TR VALIGN=TOP><TD>PCI<BR>_ADDR_PE</TD><TD ALIGN=CENTER>&lt;6&gt;RW1C</TD>
+<TD>PCI bus Address Parity error detected.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_PERR</TD><TD ALIGN=CENTER>&lt;5&gt;RW1C</TD>
+<TD>PCI bus Data Parity error detected.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_SERR</TD><TD ALIGN=CENTER>&lt;4&gt;RW1C</TD>
+<TD>PCI bus SERR detected.</TD></TR>
+<TR VALIGN=TOP><TD>MEM_NEM</TD><TD ALIGN=CENTER>&lt;3&gt;RW1C</TD>
+<TD>Access to nonexistent memory detected.</TD></TR>
+<TR VALIGN=TOP><TD>CPU_PE</TD><TD ALIGN=CENTER>&lt;2&gt;RW1C</TD>
+<TD>EV56 bus parity error detected.</TD></TR>
+<TR VALIGN=TOP><TD>UN_COR<BR>_ERR</TD><TD ALIGN=CENTER>&lt;1&gt;RW1C</TD>
+<TD>Uncorrectable ECC error detected. This error cannot occur for a CPU to memory 
+read/write (CPU/mem read ECC errors are detected by the EV56. CPU/mem writes are 
+not checked). This error is applicable to a DMA, a S/G TLB miss, or an I/O write from 
+the EV56.</TD></TR>
+<TR VALIGN=TOP><TD>COR_ERR</TD><TD ALIGN=CENTER>&lt;0&gt;RW1C</TD>
+<TD>Correctable (single bit) ECC error detected.  This error cannot occur for a CPU 
+to memory read/write (CPU/mem read ECC errors are detected by the EV56; CPU/mem 
+writes are not checked). This error is applicable to a DMA, S/G TLB miss, or an I/O 
+write from the EV56.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

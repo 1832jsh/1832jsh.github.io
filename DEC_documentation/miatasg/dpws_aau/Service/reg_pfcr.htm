@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PYXIS Flash Control Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Flash Control Register (FLASH_CTRL)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.0200<BR>
+The flash control register controls that access to the flashROM and the basic timing 
+associated with it.  The register controls the write pulse width, the read/write access 
+time, and the ability of the flashROM to map at address 0 for startup conditions.</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:14&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>FLASH_HIGH<BR>_ENABLE</TD><TD ALIGN=CENTER>&lt;13&gt;RW</TD>
+<TD>When set to a 1,  address range F.FC00.0000 through F.FFFF.FFFF.  This code is in 
+cacheable memory space and can  contain program code.  If all of the address bits are 
+not connected, then the ROM may be shadowed at each ROM increment. 
+<STRONG>Note: This is not the address space for programming the device.</STRONG></TD></TR>
+<TR VALIGN=TOP><TD>FLASH_LOW<BR>_ENABLE</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>When set to 1, the flash ROM is mapped at address 0.  This enables the device 
+to be used in place of a serial ROM, which would normally contain the system initialization and startup.  Initialize to 1 on power-up so that data can be executed from the flashROM.  
+This should be disabled as soon after power-up as possible.</TD></TR>
+<TR VALIGN=TOP><TD>FLASH_ACCESS<BR>_TIME</TD><TD ALIGN=CENTER>&lt;11:8&gt;RW</TD>
+<TD>The flash access time is determined by the cycle time of the system.  
+The calculation is:
+<EM>Flash access time = (1 + (FLASH_ACCESS_TIME)) * cycle time - (Tpd+Tsetup).</EM>
+The Tpd is the PYXIS address bus clock-to-out delay, and the Tsetup  is the PYXIS 
+address bus setup time. If cycle time is 15ns and the value in FLASH_ACCESS_TIME is 
+0x0E, then the flash access time would be (1+14)* 15ns - 5ns or 255ns.  
+This is only an example.  The default value is 0x0f.
+</TD></TR>
+<TR VALIGN=TOP><TD>FLASH_DISABLE<BR>_TIME</TD><TD ALIGN=CENTER>&lt;7:4&gt;RW</TD>
+<TD>Controls the number of cycles after FLASH_ROM_OE is deasserted before PYXIS 
+de-asserts ABUS_REQUEST to allow the processor to use the bus. <BR>
+<EM>Flash disable time = (1 + (FLASH_DISABLE_TIME)) * cycle time.</EM>  
+If cycle time is 15ns and the value in FLASH_DISABLE is 0C16, then the flash disable 
+time would be (1+12)* 15ns or 195ns.  This is only an example.  
+The default value is 0716;  writes are enabled.
+</TD></TR>
+<TR VALIGN=TOP><TD>FLASH_WP<BR>_WIDTH</TD><TD ALIGN=CENTER>&lt;3:0&gt;RW</TD>
+<TD>Flash write pulse width is determined by the cycle time of the system.  The calculation is:
+<EM>Flash write pulse width (nominal) = (1 + (FLASH_WP_WIDTH)) * cycle time.</EM>  
+If cycle time is 15ns and the value in FLASH_WP_WIDTH is 0x0C, then the flash write 
+pulse width would be (1+12)* 15ns or 195ns.  This is only an example.  
+The default value is 0x0f;  writes are enabled.
+</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

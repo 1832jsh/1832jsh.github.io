@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Scache Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Scache Status Register (SC_STAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR CBU, FF.FFF0.00E8<BR>
+The Scache status (SC_STAT) register is a read-only register.  If an Scache tag or data parity error is detected during an Scache lookup, the SC_STAT is locked.  Any PALcode read of this register unlocks SC_ADDR and SC_STAT.</TD></TR>
+
+<TR VALIGN=TOP><TD>SC_SCND_ERR</TD><TD ALIGN=CENTER>&lt;16&gt;R</TD><TD>
+When set, this bit indicates that an Scache transaction resulted in a parity error while 
+SC_TPERR or SC_DPERR was already set from an earlier transaction.</TD></TR>
+
+<TR VALIGN=TOP><TD>SC_CMD&lt;4:0&gt;</TD><TD ALIGN=CENTER>&lt;15:11&gt;R</TD>
+<TD>This field indicates the Scache transaction that resulted in an Scache tag or data 
+parity error.
+
+<TABLE>
+<TR VALIGN=TOP><TH colspan=2>Source Encoding</TH><TH></TH></TR>
+<TR VALIGN=TOP><TH>&lt;4:3&gt;</TH><TH>&lt;2:0&gt;</TH><TH>Description</TH></TR>  
+<TR VALIGN=TOP><TD>1x</TD><TD>110</TD><TD>Set shared from system.</TD></TR>
+<TR VALIGN=TOP><TD>1x</TD><TD>101</TD><TD>Read dirty from system.</TD></TR>
+<TR VALIGN=TOP><TD>1x</TD><TD>100</TD><TD> Invalidate from system.</TD></TR>
+<TR VALIGN=TOP><TD>1x</TD><TD>001</TD><TD>Scache victim.</TD></TR>
+<TR VALIGN=TOP><TD>00</TD><TD>001</TD><TD>Scache IREAD. </TD></TR>
+<TR VALIGN=TOP><TD>01</TD><TD>001</TD><TD>Scache DREAD. </TD></TR>
+<TR VALIGN=TOP><TD>01</TD><TD>011</TD><TD>Scache DWRITE.</TD></TR>
+</TABLE>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>SC_DPERR&lt;7:0&gt;</TD><TD ALIGN=CENTER>&lt;10:03&gt;R</TD>
+<TD>When set, these bits indicate that an Scache read transaction resulted in a data parity error.  Each bit indicates that one or more bytes within a longword had the data parity error.
+</TD></TR>
+<TR VALIGN=TOP><TD>SC_TPERR&lt;2:0&gt;</TD><TD ALIGN=CENTER>&lt;02:00&gt;R</TD>
+<TD>When set, these bits indicate that an Scache tag lookup resulted in a tag parity error, and they identify the set with the error.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

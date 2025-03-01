@@ -1,0 +1,65 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> Windows NT Installation</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<h3>Windows NT Installation</H3>
+
+<P>
+In order to install Windows NT, a system partition must be defined. On an <EM>a/au-Series</EM> system, 
+a system partition is set silently in the background by AlphaBIOS when you install 
+Windows NT initially.</P>
+
+<P>The purpose of the system partition is twofold. First, it tells the Windows NT installation 
+program where to place the OS Loader and hardware support files. Second, upon 
+subsequent restarts of Windows NT, the system partition definition tells AlphaBIOS 
+where the OSLOADER.EXE file is so it can successfully hand off control to the OS Loader 
+and continue the boot process.</P>
+
+<P>The system partition can be the same partition into which Windows NT is installed, or it 
+can be separate. However, the system partition must be formatted with the FAT file system. 
+Because the default recommended partition arrangement on <EM>au-Series</EM> calls for the partition into which Windows NT is installed to be an NTFS partition, the system partition will almost always be a small (4 to 6 MB) FAT partition on the same disk onto which 
+Windows NT is installed. </P>
+
+<H3>Understanding How AlphaBIOS Works with System Partitions</H3>
+
+<P>If you have previously installed Windows NT on your system, then a system partition 
+will have been defined already and Windows NT will know where to place the OSLOADER 
+and hardware support files. However, if you are installing Windows NT for the first time, 
+AlphaBIOS will determine that a system partition has not been defined when you select 
+"Install Windows NT" in the AlphaBIOS Setup screen. When this occurs, AlphaBIOS 
+searches for all FAT partitions on the system. If only one FAT partition exists (which 
+would be the situation if only one hard drive is installed and you have just performed 
+an express hard-disk setup), then AlphaBIOS designates that FAT partition as the system 
+partition and continues with the Windows NT installation. If more than one FAT partition 
+exists on your system, AlphaBIOS displays the list of FAT partitions from which you can 
+choose the system partition. After choosing the system partition, the installation process 
+continues.</P>
+
+If you have a system with Windows NT preinstalled, Windows NT setup 
+will start automatically the first time you power-up your system. If your system does 
+not have Windows NT preinstalled, you must have a CD-ROM drive attached to your 
+system to install Windows NT.
+
+<STRONG>NOTE:</STRONG> Steps 1 and 2 are necessary only when you are first 
+setting up your system. On subsequent installations and upgrades, begin at Step 3.
+To install Windows NT from CD-ROM for the first time:
+
+<OL>
+<LI>Use CMOS Setup to set the system date and time: start AlphaBIOS Setup, select 
+CMOS Setup, and press [Enter].
+<LI>Perform an express hard-disk setup: return to the main AlphaBIOS Setup screen, 
+select Hard Disk Setup, and press [Enter].
+<LI>Put the Windows NT CD into the CD-ROM drive.
+<LI>Start AlphaBIOS Setup, select Install Windows NT, and press [Enter].
+<LI>Follow the prompts to complete the installation. For more information on installing 
+Windows NT, refer to the Installation Guide in your Windows NT software package.
+</OL>
+
+
+</BODY>
+</HTML>

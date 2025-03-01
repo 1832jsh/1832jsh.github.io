@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Exception Summary Register Bit Descriptions</TITLE>
+
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<!-- Created Using HTML Notepad, Copyright (c) cranial software 1995-->
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME="exc_add"><STRONG>Exception Address Register (EXC_ADD)</STRONG></A></CAPTION>
+<TR><TD  COLSPAN=3>Address: IPR Ibox, Index=10B
+<BR>The exception address register is used to restart the machine after exceptions or interrupts.</TD></TR>
+<TR VALIGN=TOP>
+<TD>PC</TD><TD ALIGN=CENTER>&lt;63:2&gt;RW</TD><TD>For precise exceptions, this is the address of the instruction that has not completed execution.  For imprecise exceptions, this is the PC value of the next instruction that would have issued if there were no exception/interrupt.  This address will be used to return from the exception or interrupt.</TD>
+</TR>
+<TR VALIGN=TOP><TD>Ignore</TD><TD ALIGN=CENTER>&lt;1&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP>
+<TD>PAL</TD><TD ALIGN=CENTER>&lt;0&gt;</TD><TD>This bit indicates PAL mode to the hardware.  When clear, the HW_REI instruction executes a jump to native (non-PAL) mode, enabling address translation.</TD></TR></TABLE>
+
+</BODY>
+</HTML>

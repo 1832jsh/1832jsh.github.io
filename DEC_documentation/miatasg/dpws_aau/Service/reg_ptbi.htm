@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Scatter/Gather Translation Buffer Invalidate Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Scatter/Gather Translation Buffer Invalidate Register (TBIA)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.6000.0100<BR>
+A write to the TBIA register will result in the specified group of scatter/gather TLB TAGs to be marked invalid and unlocked.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:2&gt;</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>TBIA</TD><TD ALIGN=CENTER>&lt;1:0&gt;</TD>
+<TD>
+A write to this register invalidates the scatter/gather Translation buffers.  		
+		
+<TABLE BORDER=1>
+<TR><TH>Bits&lt;1:0&gt;</TH><TH>Meaning</TH></TR>
+<TR><TD VALIGN=TOP>00</TD><TD>No operation.</TD></TR>
+<TR><TD VALIGN=TOP>01</TD><TD>Invalidate and unlock the TLB TAGs that are locked currently.</TD></TR>
+<TR><TD VALIGN=TOP>10</TD><TD>Invalidate the TLB TAGs that are unlocked currently.</TD></TR>
+<TR><TD VALIGN=TOP>11</TD><TD>Invalidate and unlock all of the TLB TAG entries.</TD></TR>
+</TABLE>
+
+</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>Firmware Troubleshooting</H3>
+
+<P>The DIGITAL Personal Workstation <EM>a/au-Series</EM> flashROM contains the SRM console firmware system, which supports the DIGITAL UNIX and OpenVMS systems.
+The SRM firmware does not contain diagnostics.  (Manufacturing has a superset of the 
+SRM firmware, which contains loadable diagnostics to support their environment.) </P>
+
+
+<P>The firmware is typically loaded by POST code's flash loader.  If 
+the flashROM is corrupted, or the checksum verification failed, the POST 
+flash loader will fail.  If a power failure occurs while the firmware was being updated, it 
+could corrupt the contents of the flashROM.
+When the system is powered on, the POST code, sensing the flashROM corruption, will 
+attempt to load from the floppy drive. Other problems and solutions follow:</P>
+
+<TABLE BORDER=1>
+<TR><TH>Possible Cause</TH><TH>Action</TH></TR>
+
+<TR VALIGN=TOP><TD>SRM POST countdown display fails to appear.</TD>
+<TD>Hit the [Return] key a few times.  If the >>> prompt appears on the monitor, the 
+console variable is set to serial.  Type <STRONG>set console graphics</STRONG>,
+ then type<STRONG> init</STRONG>.  The countdown should now be displayed.  
+The console variable is stored in the flashROM.  If the flashROM gets cleared, 
+the console variable will be set to serial.</TD></TR>
+	
+<TR VALIGN=TOP><TD>SRM POST countdown displays, then the system hangs. 
+Sometimes pressing the reset button results in the >>> prompt.</TD>
+<TD>Try booting the system and setting the clock.</TD></TR>
+
+<TR VALIGN=TOP><TD>Unable to get to the console prompt (>>>)</TD>
+<TD>The system is set to autoboot; try the following:
+<BR>1.  Type [Ctrl]+[C] during POST testing.
+<BR>2.  Type [Ctrl]+[P] before the windowing system is up.
+<BR>3.  Disconnect the disk.
+<BR>Once you are at the prompt, type: <STRONG>set auto_action halt</STRONG> 
+to prevent autobooting.</TD></TR>
+
+<TR VALIGN=TOP><TD>Monitor is unreadable.</TD>
+<TD>Check to see if the monitor requires the sync signal on the green signal. If it does,
+get a multisync monitor.</TD></TR>
+
+<TR VALIGN=TOP><TD>AlphaBIOS does not start.</TD>
+<TD>Check that the keyboard is plugged in and the video controller and monitor are 
+properly connected and working.  If the keyboard or video is missing or not 
+functioning, AlphaBIOS sends information to the COM1 port.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

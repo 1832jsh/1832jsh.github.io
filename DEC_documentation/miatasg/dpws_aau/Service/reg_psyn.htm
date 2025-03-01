@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Pyxis Syndrome Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Syndrome Register (PYXIS_SYN)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8300<BR>
+The PYXIS syndrome registers contains two 8-bit fields containing the error syndrome 
+bits.  The data is only valid after an error condition.  It is latched until the PYXIS error register is written to clear COR_ERR and UN_COR_ERR.  The PALcode must save this register prior to clearing the error conditions.  The state of this register is undefined at all times except when an error has been detected.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:28&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>UNCORRECTABLE<BR>_ERROR1</TD><TD ALIGN=CENTER>&lt;27&gt;RO</TD>
+<TD>An uncorrectable error was detected in quadword 1.</TD></TR>
+<TR VALIGN=TOP><TD>UNCORRECTABLE<BR>_ERROR0</TD><TD ALIGN=CENTER>&lt;26&gt;RO</TD>
+<TD>An uncorrectable error was detected in quadword 0.</TD></TR>
+<TR VALIGN=TOP><TD>CORRECTABLE<BR>_ERROR1</TD><TD ALIGN=CENTER>&lt25;&gt;RO</TD>
+<TD>A correctable error was detected in quadword 1.</TD></TR>
+<TR VALIGN=TOP><TD>CORRECTABLE<BR>_ERROR0</TD><TD ALIGN=CENTER>&lt;24&gt;RO</TD>
+<TD>A correctable error was detected in quadword 0.</TD></TR>
+<TR VALIGN=TOP><TD>RAW_CHECK<BR>_BITS</TD><TD ALIGN=CENTER>&lt;23:16&gt;RO</TD>
+<TD>Raw check bits from ECC error (the actual ECC bits stored in the ECC 
+field of the memory).</TD></TR>
+<TR VALIGN=TOP><TD>ERROR_<BR>SYNDROME1</TD><TD ALIGN=CENTER>&lt;15:8&gt;RO</TD>
+<TD>ECC Syndrome bits for data bits &lt;127:64&gt;</TD></TR>
+<TR VALIGN=TOP><TD>ERROR_<BR>SYNDROME0</TD><TD ALIGN=CENTER>&lt;7:0&gt;RO</TD>
+<TD>ECC Syndrome bits for data bits &lt;63:0&gt;</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

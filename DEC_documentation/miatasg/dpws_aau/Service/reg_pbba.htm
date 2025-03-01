@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Base Address Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Base Address Registers (BBAR0-BBAR7)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.5000.0600 - 87.5000.07C0<BR>
+Each memory bank has a corresponding base address register. The bits in this register 
+are compared with the incoming sysAdr to determine the bank being addressed. The 
+contents of this register are validated by setting the valid bit in the configuration register of that bank.
+<P>
+The base address of each bank must begin on a naturally aligned boundary. 
+(So, for a bank with 2 to the <EM>n</EM> addresses, the<EM> n</EM> least significant bits must be zero.)
+
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:16&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>BASEADDR<BR>&lt;33:24&gt;</TD><TD ALIGN=CENTER>&lt;15:6&gt;RW</TD>
+<TD>Starting memory address for the bank.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;5:0&gt;RO</TD>
+<TD>N/A</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

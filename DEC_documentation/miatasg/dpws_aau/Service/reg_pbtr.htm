@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Bank Timing Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Bank Timing Registers (BTR0-BTR7)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.5000.0A00 - 87.5000.0BC0<BR>
+The bank timing registers allow for the specific setup of the memory 
+modules.  The register allows mixing of memory DIMMs.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:6&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>SLOW_<BR>PRECHARGE</TD><TD ALIGN=CENTER>&lt;5&gt;RW</TD>
+<TD>When set, precharge operations are delayed for one cycle more than needed for 
+the next CAS cycle.  Some vendor SDRAMS (for example, NEC) require this when operating 
+with a CAS latency of 3.</TD></TR>
+<TR VALIGN=TOP><TD>TOSHIBA</TD><TD ALIGN=CENTER>&lt;4&gt;RW</TD>
+<TD>Toshiba SDRAMS do not permit a new CAS during several odd cycles 
+after CAS.  This bit is provided for these devices. Note that the 
+operation of this function is implemented by forcing auto-precharge.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved<BR>_ENABLE</TD><TD ALIGN=CENTER>&lt;3&gt;RO</TD>
+<TD>Enable subbanks. When set, subbanks are enabled and determined 
+according to the BANK_SIZE table. When clear, subbanks are disabled, and 
+the memRASB_I pins will be asserted only during refreshes.</TD></TR>
+<TR VALIGN=TOP><TD>ROW_ADDR<BR>_HOLD</TD><TD ALIGN=CENTER>&lt;2:0&gt;RW</TD>
+<TD>The minimum number of sysClk cycles that RAS will be asserted before 
+CAS is asserted.			
+</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

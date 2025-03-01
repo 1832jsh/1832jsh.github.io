@@ -1,0 +1,71 @@
+<HTML>
+<!-- This file created by Terry Donald and Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1997 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation a-Series Firmware</TITLE>
+</HEAD>
+
+<BODY>
+<h3>Updating Firmware</H3>
+<STRONG>Note: If the system has &quot;5.25 proto&quot; AlphaBIOS installed, this procedure
+does not apply.  You must reflash the system using APU rather than AlphaBIOS. Refer to the 
+DIGITAL Intranet URL <A HREF="ftp://beer.eng.pko.dec.com/pub/miatamfg">
+ftp://beer.eng.pko.dec.com/pub/miatamfg</A>.</STRONG>
+
+<P>
+Copy the AlphaBIOS and POST over the Internet, using the following steps:
+
+<OL>
+<LI>Open the URL <A HREF="http://www.windows.digital.com/support/sysoft.htp">
+http://www.windows.digital.com/support/sysoft.htp</A>.</LI>
+<LI>You will be at the Windows Enterprise Computing screen.</LI>
+<LI>Scroll down to the DIGITAL Personal Workstation heading and choose 433a.</LI>
+<LI>You will now be at the DIGITAL Personal Workstation 433a Support Files screen.</LI>  
+<LI>Choose AlphaBIOS and POST.</LI>
+<LI>Save the file on your system.</LI>
+<LI>Unzip the archive. The zip file contains V5.25 (or later) AlphaBIOS firmware, 
+V3.38 (or later) Power On Self Test (POST) firmware, and installation instructions for the DIGITAL 
+Personal Workstation <EM>a-Series</EM>.</LI>
+
+<LI>From Windows NT copy the files <TT>miataab.rom</TT> and <TT>miatapos.rom</TT> 
+onto a FAT-formatted floppy diskette.</LI>
+
+<LI>Select <TT>Shutdown</TT> from the Windows NT Security dialog box (Ctrl/Alt/Del).</LI>
+
+<LI>Select <TT>Shutdown and Restart</TT> from the Shutdown Computer dialog box.</LI>
+
+<LI>Enter setup by pressing F2.</LI>
+
+<LI>Insert the diskette into the workstation's diskette drive.</LI>
+
+<LI>Select <TT>Upgrade AlphaBIOS</TT> from the initial Setup screen.</LI>
+
+<LI>From the <TT>Upgrade Options</TT> dialog box select the POST code image.
+
+<STRONG>NOTE: When upgrading the POST image the <EM>old and new</EM> version
+information will be displayed as <EM>unknown.</EM>  Version
+information will be added in a future release of AlphaBIOS.
+Select <TT>System Configuration</TT> from the setup screen after
+the machine is reset to confirm the new fimrware version.</STRONG></LI>
+	      
+
+<LI>Once the POST code image has been updated, continue the update
+process by depressing the ESC key and selecting <TT>Upgrade AlphaBIOS</TT> from the 
+Setup screen.</LI>
+
+<LI>From the <TT>Upgrade Options</TT> dialog box select the AlphaBIOS image.
+
+<STRONG>NOTE: When upgrading the AlphaBIOS image the <EM>new</EM> version
+information will not be displayed.  Version information
+will be added in a future release of AlphaBIOS.
+Select <TT>System Configuration</TT> from the setup screen after
+the machine is reset to confirm the new firmware version.
+</STRONG></LI>
+<LI>Power cycle the workstation.</LI>
+
+</OL>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>Boot Troubleshooting</H3>
+
+<TABLE BORDER=1 WIDTH=100%>
+<TR><TH>Possible Cause</TH><TH>Action</TH></TR>
+
+<TR VALIGN=TOP><TD VALIGN=TOP>Will not boot from an IDE hard disk drive.</TD>
+<TD><EM>DIGITAL UNIX</EM>: Not supported.<BR>
+</TD></TR>
+	
+<TR VALIGN=TOP><TD VALIGN=TOP>Operating system (OS) software is not installed on the hard disk drive.</TD>
+<TD>Install the operating system.</TD></TR>
+	
+<TR VALIGN=TOP><TD>Target boot device is not listed in the show device or show config (SRM) because of a SCSI bus problem.</TD>
+<TD>Check the cables.  Are the cables oriented properly and not cocked?
+Are there bent pins? Check all the SCSI devices for incorrect or conflicting IDs.  
+Refer to the device's documentation.<BR>
+SCSI termination: The SCSI bus must be terminated 
+at the end of the internal cable AND at the last external SCSI peripheral. </TD></TR>
+
+<TR VALIGN=TOP><TD VALIGN=TOP>System cannot find the boot device.</TD>
+<TD>Check the system configuration for correct device parameters. Use SRM 
+firmware to display the hardware configuration. <BR>
+<EM>DIGITAL UNIX</EM>: Use the SRM show config and show device 
+commands.  Use the displayed information to identify target devices for the 
+boot command, and verify that the system sees all of the installed devices.  
+If you are attempting to use bootp, first set the following variables as shown:<BR>
+<STRONG>>>>set ewa0_inet_init BOOTP</STRONG><BR>
+<STRONG>>>>set ewa0_protocols BOOTP</STRONG><BR>
+</TD></TR>
+	
+<TR VALIGN=TOP><TD VALIGN=TOP>Environment variables incorrectly set.  (This could happen if the MLB has been replaced, which would cause a loss of the previous configuration information). 
+Configuration information is stored in the flashROM and RTC memory on the MLB. 
+If the MLB is replaced, the information in the flashROM and realtime clock is lost.  
+If the battery is replaced, the information in RTC memory is lost.  Keeping records of the 
+configuration (IRQs, DMAs, I/O addresses, and so forth) will facilitate getting the system 
+back into use.</TD>
+<TD>Check and set the environment variables, if necessary. <BR>
+<EM>DIGITAL UNIX</EM>: Use the SRM console show and set commands to check and 
+set the values assigned to boot-related variables such as auto_action, bootdef_dev, and 
+boot_osflag.<BR>
+</TD></TR>
+
+<TR VALIGN=TOP><TD VALIGN=TOP>Bad device name/number or partition number...</TD>
+<TD>The <STRONG>system partition</STRONG> value is pointing to an invalid partition. 
+From the AlphaBIOS Setup screen, 
+select Utilities and OS Selection Setup.  Press [F9] to validate the selection.  
+To edit the selection, press F6.</TD></TR>
+
+<TR VALIGN=TOP><TD VALIGN=TOP>File is not a directory..., or No such file or directory...</TD>
+<TD>The <STRONG>osloader</STRONG> value is incorrect.  The <STRONG>system partition</STRONG> value is okay.  From the AlphaBIOS Setup screen, select Utility then OS Selection Setup.  Press [F9] to validate the selection.  To edit the selection, press [F6].</TD></TR>
+	
+<TR VALIGN=TOP><TD VALIGN=TOP>Hard disk drive is not correctly formatted or the requested partition does not exist.</TD>
+<TD>Format the hard disk drive or correctly partition the hard disk drive using
+ appropriate tools (for example, Hard Disk Setup under AlphaBIOS). </TD></TR>
+
+<TR VALIGN=TOP><TD VALIGN=TOP>There is no software on the requested partition.</TD>
+<TD>If the command is pointing to the correct partition, install the software.  Otherwise, change the variables to point to the correct partition.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

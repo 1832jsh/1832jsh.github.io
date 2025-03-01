@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Bank Configuration Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Bank Configuration Registers (BCR0-BCR7)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.5000.0800 - 87.5000.09C0<BR>
+Each memory bank has a corresponding configuration register. This register contains 
+mode bits and bits for memory address generation, as well as bank decoding. Banks 0 
+through 7 have the same limits on bank size and type of DRAMs used. The format of the 
+configuration register is the same for baskets 0 through 7. Bank 8 is the VRAM bank. 
+It supports different minimum DRAM sizes and configurations, therefore, its configuration register is different.
+<P>
+With the exception of the valid bit, this register is not initialized.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:8&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>4BANK</TD><TD ALIGN=CENTER>&lt;7&gt;RW</TD>
+<TD>When set, four bank operation is enabled for this bank. 
+Typically 64-MB DIMMs.</TD></TR>
+<TR VALIGN=TOP><TD>COLSEL</TD><TD ALIGN=CENTER>&lt;6&gt;RW</TD>
+<TD>Row address selection. Indicates the number of valid Row bits 
+expected at the DRAMs. Used along with memory width information to 
+generate row or column addresses.  There are two values associated with 
+this field.  A zero (0) indicates 12 bits of row address (16-Mbit DRAM) and 
+one (1) 14 bits of row address. (64-Mbit DRAMs)</TD></TR>
+<TR VALIGN=TOP><TD>SUBBANK<BR>_ENABLE</TD><TD ALIGN=CENTER>&lt;5&gt;RW</TD>
+<TD>Enable subbanks. When set, subbanks are enabled and determined 
+according to the BANK_SIZE table. When clear, subbanks are disabled, and 
+the memRASB_I pins will be asserted only during refreshes.</TD></TR>
+<TR VALIGN=TOP><TD>BANK_<BR>SIZE&lt;3:0&gt;</TD><TD ALIGN=CENTER>&lt;4:1&gt;RW</TD>
+<TD>Bank size in MB. Indicates the size of the bank in order to determine 
+which bits are used to compare the bank base address with the physical 
+address (PA) and to generate the subset. Corresponds to the total size of 
+the bank, including subbanks, if present.				
+
+<TABLE BORDER=1>
+<TR><TH>Size<BR>3:0</TH><TH>Compare<BR>PA</TH><TH>Subset<BR>PA</TH><TH>Set<BR>Size</TH></TR>
+<TR><TD>0000</TD><TD>&lt;33:30&gt;</TD><TD>&lt;29&gt;</TD><TD>1GB</TD></TR>
+<TR><TD>0001</TD><TD>&lt;33:29&gt;</TD><TD>&lt;28&gt;</TD><TD>512 MB</TD></TR>
+<TR><TD>0010</TD><TD>&lt;33:28&gt;</TD><TD>&lt;27&gt;</TD><TD>256 MB</TD></TR>
+<TR><TD>0011</TD><TD>&lt;33:27&gt;</TD><TD>&lt;26&gt;</TD><TD>128 MB</TD></TR>
+<TR><TD>0100</TD><TD>&lt;33:26&gt;</TD><TD>&lt;25&gt;</TD><TD>64 MB</TD></TR>
+<TR><TD>0101</TD><TD>&lt;33:25&gt;</TD><TD>&lt;24&gt;</TD><TD>32 MB</TD></TR>
+<TR><TD>0110</TD><TD>&lt;33:24&gt;</TD><TD>&lt;23&gt;</TD><TD>16 MB</TD></TR>
+<TR><TD>0111</TD><TD>&lt;33:23&gt;</TD><TD>&lt;22&gt;</TD><TD>8 MB</TD></TR>
+<TR><TD>1000</TD><TD>&lt;33:31&gt;</TD><TD>&lt;30&gt;</TD><TD>2GB</TD></TR>
+<TR><TD>1001-<BR>1111</TD><TD COLSPAN=3 ALIGN=MIDDLE>Reserved</TD></TR>
+</TABLE>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>BANK_<BR>ENABLE</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>Bank Enabled. If set, all timing and configuration parameters 
+for bank are valid, and access to banks allowed. If cleared, access 
+to bank is not allowed.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

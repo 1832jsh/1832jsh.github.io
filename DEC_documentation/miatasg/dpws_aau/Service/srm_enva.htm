@@ -1,0 +1,111 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> SRM Firmware</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>Environment Variables</H3>
+
+<TABLE BORDER=1>
+<TR><TH>Variable</TH><TH>Description</TH></TR>
+<TR VALIGN=TOP><TD>auto_action</TD><TD>Sets the console action following an error, halt, or power-up.  The action can be<STRONG> halt</STRONG>, <STRONG>boot</STRONG>, 
+or <STRONG>restart</STRONG>.  Halt is the default.</TD></TR>
+<TR VALIGN=TOP><TD>bootdef_dev</TD><TD>Sets the default device or device list from 
+which the system will attempt to boot.  If the system shipped with its software installed, 
+the variable is pre-set to point to the device containing the software.  Otherwise, the default 
+value is null.</TD></TR>
+<TR VALIGN=TOP><TD>boot_file</TD><TD>Sets the file name to be used when a bootstrap 
+requires a filename.  The default setting is null.</TD></TR>
+<TR VALIGN=TOP><TD>boot_osflags</TD><TD>Sets additional parameters to be passed 
+to system software.  The default setting is 0,0.<BR>
+<A HREF="#vms_boot_flags">OpenVMS boot flags.</A><BR>
+<A HREF="#unix_boot_flags">DIGITAL UNIX boot flags.</A></TD></TR>
+<TR VALIGN=TOP><TD>bus_probe_algorithm</TD><TD>This variable is used to determine 
+the method used to size the PCI bus.  The values are <STRONG>old</STRONG> 
+(for OpenVMS) or <STRONG>new</STRONG> (for DIGITAL UNIX).  The default is new.</TD></TR>
+<TR VALIGN=TOP><TD>console</TD><TD>This variable routes the console output to 
+either the <STRONG>graphics</STRONG> controller or the <STRONG>serial</STRONG> line port.</TD></TR>
+<TR VALIGN=TOP><TD>control_disfd</TD><TD>When set to enable, this variable write 
+protects the floppy diskette drive.  When set to disable, writes are enabled.</TD></TR>
+<TR VALIGN=TOP><TD>control_irq11</TD><TD>This variable controls the source of IRQ11.  
+When set to irq11, the interrupt is from an ISA IRQ11 device.  When set to scsi, the SCSI 
+controller is the source. </TD></TR>
+<TR VALIGN=TOP><TD>control_irq12</TD><TD>This variable controls the source of IRQ12.  
+When set to irq12, the interrupt is from an ISA IRQ12 device.  When set to mouse, the 
+mouse controller is the source.</TD></TR>
+<TR VALIGN=TOP><TD>control_scsi_term</TD><TD>Unused in the <EM>au-Series</EM> system.</TD></TR>
+<TR VALIGN=TOP><TD>control_idema</TD><TD>When set to enable, IDE devices are 
+allowed to make requests.  When set to disable, IDE device requests are blocked.  
+The IDE is not supported by the DIGITAL UNIX operating system.</TD></TR>
+<TR VALIGN=TOP><TD>ewa0_inet_init</TD><TD>Used when booting over a TCP/IP network.  
+The value is normally <STRONG>BOOTP</STRONG>.</TD></TR>
+<TR VALIGN=TOP><TD>ewa0_mode</TD><TD>This variable is set to the appropriate 
+Ethernet media type being used by the system.  The possible values are:<BR>
+Twisted-Pair<BR>Full Duplex,Twisted-Pair<BR>AUI (Default)<BR>BNC<BR>Fast 
+(for FAST Ethernet controllers)<BR>FastFD (for FAST Ethernet controllers that support 
+full duplex)</TD></TR>
+<TR VALIGN=TOP><TD>ewa0_protocols</TD><TD>The possible values are 
+<STRONG>BOOTP</STRONG> and <STRONG>MOP</STRONG>.  The default is MOP.</TD></TR>
+<TR VALIGN=TOP><TD>kbd_hardware_type</TD><TD>This variable specifies the 
+keyboard type,<STRONG> LK411</STRONG> or <STRONG>PCXAL</STRONG>.  
+The default is PCXAL.</TD></TR>
+<TR VALIGN=TOP><TD>language</TD><TD>The language environment variable associates 
+a language to the system.  You can have the system prompt you for the language 
+using the following command:  >>>set language 0 and then >>>init.  Select the desired 
+language.  Type >>>init again, then power cycle the system.</TD></TR>
+<TR VALIGN=TOP><TD>os_type</TD><TD>Set to the operating system (OS)  running on the 
+system.  The possible values are<STRONG> OSF</STRONG>, <STRONG>UNIX</STRONG>, 
+<STRONG>OpenVMS</STRONG>, <STRONG>VMS</STRONG>, and <STRONG>NT</STRONG>.
+</TD></TR>
+<TR VALIGN=TOP><TD>pci_parity</TD><TD>The pci_parity variable controls PCI parity 
+checking at the PCI bridge chip.  The new value becomes effective after an init or power 
+cycle. Possible values are:<BR><STRONG>On</STRONG> - parity checking is 
+performed<BR><STRONG>Off</STRONG> - parity checking is disabled<BR>
+<STRONG>Sniff</STRONG> - parity checking will be on for SCSI controllers (NCR53C810), 
+if present at rev 2.  Otherwise, parity checking is off.</TD></TR>
+<TR VALIGN=TOP><TD>pkao_fast</TD><TD>A value of <STRONG>0</STRONG> sets the 
+SCSI mode to slow (5 Mbps); a value of <STRONG>1</STRONG> sets the SCSI mode 
+to fast (10 Mbps).  DIGITAL UNIX operating system users also must edit the configuration 
+file and rebuild the kernel.</TD></TR>
+
+</TABLE>
+<P></P>
+<HR>
+<A NAME="unix_boot_flags"><H3>DIGITALl UNIX Boot Flags</H3></A>
+
+<P>The DIGITAL UNIX boot flags can be stored in the boot_osflags variable or typed in along with the boot command.  The possible DIGITAL UNIX boot flags are:</P>
+
+
+<TABLE BORDER=1>
+<TR><TH>Flag</TH><TH>Description</TH></TR>
+<TR><TD>a</TD><TD>Load OS from the specified boot device. Boot to multiuser mode.</TD></TR>
+<TR><TD>i</TD><TD>Prompt for the name of a file to load and other options (Boot interactively). Boot to single user mode.</TD></TR>
+<TR><TD>s</TD><TD>Stop in single user mode. Boot /vmunix to single user mode and stop at the # (root) prompt.</TD></TR>
+<TR><TD>D</TD><TD>Full dump, implies "s" as well.</TD></TR>
+</TABLE>
+<P></P>
+<HR>
+<A NAME="vms_boot_flags"><H3>OpenVMS Boot Flags</H3></A>
+<P>The OpenVMS boot flags consist of two portions separated by a comma: root , bootflag.  The value may be stored in the boot_osflags variable or typed in when booting.  The default value is 0,0.  The left half specifies the directory to boot from (0 = [SYS0], 1 = [SYS1] and so forth).  The right half can be used to enable specific functions during booting as shown below:</P>
+
+<TABLE BORDER=1>
+<TR><TH>Value</TH><TH>Bit</TH><TH>Description</TH></TR>
+<TR><TD>1</TD><TD>0</TD><TD>Conversational boot (SYSBOOT>).</TD></TR>
+<TR><TD>2</TD><TD>1</TD><TD>Maps XDELTA to a running system.</TD></TR>
+<TR><TD>4</TD><TD>2</TD><TD>Stops at the initial system breakpoint.</TD></TR>
+<TR><TD>8</TD><TD>3</TD><TD>Performs a diagnostic bootstrap.</TD></TR>
+<TR><TD>10</TD><TD>4</TD><TD>Stops at the bootstrap breakpoints.</TD></TR>
+<TR><TD>20</TD><TD>5</TD><TD>Omits header from secondary boot image.</TD></TR>
+<TR><TD>80</TD><TD>7</TD><TD>Prompts for the name of the secondary bootfile.</TD></TR>
+<TR><TD>100</TD><TD>8</TD><TD>Halts the system before secondary bootstrap.</TD></TR>
+<TR><TD>2000</TD><TD>13</TD><TD>Marks corrected read data error pages as bad.</TD></TR>
+<TR><TD>10000</TD><TD>16</TD><TD>Displays extensive debug messages during booting.</TD></TR>
+<TR><TD>20000</TD><TD>17</TD><TD>Displays selected user messages during booting.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

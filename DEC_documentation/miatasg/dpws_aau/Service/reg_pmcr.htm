@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Memory Control Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Memory Control Register (MCR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.5000.0000<BR>
+The memory control register contains all of the functions necessary to set up and 
+configure the base control functions of the memory subsystem.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:30&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DRAM_MODE</TD><TD ALIGN=CENTER>&lt;29:16&gt;RW</TD>
+<TD>This field is subdivided into three fields that are forwarded directly to the memory 
+DIMMs.  Refer to the individual DIMM specification for details.
+</TD></TR>
+<TR VALIGN=TOP><TD>DRAM_CLK<BR>_AUTO</TD><TD ALIGN=CENTER>&lt;15&gt;RW</TD>
+<TD>When set, automatic suppression of DRAM_CLK when there is no memory 
+controller activity for eight cycles is enabled.</TD></TR>
+<TR VALIGN=TOP><TD>CKE_AUTO</TD><TD ALIGN=CENTER>&lt;14&gt;RW</TD>
+<TD>When set, the automatic de-assertion of DRAM_CKE when there is no 
+memory controller activity for eight cycles is enabled.</TD></TR>
+<TR VALIGN=TOP><TD>SEQ_TRACE</TD><TD ALIGN=CENTER>&lt;13&gt;RW</TD>
+<TD>Enable the output of the memory sequencer out to the DRAM address lines.  
+Intended for debug.</TD></TR>
+<TR VALIGN=TOP><TD>OVERLAP<BR>_DISABLE</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>When asserted, causes the memory controller to operate in a conservative 
+mode.  New memory transactions will not be started until the data cycles of the previous 
+transactions have completed.</TD></TR>
+<TR VALIGN=TOP><TD>PIPELINED<BR>_BCACHE</TD><TD ALIGN=CENTER>&lt;11&gt;RW</TD>
+<TD>When asserted, this causes the PYXIS to use the CLK edge one cycle after DACK 
+to capture read data rather than using SRAM_CLK_IN.</TD></TR>
+<TR VALIGN=TOP><TD>BCACHE<BR>_ENABLE</TD><TD ALIGN=CENTER>&lt;10&gt;RW</TD>
+<TD>When set, BCACHE-related functions in the MCTL, such as IDLE_BC assertion, 
+snoop type for certain DMA functions and assertion of DBUS_REQ to acquire the bus, 
+are enabled.  If BCACHE_ENABLE is not asserted, the CACHE_ISOLATE signal is kept 
+asserted</TD></TR>
+<TR VALIGN=TOP><TD>BCACHE<BR>_TYPE</TD><TD ALIGN=CENTER>&lt;9&gt;RO</TD>
+<TD>Indicates the type of a Backup Cache.  A 0 (zero) indicates a nonpipelined BCACHE, and 
+a 1 indicates a pipelined BCACHE.</TD></TR>
+<TR VALIGN=TOP><TD>SERVER<BR>_MODE</TD><TD ALIGN=CENTER>&lt;8&gt;RO</TD>
+<TD>Indicates the operating configuration of the system.  A 0 (zero) indicates 
+WORKSTATION mode, and a 1 (one) indicates SERVER mode.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;7:1&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>MODE_REQ</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>Causes the PYXIS to send the Mode Register Set command to the memory DIMMs.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

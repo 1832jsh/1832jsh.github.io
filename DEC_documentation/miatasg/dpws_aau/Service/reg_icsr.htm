@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Instruction Control and Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME="iccsr"><STRONG>Instruction Control and Status Register (ICSR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR Ibox, Index=118<BR>
+This register contains various CPU instruction fetch/decode unit and branch unit (IDU) control and status information.</TD></TR>
+<TR VALIGN=TOP><TD>TST</TD><TD ALIGN=CENTER>&lt;39&gt;RW</TD><TD>Setting this bit asserts the test_status_h<1> signal.</TD></TR>
+<TR VALIGN=TOP><TD>ISTA</TD><TD ALIGN=CENTER>&lt;38&gt;RO</TD><TD>Reading this bit indicates Icache BIST status.  If set, the BIST was successful.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;37&gt;RW,1</TD><TD>Reserved to DIGITAL. Must be one.</TD></TR>
+<TR VALIGN=TOP><TD>FBD</TD><TD ALIGN=CENTER>&lt;36&gt;RW</TD><TD>If set, forces bad Icache data parity.  MBZ in normal operation.</TD></TR>
+<TR VALIGN=TOP><TD>FBT</TD><TD ALIGN=CENTER>&lt;35&gt;RW</TD><TD>If set, forces bad Icache tag parity.  MBZ in normal operation.</TD></TR>
+<TR VALIGN=TOP><TD>FMS</TD><TD ALIGN=CENTER>&lt;34&gt;</TD><TD>If set, forces misses on Icache references.  MBZ in normal operation.</TD></TR>
+<TR VALIGN=TOP><TD>SLE</TD><TD ALIGN=CENTER>&lt;33&gt;</TD><TD>If set, enables serial line interrupts.</TD></TR>
+<TR VALIGN=TOP><TD>CRDE</TD><TD ALIGN=CENTER>&lt;32&gt;</TD><TD>If set, enables correctable error interrupts.</TD></TR>
+<TR VALIGN=TOP><TD>SDE</TD><TD ALIGN=CENTER>&lt;30&gt;</TD><TD>If set, enables the PAL shadow registers.</TD></TR>
+<TR VALIGN=TOP><TD>SPE&lt;1:0&gt;</TD><TD ALIGN=CENTER>&lt;29:28&gt;</TD><TD>If SPE&lt;1&gt; is set, it enables super-page mapping of I-stream virtual address VA&lt;39:13&gt; directly 
+to physical PA&lt;39:13&gt;.  If SPE&lt;0&gt; is set (NT mode), it enables super-page mapping of Istream virtual addresses VA&lt;42:30&gt; = 1FFE directly to physical address PA&lt;39:30&gt; = 0.  VA&lt;30:13&gt; is mapped directly to PA&lt;30:13&gt;.
+</TD></TR>
+<TR VALIGN=TOP><TD>HWE</TD><TD ALIGN=CENTER>&lt;27&gt;RW</TD><TD>If set, allows PALRES instructions to be issued in kernel mode.</TD></TR>
+<TR VALIGN=TOP><TD>FPE</TD><TD ALIGN=CENTER>&lt;26&gt;RW</TD><TD>If set, floating point instructions may be issued.</TD></TR>
+<TR VALIGN=TOP><TD>TMD</TD><TD ALIGN=CENTER>&lt;25&gt;RW</TD><TD>If set, disables the IDU timeout counter.</TD></TR>
+<TR VALIGN=TOP><TD>TMM</TD><TD ALIGN=CENTER>&lt;24&gt;RW</TD><TD>If set, the timeout counter counts 5,000 cycles before asserting timeout reset.  If clear, the 
+counter counts 1 billion cycles before asserting timeout reset.
+</TD></TR>
+<TR VALIGN=TOP><TD>IMSK&lt;3:0&gt;</TD><TD ALIGN=CENTER>&lt;23:20&gt;RW</TD><TD>If set, each IMSK&lt;3:0&gt; signal disables the corresponding irq_h&lt;3:0&gt; interrupt.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;18&gt;</TD><TD>Test mode bit, must be zero.</TD></TR>
+<TR VALIGN=TOP><TD>BSE</TD><TD ALIGN=CENTER>&lt;17&gt;</TD><TD>If set, enables support for byte and word data structures.</TD></TR>
+<TR VALIGN=TOP><TD>PME&lt;1:0&gt;</TD><TD ALIGN=CENTER>&lt;09:08&gt;</TD><TD>Performance counter master enable bits.  If both &lt;1&gt; and &lt;0&gt; are clear, all performance counters in the PMCTR IPR are disabled.  If either bit is set, the counter is enabled according to the settings of the PMCTR CTL fields.
+</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,119 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> Operating System Selection Setup</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>Operating System Selection Setup</H3>
+
+<P>
+Each operating system (OS) selection is a set of information that describes the disk and 
+partition containing the OSLOADER.EXE file associated with a particular operating system 
+installation, as well as the path to the operating system itself. In addition, each OS selection 
+contains any options passed to the operating system during boot.</P>
+
+<P>You can use the options available in the Operating System Selection Setup screen to work with the OS selection data stored in nonvolatile storage in your system. In addition, you can modify and delete existing selections, as well as create new selections. As you work with OS selections, you can cancel changes at any time before you save them. Whenever you 
+save or discard changes to your OS selections, a dialog box appears, which allows you  
+to continue with the operation or return to the Operating System Selection 
+Setup screen.
+</P>
+<STRONG>NOTES:</STRONG>
+<UL>
+<LI>If you delete all OS selections, a dialog box displays to show 
+that no OS selections exist and offers three options: (1)create a new OS selection, (2)exit without saving changes, or (3)exit and save changes.
+
+<LI>You can validate all of the OS selections at once by pressing the [Ctrl] and 
+[F9] keys simultaneously.  All OS selections are validated in the order they are listed 
+on screen.
+
+<LI>If the Boot File or OS path in the boot selection you are verifying resides in an 
+NTFS partition, that part of the boot selection may not be verified. Support for verification on 
+NTFS partitions has been removed from this release of AlphaBIOS because of ongoing 
+changes to the NTFS specification by Microsoft.
+</UL>
+
+<P>The process of setting up your operating system selections is somewhat like using an 
+editor. You can make all the desired changes to your operating system selections  
+and then either save your changes or exit without saving your changes.  You can enter the following fields:</P>
+
+<UL>
+<LI><STRONG>Boot Name: </STRONG>Each boot name is associated with an OS selection. Windows NT Setup automatically creates a boot name each time you 
+install the OS. Because the boot name is only a name, you can modify the 
+boot name at any time without affecting the rest of the OS selection. 
+Notice that the boot name must have at least one character.
+
+<LI><STRONG>Primary Operating System: </STRONG>The primary OS is 
+the one that appears first on the AlphaBIOS boot screen.  Also, it is the version of the OS that 
+automatically starts if Auto Start is selected. You can make any of the OS selections the primary OS.
+
+<LI><STRONG>Boot File: </STRONG>The Boot File line describes the disk, partition, 
+path, and name of the file that AlphaBIOS passes control to during the process of starting 
+the OS. This setting is created along with the OS selection 
+during Windows NT Setup, and it is usually not modified by the user. However, this 
+setting can be modified if necessary. For example, a developer testing different versions 
+of OSLOADER.EXE can store the different versions in different locations and modify this 
+line to start the operating system with the different versions as needed.<BR>
+During Operating System Selection Setup, you can select the disk and partition for the location of the boot file from a list of choices presented in a list box. To open a list of 
+values for the field, press the [Alt] and down arrow keys together. When you select a boot 
+file location and name, AlphaBIOS searches for the specified program on the specified 
+partition. If the search fails, a warning appears, saying that the file does not exist. 
+You can choose between continuing with the changes or cancelling the operation 
+and fixing the problem. 
+<STRONG>NOTE:</STRONG> Because the boot file must located in a FAT partition, 
+only FAT partitions are available as the boot partition within the list box.
+
+<LI><STRONG>OS Path: </STRONG>The OS Path line describes the disk, partition, and 
+path to the OS root directory for an OS selection.
+During Operating System Selection Setup, the disk and partition for the location of the boot 
+file can be selected from a list of choices presented in a list box. To open a list of possible 
+values for the field, press the [Alt] and down arrow keys at the same time. When you select 
+or enter an OS path, AlphaBIOS searches for the directory. If the search fails, a warning 
+appears, saying that the directory does not exist. You can choose to continue 
+with the changes or to cancel the operation and fix the problem.
+
+<LI><STRONG>OS Options: </STRONG>the OS Options line lists the startup parameters 
+passed to the OS for an OS selection. One example of a 
+startup parameter is whether to start the OS in debug mode. By default, 
+Windows NT does not add any entries to this field. This field can be modified.  Possible values
+are:
+</UL>
+<TABLE BORDER=1>
+<TR VALIGN=TOP><TH>OS Option</TH><TH>Description</TH></TR>
+<TR VALIGN=TOP><TD>/BASEVIDEO</TD><TD>The system starts up using the standard VGA video driver.  
+If you have installed a new video driver, but it is not working correctly, select the Windows 
+NT entry with this switch to start the system so you can change to a different driver.</TD></TR>
+<TR VALIGN=TOP><TD>/BAUDRATE</TD><TD>Specifies the baud rate to be used for debugging.  If you do not set the baud rate, the default baud rate is 9600 if a modem is attached and 19200 for a null-modem cable. This switch has a secondary effect of forcing the /DEBUG switch as well, whether or not you plan to use /DEBUG.</TD></TR>
+<TR VALIGN=TOP><TD>/CRASHDEBUG</TD><TD>The debugger is loaded when you start Windows NT but remains inactive unless a kernel error occurs.  This mode is useful if the system is experiencing random, unpredictable kernel errors.</TD></TR>
+<TR VALIGN=TOP><TD>/DEBUG</TD><TD>The debugger is loaded when you start Windows NT and can be activated at any time by a host debugger connected to the system.  This mode 
+is useful when you are debugging regularly reproducible problems.</TD></TR>
+<TR VALIGN=TOP><TD>/DEBUGPORT=COM<EM>x</EM></TD><TD>Specifies the COM port to use for debugging, where <EM>x</EM> is the COM port number.  Like /BAUDRATE, this switch
+also forces /DEBUG.</TD></TR>
+<TR VALIGN=TOP><TD>/MAXMEM:n</TD><TD>Specifies the maximum amount of RAM that Windows NT can use.</TD></TR>
+<TR VALIGN=TOP><TD>/NODEBUG</TD><TD>No debugging information is being used.</TD></TR>
+<TR VALIGN=TOP><TD>/NOSERIALMICE=<BR>[COM<EM>x</EM>|COM<EM>x,y,z...</EM>]</TD><TD>Disables serial mouse detection of the specified COM port(s).  Use this switch if you have a component other than a mouse attached to a serial port during the startup sequence.  If you use /NOSERIALMICE without specifying a COM port, serial mouse detection is disabled on all COM ports.</TD></TR>
+<TR VALIGN=TOP><TD>/SOS</TD><TD>Displays the driver names while they are being loaded.  Use this switch if Windows NT will not boot and you think a driver is missing.</TD></TR>
+</TABLE>
+
+
+<H3>Operating System Selection Setup Error Conditions</H3>
+<UL>
+<LI><STRONG>No Disk Present: </STRONG>when you start Operating System Selection Setup, if you receive a “No hard drives were found connected to your computer” message, it 
+means that AlphaBIOS could not locate a hard drive. At this point, setup cannot proceed.
+
+<LI><STRONG>Disk Initialization Failed: </STRONG>When you start Operating System 
+Selection Setup, if you receive an “Internal error occurred” message, it means that a disk 
+was found, but there was an error in communicating with the disk. At this point, setup 
+cannot proceed.
+
+<LI><STRONG>No Partitions on Disk: </STRONG>If hard disk 0 does not have any 
+partitions defined, when you start OS Selection Setup, you are prompted about whether to 
+perform an express disk setup. Express disk setup automatically creates the default 
+disk partition arrangement on hard disk 0.
+</UL>
+
+</BODY>
+</HTML>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PCI Error Register 2 Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PCI Error Register 2 (PCI_ERR2)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8880<BR>
+The PCI_ERR2 register is used by the PYXIS to log PCI address &lt;31:0&gt; pertaining to an error condition logged in PCI_ERR0.  This register is locked whenever the PYXIS detects an error. This register always captures PCI address&lt;31:0&gt;, even for a DMA DAC cycle.  The most significant PCI address&lt;39:32&gt; can be obtained from the W_DAC register; PCI address&lt;63:40&gt; had to be read for the PYXIS to hit on the DAC cycle. The register is unlocked when the error bits in the PYXIS_ERR CSR have all been cleared. Contents of this register are unpredictable when not locked.<BR><BR>
+
+The PCI_ERR2 register and some fields in PCI_ERR0 (PCI_DAC, PCI CMD, 
+TARGET_STATE, and MASTER STATE) hold information related to the following errors 
+associated with the PCI bus:
+<UL>
+<LI>PCI Data Parity error (PYXIS_ERR&lt;5&gt;)
+<LI>PCI Address Parity Error (PYXIS_ERR&lt;6&gt;)
+<LI>PCI Master Abort (PYXIS_ERR&lt;7&gt;)
+<LI>PCI Target Abort (PYXIS_ERR&lt;8&gt;)
+<LI>IOA Timeout (PYXIS_ERR&lt;11&gt;)
+</UL>
+
+</TD></TR>
+
+<TR VALIGN=TOP><TD>PCI_ADDRESS<BR>&lt;31:0&gt;</TD><TD ALIGN=CENTER>&lt;31:0&gt;RO</TD>
+<TD>Contains the PCI address &lt;31:0&gt;.</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

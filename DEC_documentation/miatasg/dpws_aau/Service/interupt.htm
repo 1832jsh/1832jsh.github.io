@@ -1,0 +1,134 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> Interrupt Descriptions</TITLE>
+
+<H3>Interrupt Descriptions
+</H3>
+<TABLE BORDER=1 >
+<TR>
+<TD><A NAME="isa_irq"></A><B>ISA IRQ Assignments:</B>
+The timer, keyboard, and mouse are hardwired to IRQs 0, 1, and 12, respectively.  
+<P>The COM1 and COM2 ports are attached to IRQs 4 and 3, respectively. </P>
+<P>The parallel port (LPT1) is assigned to IRQ7 by the AlphaBIOS firmware, 
+although the Windows NT parallel port driver does not use interrupts. The driver 
+uses programmed I/O by monitoring ready/busy. This means IRQ7 is available to 
+other devices.</P>
+<P>IRQ8, normally the interval timer interrupt, 
+is not connected in the DIGITAL Personal Workstation <EM>a/u-Series</EM>. Instead, the timer interrupt signal RTC_INT is routed to the shift register. IRQ13, normally used to signal a co-processor error or signal the end of a DMA scatter/gather operation, is not connected in the system.</P>
+
+<P>The primary IDE controller is assigned to IRQ14 and the secondary to IRQ15.</P>
+<P>Take care to avoid the sharing of ISA interrupts whenever possible.
+Check the OS documentation and release notes to ensure interrupt 
+sharing is supported by a particular OS and device driver.</P>
+</TD></TR>
+
+<TR>
+<TD><A NAME="int_ctl"></A><B>Interrupt Controller: </B>The interrupt controller is the functional equivalent of two 82C59 controllers and is located in the PCI to ISA bridge chip.  IRQ2 on the master controller is used to cascade the controllers together.  This means that IRQ8-IRQ15 have a higher priority than IRQ3-IRQ7.
+</TD></TR>
+
+<TR>
+<TD><A NAME="sr"></A><B>Shift Register: </B>
+The PCI interrupts are not assigned to the typical IRQ system (ISA IRQs). Instead, the DIGITAL Personal Workstation 
+<EM>a/au-Series</EM> uses a dedicated interrupt controller.  The shift register is the input for the 
+interrupt controller. The following interrupt signals are attached to the shift register:
+<BR>
+<B><A NAME="slot_3"></A>Slot 3 &lt;INTD:INTA&gt;<BR>Bits 31:28 - </B>Each PCI slot has four interrupt signals available (INTA, INTB, INTC, and INTD).  Typically, PCI devices use INTA.  
+PCI boards with multiple devices may use more than one INT signal. The interrupts 
+from individual lines are all directed to CPU interrupt line IRQ_H&lt;1&gt;. The 
+INT_MASK register can be used to mask off various interrupt signals.
+
+
+<BR>
+<B><A NAME="slot_2"></A>Slot 2 &lt;INTD:INTA&gt;<BR>Bits 27:24: </B>Each PCI slot has four 
+interrupt signals available (INTA, INTB, INTC, and INTD).  Typically, PCI devices use INTA. PCI 
+boards with multiple devices may use more than one INT signal.
+<BR>
+<B><A NAME="slot_1"></A>Slot 1 &lt;INTD:INTA&gt;<BR>Bits 23:20: </B>Each PCI slot has four interrupt signals available (INTA, INTB, INTC, and INTD).  Typically, PCI devices use INTA. PCI boards with multiple devices may use more than one INT signal.
+<BR>
+<B><A NAME="slot_5"></A>Slot 5 &lt;INTD:INTA&gt;<BR>Bits 19:16: </B>Each PCI slot has four 
+interrupt signals available (INTA, INTB, INTC, and INTD).  Typically, PCI devices use INTA. PCI 
+boards with multiple devices may use more than one INT signal.
+<BR>
+<B><A NAME="slot_4"></A>Slot 4 &lt;INTD:INTA&gt;<BR>Bits 15:1: </B>Each PCI slot has four 
+interrupt signals available (INTA, INTB, INTC, and INTD).  Typically, PCI devices use INTA. PCI 
+boards with multiple devices may use more than one INT signal.
+<BR>
+<B><A NAME="usb"></A>Bit 11</B>, Reserved for USB.
+<BR>
+<B>Bit 10</B>, Reserved.
+<BR>
+<B><A NAME="ide"></A>Bit 9, IDE</B>: The IDE PCI interrupt is not used.  
+The IDE controller is used in "IDE legacy" mode. 
+Therefore, it uses ISA IRQ14 and 15.
+<BR>
+<B><A NAME="ethernet"></A>Bit 8, Ethernet</B>: When its interrupt is enabled, 
+the Ethernet controller on the riser card has its interrupt sent to the 
+CPU over IRQ_H&lt;1&gt;.
+<BR>
+<B><A NAME="pci_isa_int"></A>Bit 7, PCI/ISA Bridge</B>: The INT signal from the PCI/ISA bridge 
+is used signal interrupts from the ISA IRQ system.  The interrupt is routed to the 
+CPU on IRQ_H&lt;1&gt;.
+<BR>
+<B><A NAME="rtc"></A>Bit 6, RTC</B>: The realtime clock in the SuperI/O chip can be programmed to 
+generate a periodic interrupt.  It is routed to the CPU on IRQ_H&lt;2&gt;.
+<BR>
+<B><A NAME="cid"</A>Bits 5:4 (CID1:CID0)</B>: These two signals are used during 
+POST to identify the type of riser card installed.
+<BR>
+<B>Bit 3</B>, Reserved.
+<BR>
+<B><A NAME="switch"></A>Bit 2, Switch</B>: The switch position is sensed during POST. AlphaBIOS will clear 
+the firmware passwords if the switch is held during power on and POST. 
+Pressing the switch results in IRQ_H&lt;1&gt; being sent to the CPU.
+<BR>
+<B><A NAME="nmi"></A>Bit 1, NMI</B>: The nonmaskable interrupt signal comes from the PCI/ISA bridge chip.  
+NMI indicates that a SERR (PCI system error condition) or IOCHK (parity or other 
+uncorrectable on the ISA bus) occurred.  NMI results in a machine check 
+interrupt (SYS_MCH_CHK_IRQ_H).
+<BR>
+<B><A NAME="fan_fault"></A>Bit 0, Fan Fault</B>: Set if an overcurrent condition occurs in either fan.  A fan fault results in a machine check interrupt (SYS_MCH_CHK_IRQ_H).
+</TD></TR>
+
+<TR>
+<TD><A NAME="core"></A><B>Core Logic: </B>The core logic clocks in the contents 
+of the shift register into the interrupt request register (INT_REQ).  Several internal 
+registers are used to control interrupt routing (INT_ROUTE), enabling 
+(INT_MASK), and polarity of the input signal (INT_HILO).  Interrupts that get 
+through the core logic are sent to the CPU over one of seven interrupt lines.</TD></TR>
+
+<TR>
+<TD><A NAME="cpu"></A><B>CPU Interrupts: </B>
+Seven lines are used to signal interrupts to the CPU.  During initialization, these signals are 
+used to set up the CPU cycle time divisor.
+<BR>
+<B>sys_mch_chk_irq_h --</B>NMI and fan fault (IPL 31): The system machine check 
+interrupt is used to indicate catastrophic errors.
+
+<BR>
+<B>irq_h&lt;0&gt;-- </B> Not used? (IPL 20)
+
+<BR>
+<B>irq_h&lt;1&gt; --</B>PCI and ISA devices (IPL21): PCI device interrupts 
+and 8259-compatible types (ISA device interrupts).
+
+<BR>
+<B>irq_h&lt;2&gt; -- </B>TOY clock (IPL 22): The TOY chip provides a 
+periodic interrupt.
+
+<BR>
+<B>irq_h&lt;3&gt; -- </B>Reserved (IPL 23)
+
+<BR>
+<B>mch_hlt_irq_h -- </B>Not used: Machine halt interrupt request.  
+There is no provision for halting the DIGITAL Personal Workstation <EM>a/au-Series</EM> systems.
+
+<BR>
+<B>pwr_fail_irq_h - </B>Reserved (IPL 30): Power fail 
+interrupt request (not used). </TD></TR>
+
+</TABLE>
+</BODY>
+</HTML>

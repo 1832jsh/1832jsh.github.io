@@ -1,0 +1,58 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> SRM Firmware</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>SRM Examine Command</H3>
+<P>
+<HR>
+<B>examine</B> [<B>-</B>{<B>b,w,l,q,o,h</B>}] [<B>-</B>{<B>n</B> <EM>value</EM>, <EM>s value</EM>}] [<EM>space:</EM>] <EM>address</EM>
+<HR>
+<P>
+The <B>examine</B> command displays the contents of a memory location, a register, or a device.
+<P>
+If no options are given with an <B>examine</B> command, the system uses the options from the preceding <B>examine</B> command.  If conflicting address space or data sizes are specified, the console ignores the command and issues an error.
+<P>
+For data lengths longer than a longword, each longword of data should be separated by a space.
+
+<UL>
+  <LI><B>-b</B>:           	      Defines data size as                                     byte.		
+  <LI><B>-w</B>:                     Defines data size as word.
+  <LI><B>-l</B>(default):            Defines data size as longword.
+  <LI><B>-q </B>:                    Defines data size as quadword.
+  <LI><B>-o</B>:				Defines data size as                                                                    octaword.	
+  <LI><B>-h</B>:                     Defines data size as hexword.
+  <LI><B>-d</B>:                     Instruction decode
+  <LI><B>-n</B> <EM>value</EM>:      The number of consecutive                                     locations to modify.	                                                                  <LI><B>-s</B> <EM>value</EM>:        The address increment size.  The                                                                         default is the data size.
+  <LI><EM>space:</EM>				Device name (or address space)
+						of the device to access.
+  <LI><EM>address</EM>:			      Offset within a device to which data is deposited.  Can be:
+<UL>
+  <LI>dev_name: A device name.  
+  <LI>fpr-name: The floating-point register set; name is F0 to F31.
+  <LI>gpr-name: The general register set; name is R0 to R31.
+  <LI>ipr-name: The internal processor registers.
+  <LI>pt-name:  The PALtemp register set; name is PT0 to PT23.
+  <LI>pmem: Physical memory (default).
+  <LI>vmem: Virtual memory.
+</UL>
+<LI><EM>data</EM>:                          Data to be deposited.
+<P>
+Symbolic forms can be used for the address.  They are:
+<UL>
+  <LI><B>pc</B>: The program counter.  The address space is set to GPR.
+  <LI><B>+</B>: The location immediately following the last location referenced in a command.  For physical and virtual memory, the referenced location is the last location plus the size of the reference (1 for byte, 2 for word, 4 for longword).  For other address spaces, the address is the last referenced address plus 1.
+
+  <LI><B>-</B>: The location immediately preceding the last location referenced in a command.  Memory and other address spaces are handled as described earlier.
+  <LI><B>*</B>: The last location referenced in a command.
+  <LI><B>@</B>: The location addressed by the last location referenced in a command.
+</UL>
+
+
+</BODY>
+</HTML>

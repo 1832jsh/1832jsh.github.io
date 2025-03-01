@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Error Handling</TITLE>
+   <!-- This file created by Terry Donald and Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1997 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY>
+
+<H3>Error Handling</H3>
+
+<H4>PALcode</H4>
+<P>In handling errors, the PALcode is responsible for parsing the
+exception and building the machine check logout frame.
+The PALcode is responsible for the following actions:
+<UL>
+<LI>Examines all error bits
+<LI>Decides on the nature of the machine check or interrupt
+<LI>Performs corrective action, if possible
+<LI>Builds Corrected Error Frame or Machine Check Logout Frame
+<LI>Builds Stack Frame
+<LI>Clears error bits
+<LI>Passes control to the operating system through System Control Block (SCB)
+</UL>
+
+<H4>Operating System</H4>
+
+<P>The Operating System machine check handler is responsible for the following actions:
+
+<UL>
+<LI>Creates Kernel Event Header Frame.
+<LI>Appends the Corrected Error Frame or Machine Check Logout Frame.
+<LI>Updates Error Log.
+<LI>Executes fault analysis using the saved machine check frame and context.
+</UL>
+
+</BODY>
+</HTML>

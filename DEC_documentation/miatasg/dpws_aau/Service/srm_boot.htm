@@ -1,0 +1,73 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> SRM Firmware</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>SRM Boot Command</H3>
+<HR>
+<P>
+boot [-file filename] [-flags longword[,longword]] [-protocols enet_protocol] [-halt] [boot_device]
+<HR>
+
+<TABLE WIDTH=100%><TR VALIGN=TOP><TD><H4>Description</H4></TD>
+<TD><A HREF="#boot_examples">Examples</A></TD></TR></TABLE>
+The boot command performs the following functions:
+<UL>
+<LI>Initializes the processor.
+<LI>Loads a program image from the specified boot device.
+<LI>Transfers control to the loaded image.
+</UL>
+
+<P>Where:
+<TABLE BORDER=1>
+<TR VALIGN=TOP><TD>-file filename</TD><TD>Specifies the name of a file to load into 
+the system.  For booting from Ethernet, this name is limited to 15 characters.  Use the set 
+boot_file command to set an environment variable that specifies a default boot file.</TD></TR>
+<TR VALIGN=TOP><TD>-flags longword[,longword]</TD><TD>Specifies additional information 
+for the operating system.  Use the set boot_osflags command to set an environment 
+variable that specifies a default boot flag values.<BR>
+<A HREF="srm_enva.htm#vms_boot_flags" target="top">OpenVMS boot flags.</A><BR>
+<A HREF="srm_enva.htm#unix_boot_flags" target="top">Digital UNIX boot flags.</A></TD></TR>
+
+<TR VALIGN=TOP><TD>-protocols enet_protocol</TD><TD>Specifies an Ethernet protocol(s) 
+that will be used for a network boot.  Values may be mop or bootp.</TD></TR>
+<TR VALIGN=TOP><TD>-halt</TD><TD>Forces the bootstrap operation to halt and invoke 
+the console program after the image is loaded and the page tables and other data structures 
+are set up.</TD></TR>
+<TR VALIGN=TOP><TD>boot_device</TD><TD>Specifies a device path or list of devices 
+that the firmware will attempt to boot.  Use the set bootdef_dev command to set an 
+environment variable that specifies a default boot device.</TD></TR>
+</TABLE>
+
+
+<A NAME="boot_examples"><H4>Boot Command Examples</H4></A>
+
+<TABLE BORDER=1>
+<TR VALIGN=TOP><TD>>>>boot</TD><TD>Boots the system from the default boot device.</TD></TR>
+<TR VALIGN=TOP><TD>>>>boot ewa0</TD><TD>Boots the system from Ethernet port ewa0.</TD></TR>
+<TR VALIGN=TOP><TD>>>>boot -file dec2.sys ewa0</TD><TD>Boots the file named dec2.sys from Ethernet port ewa0.</TD></TR>
+<TR VALIGN=TOP><TD>>>>boot -protocol bootp ewa0</TD><TD>Boots using TCP/IP BOOTP protocol from Ethernet post ewa0.  (Make sure the environment variables ewa0_protocols and ewa0_inet_init are both set to BOOTP before booting.)</TD></TR>
+<TR VALIGN=TOP><TD>>>>boot -flags 0,1</TD><TD>Boots the system from the default boot device using flag settings 0,1.</TD></TR>
+<TR VALIGN=TOP><TD>>>>boot -halt dka0</TD><TD>Loads the image from disk dka0, but remains in console mode.</TD></TR>
+<TR VALIGN=TOP><TD>>>> boot Trying MOP boot. ... ... ...</TD><TD>Successful boot from a system that is set to secure mode.  In this example the boot command is equivalent to:(boot eza0.0.6.0 -file myfile.sys -flags 0)</TD></TR>
+<TR VALIGN=TOP><TD>>>> set boot_file myfile.sys<BR>
+Console is secure<BR>
+>>><BR><BR>
+>>> boot -file myfile_ev4p2<BR>
+Console is secure - parameters are not allowed<BR><BR>
+>>> boot -halt<BR>
+Console is secure - parameters are not allowed<BR><BR>
+>>> boot ezb0<BR>
+Console is secure - parameters are not allowed<BR>
+</TD><TD>Unsuccessful boot examples from a system in secure mode.</TD></TR>
+
+</TABLE>
+
+
+</BODY>
+</HTML>

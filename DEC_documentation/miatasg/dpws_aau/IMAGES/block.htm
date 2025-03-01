@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<HTML>
+
+<HEAD>
+
+<!-- Created Using HTML Notepad, Copyright (c) cranial software 1995-->
+
+<!-- This file created by Terry Donald and Carmen Wheatcroft - Workstation Doc Group-->
+
+
+
+   <TITLE>Block Diagram Descriptions</TITLE>
+
+
+
+</HEAD>
+
+
+
+<BODY>
+
+
+
+<TABLE BORDER=1 >
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_cpu"></A><B>CPU: </B>The CPU is a DIGITAL Semiconductor 21164 with the following features:
+
+
+
+<UL>
+
+<LI>Superscalar pipelined processor manufactured using 0.35-micrometer
+
+CMOS technology.</LI>
+
+
+
+<LI>Quad-instruction issue.</LI>
+
+
+
+<LI>Two on-chip high-throughput floating point units (FPUs) capable of executing both Digital and IEEE floating-point data types.</LI>
+
+
+
+<LI>Instruction cache: 8-KB on-chip, virtual, direct-mapped cache with
+
+32-byte blocks.</LI>
+
+
+
+<LI>Data cache: Dual-read-ported 8-KB on-chip write-through, direct-mapped, read-allocated, physical cache with 32-byte blocks.</LI>
+
+
+
+<LI>Second-level cache: 96-KB, three-way, set-associative, physical, writeback, write allocate, mixed instruction and data cache, with 32- or 64-byte blocks.</LI>
+
+
+
+<LI>Write buffer with six 32-byte entries.</LI>
+
+
+
+<LI>Demand-paged memory management unit with a 48-entry I-stream translation buffer and a 64-entry D-stream translation buffer.</LI>
+
+
+
+<LI>Parity for the onboard Icache, Dcache, and Scache memories and the data bus.</LI>
+
+<LI>Uses 3.3V for external and 2.0V for internal.</LI>
+
+</UL>
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_index"></A><B>Index Bus: </B>The index bus uses index 
+
+[25:04] from the CPU to address the Bcache and the tag and state bits for determining 
+
+hits and conherence. The tag data field bits are [38:20] and data parity. The state bits are valid, dirty, and control parity. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_bcache"></A><B>Bcache: </B>The Bcache is a 2-MB. The Bcache uses synchronous SRAMs and has a 
+
+15-ns access time.</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+<TD><A NAME="i2c"></A><B>Inter-IC (I2C) Serial Bus - </B>The I2C bus collects information about the various optional components of the system. The Pyxis chip
+operates as the bus master, with slave devices on each of the six DIMMs, the 
+riser card, and the Bcache module.</TD>
+</TR>
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_cpu_data"></A><B>CPU Data Bus: </B>The CPU data bus 
+
+connects the CPU, Bcache, and switch.<BR>
+
+CPU data bus width: 128 bits plus 16 ECC bits. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_switch"></A><B>Switch: </B>The switch isolates the 
+
+CPU/Bcache from the core logic/main memory. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_sys_address"></A><B>System Address Bus: </B>
+
+The system address bus connects the CPU address [39:4] to the core logic. 
+
+FlashROM is also located on the system address bus. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_flash"></A><B>FlashROM: </B>
+
+The 1-MB flashROM contains the equivalent SROM code (no actual 
+
+SROM included in this system), two copies of nonvolatile environment variables, 
+
+diagnostic code, and SRM firmware.  Core logic 
+
+controls flashROM access.<BR>
+
+The flashROM is attached to the system address bus.  The address bus 
+
+[11:4] sends ROM read data from the flashROM to the core logic 
+
+during system initialization.  Address bits [31:12] address the flashROM.  </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_mem_data"></A><B>Memory Bus: </B>
+
+The memory bus connects the switch and the core logic to the main memory DIMMs. <BR>
+
+Width to/from memory: 128 data bits plus 16 ECC bits. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_memory"></A><B>Memory: </B>
+
+The main memory system has the following features: 
+
+<UL>
+
+<LI>Unbuffered 3.3V SDRAM chips mounted on 168-pin dual inline memory modules 
+
+(DIMMs).</LI>
+
+<LI>Six DIMM sockets on the MLB arranged in three banks: 0, 1, and 2.</LI>
+
+<LI>The two DIMMs in a bank must be identical.</LI>
+
+<LI>Total size ranges from 32 MB to 1.5 GB (when 256-MB DIMMs are available).</LI>
+
+<LI>Each bank (two DIMMs) is 128-bits data plus 16-bits ECC wide.</LI>
+
+</UL>
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_core"></A><B>Core Logic: </B>
+
+Core logic is implemented on a single 474-pin BGA chip and provides the 
+
+following functions:
+
+
+
+<UL>
+
+<LI>Synchronous DRAM memory controller providing the row and column 
+
+address and the memory control signals (CAS and RAS) for the memory banks.</LI>
+
+<LI>33-MHz 64-bit PCI interface.</LI>
+
+<LI>Startup from flashROM.</LI>
+
+<LI>96 ns memory latency (with 100-MHz DRAMs).</LI>
+
+<LI>1,333 Mbps peak memory bandwidth.</LI>
+
+<LI>Up to 64 interrupts through an external shift register.</LI>
+
+<LI>Up to 32 general purpose inputs and outputs through external shift registers.</LI>
+
+<LI>3.3V design.</LI>
+
+</UL>
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_mem_address"></A><B>Memory Address Bus: </B>
+
+The core logic addresses the main memory using DRAM address [13:0].</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_pci1"></A><B>PCI Bus (Primary) - </B>
+
+The primary peripheral component interconnect (PCI) bus is a 64-bit-wide multiplexed
+
+address/data bus with a clock speed of 33.33 MHz.  The PCI bus provides the system 
+
+with its primary I/O interconnect. The core logic acts as the PCI host.  <br>
+
+
+
+Two 64-bit PCI expansion slots, a 10/100 Mbps Ethernet controller and a PCI/PCI 
+
+bridge are attached to the primary PCI bus. PCI bus width is 64 bits (AD[63:0]).  
+
+An even parity bit (PAR) is calculated on 36 bits ( AD[31:0] and C/BE[3:0]. 
+
+Another even parity bit (PAR64) is calculated on the upper 36 bits {AD[63:32] and C/BE[7:4]). 
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_ide"></A><B>IDE Controller: </B>
+
+The integrated drive electronics (IDE)  controller is a CMD PCI0646 chip.  The controller 
+
+provides two 16-bit channels (primary and secondary).  The interface can support up 
+
+to two devices (drive 0 and drive 1) on each channel.  <STRONG>The IDE interface is 
+
+not supported by the DIGITAL UNIX operating system.</STRONG></TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_pci_isa"></A><B>PCI/ISA Bridge - </B>
+
+The PCI/ISA bridge manages traffic flow between the primary PCI bus and the ISA
+
+bus. The bridge is an Intel 82378ZB System I/O chip. <BR>
+
+
+
+Three ISA expansion slots, the audio subsystem, and the super I/O chip (floppy, 
+
+COM1, COM2, KB, Mouse, RTC, and parallel port) are attached to the ISA bridge. 
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_isa"></A><B>ISA Bus - </B>
+
+The ISA bus originates at the PCI-ISA bridge. In addition to the three
+
+ISA slots on the riser card, the ISA bus connects to the Super
+
+I/O chip (adapter for the floppy disk, two serial lines, keyboard, mouse, realtime clock, 
+
+and parallel port) and the audio controller.<BR>
+
+The ISA bus data width is 16 bits. </TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_sio"></A><B>SuperI/O: </B>
+
+The Super I/O chip (National PC87303) is attached to the ISA bus and provides the 
+
+following functions:
+
+<UL>
+
+<LI>Floppy disk controller (FDC)</LI>
+
+<LI>Two serial lines (UARTs) (COM1 and COM2)</LI>
+
+<LI>Enhanced bidirectional parallel port</LI>
+
+<LI>Mouse and keyboard</LI>
+
+<LI>Realtime clock</LI>
+
+</UL>
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_ethernet"></A><B>Ethernet:</B>
+
+The 10/100 Mbps Ethernet LAN controller (DC21142) is embedded in the system on 
+
+the riser card.  It is attached to the primary PCI bus.  External access is provided 
+
+through either one of the following cards mounted to the rear of the enclosure:
+
+<UL>
+
+<LI>Media adapter unit (MAU) for Twisted-Pair(10BASET) and ThinWire (10BASE2) 
+
+for 10 Mbps operation.
+
+<LI>Media-independent interface (MII) card with a twisted-pair connector for use with 
+
+a 100 Mbps fast Ethernet interface. 
+
+</UL>
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_audio"></A><B>Audio: </B>
+
+An ESS Technology ES1888 <EM>Audio</EM>Drive(R) chip brings 16-bit stereo audio 
+
+and 20-voice FM music synthesis to the system.  It is located on the riser card.  
+
+The chip can record, compress, and play back voice, sound, and music with built-in 
+
+seven-channel mixer controls.  It supports full duplex operation for simultaneous 
+
+record and playback using two DMA channels. <BR>
+
+
+
+There are microphone and headphone connectors located on the upper-left side 
+
+near the front of the system.  A small card provides rear-accessible connectors for 
+
+line in, speaker out, and MIDI/game port. 
+
+<BR>
+
+
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_pci_pci"></A><B>PCI/PCI Bridge: </B>
+
+The PCI-to-PCI bus bridge (DC21052) is located on the riser card.  The bridge allows the 
+
+use of three additional 32-bit PCI slots (electrical loading considerations prevent those 
+
+slots being on the primary PCI bus).
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_pci2"></A><B>PCI Bus (Secondary): </B>
+
+The secondary peripheral component interconnect (PCI) bus is a 32-bit-wide multiplexed
+
+address/data bus with a clock speed of 33.33 MHz.  The PCI bus provides the system 
+
+with a connection to the three 32-bit PCI expansion slots through the the PCI/PCI bridge.
+
+</TD>
+
+</TR>
+
+
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_slots"></A><B>Expansion Slots: </B>
+
+The riser card contains five expansion slots with the following capabilities:
+
+<UL>
+
+<LI><STRONG>Slot 1-- </STRONG>PCI only, 32-bit PCI (secondary bus), half-size cards only.
+
+<LI><A NAME="ov_slot_2"></A><STRONG>Slot 2-- </STRONG>PCI/ISA combination, 32-bit PCI (secondary bus), half-size cards only.
+
+<LI><A NAME="ov_slot_3"></A><STRONG>Slot 3 -- </STRONG>PCI/ISA combination, 32-bit PCI (secondary bus), full-size cards.
+
+<LI><A NAME="ov_slot_4"></A><STRONG>Slot 4 -- </STRONG>PCI/ISA combination, 32- or 64-bit PCI (primary bus), full-size cards.
+
+<LI><A NAME="ov_slot_5"></A><STRONG>Slot 5 -- </STRONG>PCI only, 32- or 64-bit PCI (primary bus), full-size cards.
+
+</UL>
+
+</TD>
+
+</TR>
+
+<TR VALIGN=TOP>
+
+<TD><A NAME="ov_scsi"></A><B>UltraSCSI Adapter: </B>
+
+The UltraSCSI adapter chip ...
+
+
+</TD>
+
+</TR>
+
+
+</TABLE>
+
+
+
+</BODY>
+
+</HTML>
+

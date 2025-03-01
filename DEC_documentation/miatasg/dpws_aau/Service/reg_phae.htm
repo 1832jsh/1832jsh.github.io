@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Hardware Address Extension Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Hardware Address Extension Register (HAE_MEM)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.0400<BR>
+The HAE_MEM Hardware Address Extension Register is used to extend a PCI sparse-space memory address up to the full 32-bit PCI address. In Sparse Addressing mode, the CPU address provides the low-order PCI addresses bits, while the HAE_MEM provides the higher-order bits. The high-order PCI address bits--&lt;31:26&gt;--are obtained from either the Hardware Extension Register (HAE_MEM) or the CPU address, depending on sparse space regions. Initializing HAE_MEM to 0000.2028hex will make all three regions contiguous starting at PCI address 0.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Region1</TD><TD ALIGN=CENTER>&lt;31:29&gt;RW</TD>
+<TD>CPU addresses 80.0000.0000 to 83.FFFF.FFFF</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;28:16&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>Region 2</TD><TD ALIGN=CENTER>&lt;15:11&gt;RW</TD>
+<TD>CPU addresses 84.0000.0000 to 84.FFFF.FFFF</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;10:8&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>Region 3</TD><TD ALIGN=CENTER>&lt;7:2&gt;RW</TD>
+<TD>CPU addresses 85.0000.0000 to 85.FFFF.FFFF</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;1:0&gt;</TD><TD>N/A</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

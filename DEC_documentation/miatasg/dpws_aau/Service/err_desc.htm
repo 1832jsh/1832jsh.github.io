@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> Error Detection Descriptions</TITLE>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<A NAME="ts_cpu"><H3>CPU Error Checking</H3></A>
+
+<P>Error detection in the 21164 is concentrated in the Bus Interface Unit
+(BIU). The Alpha CPU uses ECC to ensure data integrity. The following errors are 
+detected in the CPU:</P>
+
+<TABLE BORDER=1 >
+<TR>
+<TD><B>Icache Tag or Data Parity Error: </B>The Icache is parity protected.
+A machine check occurs before the instruction, thereby causing execution of the parity error. <BR>
+ICPERR_STAT: DPE (data parity error) or TPE (tag parity error) is set. <BR>
+EXC_ADDR contains either the PC of the instruction that is causing the
+parity error or the PC of an earlier trapping instruction. In this event, the Icache is
+not flushed by hardware.</TD>
+</TR>
+
+<TR>
+<TD><B>Scache Data Parity Error, Istream: </B>A machine check occurs before execution of 
+the instruction responsible for the parity error.  Bad data can be written
+to the Icache or Icache refill buffer and validated. The operation can
+be retired if there are not multiple errors.<BR>
+SC_STAT: SC_DPERR&lt;7:0&gt; is set; &lt;SC_SCND_ERR&gt; is set if there are multiple errors. <BR>
+SC_STAT: CBOX_CMD is IREAD.<BR>
+SC_ADDR: Contains the address of the 32-byte block containing the error. (Bit 4 indicates 
+which octaword was accessed first, but the error may be in either octaword.) </TD>
+</TR>
+
+<TR>
+<TD><B>Scache Tag Parity Error, Istream: </B>A machine check occurs before execution of
+the instruction responsible for the parity error. Bad data can be written
+to the Icache or Icache refill buffer and validated. The operation cannot
+be retired. <BR>
+SC_STAT: SC_TPERR&lt;2:0&gt; is set; &lt;SC_SCND_ERR&gt; is set if
+there are multiple errors.<BR>
+SC_STAT: CBOX_CMD is IREAD. SC_ADDR: Contains the address of the 32-byte block 
+containing the error. (Bit 4 indicates which octaword was accessed first, but the error 
+may be in either octaword.)
+</TD>
+</TR>
+
+<TR>
+<TD><B>Scache Data Parity Error, Dstream: </B>A machine check occurs.  
+The machine state may have changed.  You cannot retry this, but deleting the process 
+may be sufficient if the data was confined to a single process and no second error occurred.<BR>
+SC_STAT: SC_DPERR&lt;7:0&gt; is set; &lt;SC_SCND_ERR&gt; is set if there are multiple errors.<BR>
+SC_STAT: CBOX_CMD is DREAD, DWRITE, or READ_DIRTY.<BR>
+SC_ADDR: Contains the address of the 32-byte block containing the error.  (Bit 4 indicates 
+which octaword was accessed first, but the error may be in either octaword.)</TD>
+</TR>
+
+<TR>
+<TD><B>Scache Tag Parity Error, Dstream: </B>A machine check occurs.  The machine 
+state may have changed.  You cannot retry this.  Most likely, you will not be able to recover 
+by deleting a single process because the exact address is unknown.<BR>
+SC_STAT: SC_TPERR&lt;2:0&gt; is set; &lt;<SC_SCND_ERR&gt; is set if there are multiple errors.<BR>
+SC_STAT: CBOX_CMD is DREAD, DWRITE, READ_DIRTY, SET_SHARED, or INVAL.<BR>
+SC_ADDR: Records physical address bits &lt;39:04&gt; of the location with the error.</TD>
+</TR>
+
+<TR>
+<TD><B>Dcache Data Parity Error: </B>The Dcache data is parity protected.  A machine check occurs.
+The machine state may have changed.  You cannot retry this, but you may only need to delete the process if data is confined to a single process and no second
+error occurred. <BR>
+DCPERR_STAT: &lt;DP0&gt; or &lt;DP1&gt; (data parity error in bank 0 or 1) is set. 
+&lt;LOCK&gt; is set.  &lt;SEO&gt; is set if there are multiple errors.<BR>
+VA: Contains the virtual address of the quadword with the error.<BR>
+MM_STAT: Locked. Contents contain information about instruction causing the error.</TD>
+</TR>
+
+<TR>
+<TD><B>Dcache Tag Parity Error: </B>The Dcache Tag is parity protected.  A machine check occurs. The machine state may have changed. DCPERR_STAT: &lt;TP0&gt; or &lt;TP1&gt; (tag parity error in bank 0 or 1 is set.  &lt;LOCK&gt; is set.  &lt;SEO&gt; is set if there are multiple errors.<BR>
+VA: Contains the virtual address of the Dcache block (hexword) with the error.<BR>
+MM_STAT: Locked. Contents contain information about instruction causing the error. 
+The &lt;WR&gt; bit is set if the error occurred on a store instruction.</TD>
+</TR>
+
+<TR>
+<TD><B>Istream Uncorrectable ECC Error: </B>A machine check occurs before execution of the instruction responsible for the parity error.  Bad data may be written to the Icache or Icache refill buffer and validated.  You can retry the operation if there are not multiple errors. The Icache must be flushed to remove bad data.  You can flush the Icache refill buffer by executing enough instructions to fill the refill buffer with new data (32 instructions).  Then reflush the Icache.<BR>
+EI_STAT:  &lt;UNC_ECC_ERR &gt; is set;  &lt;SEO_HRD_ERR &gt; is set if there are multiple errors.<BR>
+EI_STAT:  &lt;EI_ES &gt; is set if source of fill data is memory/system, clear if Bcache.<BR>
+EI_STAT:  &lt;FIL_IRD &gt; is set.<BR>
+EI_ADDR: Contains the physical address bits  &lt;39:4 &gt; of the octaword associated with the error.<BR>
+FILL_SYN: Contains the syndrome bits associated with the failing octaword.<BR>
+BC_TAG_ADDR: Holds the result of external cache tag probe if external cache was enabled for this transaction.</TD>
+</TR>
+
+<TR>
+<TD><B>Dstream Uncorrectable ECC Error: </B>A machine check occurs.  The machine state
+may have changed.  You cannot retry the operation, but you may only need to delete the 
+process if the data is confined to a single process and no second error occurred.<BR>
+EI_STAT: &lt;UNC_ECC_ERR&gt; is set; &lt;SEO_HRD_ERR&gt; is set if there are multiple errors.<BR>
+EI_STAT: &lt;EI_ES&gt; is set if source of fill data is memory/system, clear if Bcache.<BR>
+EI_STAT: &lt;FIL_IRD&gt; is clear.<BR>
+EI_ADDR: Contains the physical address bits &lt;39:4&gt; of the octaword associated with the error.<BR>
+FILL_SYN: Contains the syndrome bits associated with the failing octaword.<BR>
+BC_TAG_ADDR: Holds the result of external cache tag probe if external cache was enabled 
+for this transaction.</TD>
+</TR>
+
+<TR>
+<TD><B>Bcache Tag Parity Error -- Istream: </B>A machine check occurs before execution of the instruction responsible for the parity error.  Bad data may be written to the Icache
+or Icache refill buffer and validated.  You can retry the operation if there are not multiple errors.
+The Icache must be flushed to remove bad data.  You can flush the Icache refill buffer 
+by executing enough instructions to fill the refill buffer with new data (32 instructions).  
+Then reflush the Icache.<BR>
+EI_STAT: &lt;BC_TPERR&gt; or &lt;BC_TC_PERR&gt;is set; &lt;SEO_HRD_ERR&gt; is set if there are multiple errors.<BR>
+EI_STAT: &lt;EI_ES&gt; is clear.<BR>
+EI_STAT: &lt;FIL_IRD&gt; is set.<BR>
+EI_ADDR: Contains the physical address bits &lt;39:4&gt; of the octaword associated with the error.<BR>
+BC_TAG_ADDR: Holds the result of external cache tag probe.</TD>
+</TR>
+
+<TR>
+<TD><B>Bcache Tag Parity Error -- Dstream: </B>A machine check occurs.  The machine 
+state may have changed.  You cannot retry the operation, but you may need to delete only the
+process if the data is confined to a single process and no second error occurred.
+EI_STAT: &lt;BC_TPERR&gt; or &lt;BC_TC_PERR&gt; is set; &lt;SEO_HRD_ERR&gt; is set if there are multiple errors.<BR>
+EI_STAT: &lt;EI_ES&gt; is clear.<BR>
+EI_STAT: &lt;FIL_IRD&gt; is clear.<BR>
+EI_ADDR: Contains the physical address bits &lt;39:4&gt; of the octaword associated with the error.<BR>
+BC_TAG_ADDR: Holds the result of external cache tag probe.</TD>
+</TR>
+
+<TR>
+<TD><B>System Command/Address Parity Error: </B>A machine check occurs,  and the 
+machine state may have changed.<BR>
+EI_STAT:  &lt;EI_PAR_ERR&gt; is set;  &lt;SEO_HRD_ERR &gt; is set if there are multiple errors.<BR>
+EI_STAT:  &lt;EI_ES &gt; is set.<BR>
+EI_ADDR: contains the physical address bits  &lt;39:4&gt; of the octaword associated with the error.<BR>
+BC_TAG_ADDR: Holds results of external cache tag probe if external cache was enabled for this transaction. When the 21164 detects a command or address parity error, the command is 
+unconditionally NOACKed.</TD>
+</TR>
+
+<TR>
+<TD><B>Istream or Dstream Correctable ECC Errors: </B>The 21164 hardware corrects the data before filling the Scache and Icache.  The Dcache is completely invalidated.  The data in 
+the Bcache contains the ECC error but is scrubbed by PALcode in the correctable interrupt routine.
+A separately maskable correctable error interrupt occurs at IPL 31 (same as machine check)
+(masked by clearing ICSR&lt;CRDE&gt;).<BR>
+ISR: &lt;CRD&gt; is set.<BR>
+EI_STAT: &lt;COR_ECC_ERR&gt; is set.<BR>
+EI_STAT: &lt;FIL_IRD&gt; is set if Istream or clear if Dstream.<BR>
+EI_STAT: &lt;EI_ES&gt; is clear if the source of the error is Bcache, and set otherwise.<BR>
+EI_ADDR: Contains the physical address bits &lt;39:4&gt; of the octaword associated with the error.<BR>
+FILL_SYN: Contains the syndrome bits associated with the octaword containing the ECC error.<BR>
+BC_TAG_ADDR: Unpredictable (not loaded on correctable errors).</TD>
+</TR>
+</TABLE>
+
+<HR>
+
+<A NAME="ts_bcache"><H3>Bcache Error Detection</H3></A>
+
+<P>
+The Bcache does not detect errors, but it is protected; the data is protected by ECC and the tag by parity.  
+ECC is generated by the CPU for each group of 8 bytes written into the Bcache.  Fill data from the Bcache to the system is not checked for errors. During a fill from the Bcache, if a correctable error is detected (single-bit error), the CPU traps and the fill is replayed with corrected data.</P>
+
+<UL>
+<LI>Double bit errors are detected.
+<LI>The tag data <38:20> is protected by a tag data parity bit.
+<LI>The tag control bits -- shared, valid, and dirty -- are protected by the tag control parity bit.
+<LI>Usually, a Bcache tag data parity or tag control parity error is not recoverable.
+</UL>
+
+<HR>
+
+<A NAME="ts_srom"><H3>Serial ROM (SROM)</H3></A>
+
+<P>
+The SROM and the SROM interface to the 21164 do not have error checking capability.
+</P>
+
+<HR>
+
+<A NAME="ts_memory"><H3>Memory Error Detection</H3></A>
+
+<P>
+The memory SIMMs do not detect errors, but they furnish information though ECC bits to 
+error detection networks in the CPU and core logic.  During CPU-initiated transactions, ECC typically is generated by the CPU (in the case of a write Bcache victim to memory, the ECC is from the Bcache).  For DMA write transactions, ECC is generated in the PCI portion of the core logic.
+If there is bad parity on data being written from the PCI to memory during a DMA write, the PCI agent that instigated the DMA write is allowed to complete normally, but the write data is discarded (PYXIS_ERR&lt;PCI_PERR&gt; will be set).
+</P>
+
+<HR>
+
+<A NAME="ts_pci1"><H3>PCI Bus Error Detection</H3></A>
+
+<P>
+Not all PCI devices are required to detect and report parity errors, but they must generate 
+parity on all of their transactions. Some do this more successfully than others.  
+During the address phase, the PAR bit provides even parity for AD [31:0] and C/BE[3:0] regardless of whether all the lines carry meaningful information.</P>
+<P>Master devices drive PAR for the address and data phases on write transactions. Target devices drive PAR during the data phase of read transactions.</P>
+
+<P>The PCI contains PERR and SERR to signal errors.  PERR reports data parity errors for all 
+transactions except special cycle commands.  PERR can only be driven by one device at a time.  Targets signal data parity errors back to the master using PERR.</P>
+
+<P>SERR reports address parity errors and data parity errors on special cycles.  It is a wire-OR'd signal that can be driven by multiple devices at any one time.  SERR will be sent to the CPU as an NMI.
+</P>
+
+<HR>
+
+<A NAME="ts_isa"><H3>ISA Bus Error Detection</H3></A>
+
+<P>
+The ISA bus uses I/O Channel Check (IOCHK) to signal that some ISA device detected a parity error on the ISA bus.  The assertion of IOCHK will cause an NMI to be sent to the main interrupt controller, which in turn sends a machine check interrupt request to the CPU.</P>
+
+
+<TABLE BORDER=1 >
+<TR>
+
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

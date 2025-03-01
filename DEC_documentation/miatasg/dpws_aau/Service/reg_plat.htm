@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PCI Latency Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PCI Latency Register (PCI_LAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.00C0<BR>
+The PCI Latency Register (PCI_LAT) Contains the PCI Master latency timeout  value 
+expressed in PCI clock cycles.</TD></TR>
+
+<TR VALIGN=TOP><TD>MSTR_LAT</TD><TD ALIGN=CENTER>&lt;15:8&gt;RW</TD>
+<TD>PCI Master latency timer in PCI clock cycles.</TD></TR>
+<TR VALIGN=TOP><TD>MSTR_RET</TD><TD ALIGN=CENTER>&lt;7:4&gt;RW</TD>
+<TD>PCI Master retry count in multiples of four PCI clock cycles.  This is the 
+number of cycles that the PYXIS will wait until it retries after it has stopped.  
+The recommended value is zero (0).</TD></TR>
+<TR VALIGN=TOP><TD>TRGT_RET</TD><TD ALIGN=CENTER>&lt;3:0&gt;RW</TD>
+<TD>PCI target retry count in PCI clock cycles.  This is the number of cycles that the 
+PYXIS will wait after a resource busy until it will stop.  The value should be tuned for 
+performance.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

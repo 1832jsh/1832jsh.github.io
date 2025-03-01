@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Exception Summary Register Bit Descriptions</TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (Win16; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<TABLE BORDER=1 >
+<CAPTION>
+<A NAME="exc_sum"></A><B>Exception Summary Register (EXC_SUM)</B>
+</CAPTION>
+
+<TR>
+<TD COLSPAN=3>Address: IPR Ibox, Index=10C
+<BR>This register contains various types of arithmetic traps that have occurred
+since the last time the register was written to (cleared). Any write to
+the EXC_SUM register clears bits &lt;08:02&gt;.
+</TD>
+</TR>
+
+<TR VALIGN=TOP>
+<TD>IOV</TD>
+
+<TD ALIGN=CENTER>&lt;16&gt;</TD>
+
+<TD>
+<P>If set, this bit indicates an F-box convert to integer overflow or integer
+arithmetic overflow.</P>
+</TD>
+</TR>
+
+<TR>
+<TD>INO</TD>
+
+<TD ALIGN=CENTER>&lt;15&gt;</TD>
+
+<TD> If set, this bit indicates a floating inexact error.</TD>
+</TR>
+
+<TR>
+<TD>UNF</TD>
+
+<TD ALIGN=CENTER>&lt;14&gt;</TD>
+
+<TD>If set, this bit indicates a floating point underflow.</TD>
+</TR>
+
+<TR>
+<TD>FOV</TD>
+
+<TD ALIGN=CENTER>&lt;13&gt;</TD>
+
+<TD> If set, this bit indicates a floating point overflow.</TD>
+</TR>
+
+<TR>
+<TD>DZE</TD>
+
+<TD ALIGN=CENTER>&lt;12&gt;</TD>
+
+<TD>If set, this bit indicates a divide by zero.</TD>
+</TR>
+
+<TR>
+<TD>INV</TD>
+
+<TD ALIGN=CENTER>&lt;11&gt;</TD>
+
+<TD>If set, this bit indicates an invalid operation.</TD>
+</TR>
+
+<TR>
+<TD>SWC</TD>
+
+<TD ALIGN=CENTER>&lt;10&gt;</TD>
+
+<TD>If set, this bit indicates that software completion is possible.</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

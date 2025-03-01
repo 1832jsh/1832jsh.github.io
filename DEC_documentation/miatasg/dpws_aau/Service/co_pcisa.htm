@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> PCI and ISA Configuration</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<!-- Created Using HTML Notepad, Copyright (c) cranial software 1995-->
+<!C- This file created by Carmen Wheatcroft - Workstation Doc Group->
+
+<H3><A NAME="pcisa_top">PCI and ISA Configuration</A></H3>
+
+<P>Topics covered in this section include:</P>
+
+<UL>
+<LI><A HREF="#pci_idsel">PCI IDSEL Assignments</A></LI>
+<LI><A HREF="#pci_space">PCI Address Space and Configuration Tasks</A></LI>
+<LI><A HREF="#header">PCI Predefined Header Region</A></LI>
+<LI><A HREF="#pci_arb">PCI Arbitration</A></LI>
+<LI><A HREF="#isa_bus">ISA Bus</A></LI>
+</UL>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="pci_idsel"></A>PCI IDSEL Assignments</H3></TD>
+<TD align=right valign=top><A HREF="#top_pcisa"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>The PCI bus must be initialized each time the system is powered on.
+Configuration cycles (accesses to CPU addresses 87.0000.0000 through 87.1fff.ffff)
+are used for this purpose. The initialization device select (IDSEL) input
+is used to select a PCI device during configuration read and write transactions.
+The AD bits associated with the PCI devices in the DIGITAL Personal Workstation <EM>a/au-Series</EM> system are shown below: </P>
+
+<TABLE BORDER=1 >
+<TR>
+<TD>
+<CENTER><P>Device</P></CENTER>
+</TD>
+
+<TD>
+<CENTER><P>IDSEL Bit<BR>
+Assignment </P></CENTER>
+</TD>
+
+<TD>
+<CENTER><P>PCI Base <BR>
+Address </P></CENTER>
+</TD>
+
+<TD>
+<CENTER><P>CPU Base <BR>
+Address</P></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD>Ethernet Controller</TD>
+
+<TD>AD[14]</TD>
+
+<TD><TT>0000.4000</TT></TD>
+
+<TD><TT>87.0003.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>IDE</TD>
+
+<TD>AD[15]</TD>
+
+<TD><TT>0000.8000</TT></TD>
+
+<TD><TT>87.0004.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>USB (if present)</TD>
+
+<TD>AD[17]</TD>
+
+<TD><TT>0002.0000</TT></TD>
+
+<TD><TT>87.0006.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI/ISA Bridge</TD>
+
+<TD>AD[18]</TD>
+
+<TD><TT>0004.0000</TT></TD>
+
+<TD><TT>87.0007.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI/PCI Bridge</TD>
+
+<TD>AD[19]</TD>
+
+<TD><TT>0008.0000</TT></TD>
+
+<TD><TT>87.0000.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI Slot 4</TD>
+
+<TD>AD[22]</TD>
+
+<TD><TT>0040.0000</TT></TD>
+
+<TD><TT>87.000B.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI Slot 5</TD>
+
+<TD>AD[23]</TD>
+
+<TD><TT>0080.0000</TT></TD>
+
+<TD><TT>87.000C.0000</TT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER COLSPAN="4">
+<CENTER><P><B>Secondary Bus Assignments</B></P></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD>PCI Slot 1</TD>
+
+<TD>AD[24]</TD>
+
+<TD><TT>0100.0000</TT></TD>
+
+<TD><TT>87.000D.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI Slot 2</TD>
+
+<TD>AD[25]</TD>
+
+<TD><TT>0200.0000</TT></TD>
+
+<TD><TT>87.000E.0000</TT></TD>
+</TR>
+
+<TR>
+<TD>PCI Slot 3</TD>
+
+<TD>AD[26]</TD>
+
+<TD><TT>0400.0000</TT></TD>
+
+<TD><TT>87.000F.0000</TT></TD>
+</TR>
+</TABLE>
+
+<P>CPU base address [20:16] represents the encoded value of the IDSEL bit
+to be asserted (IDSEL bits range from PCI AD[31:11).  For example, in a
+CPU base address of 87.0006.0000, the encoded IDSEL value is 06.  Starting
+at PCI AD[11] and counting up 7 bits (0-6) points to PCI AD[17], which
+is hardwired as an IDSEL line to the Ethernet controller. </P>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="pci_space"></A>PCI Address Space and Configuration Tasks</H3></TD>
+<TD align=right valign=top><A HREF="#top_pcisa"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>The PCI specification defines three physical address spaces. Besides
+the usual memory and I/O space, there is configuration address space. Configuration
+address space allows the devices to be initialized and configured by software/firmware.
+PCI devices have 256 bytes of configuration register information. Of the
+256 bytes, 64 bytes are the predefined header region. The remaining 192
+bytes are device-specific. </P>
+
+<P>The console firmware performs the following PCI-configuration tasks:</P>
+
+<TABLE BORDER=1 >
+<TR>
+<TH>Task</TH>
+
+<TH>Action</TH>
+</TR>
+
+<TR>
+<TD>Determine what PCI devices are present.</TD>
+
+<TD>Try to read the ID registers. </TD>
+</TR>
+
+<TR>
+<TD>When a device is located, determine its address space requirements.
+</TD>
+
+<TD>All 1's are written to its base address register. <BR>
+Device returns the address bits it uses set to 1's, all others are 0's.
+</TD>
+</TR>
+
+<TR>
+<TD>Initialize the base registers. </TD>
+
+<TD>Set up all base address registers in order from largest to smallest.</TD>
+</TR>
+</TABLE>
+<BR>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="header">PCI Predefined Header Region</A></H3></TD>
+<TD align=right valign=top><A HREF="#top_pcisa"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+
+<PRE>31                       16 15                         0
++--------------------------+--------------------------+
+|          Device ID       |        Vendor ID         | 00h
++--------------------------+--------------------------+
+|           Status         |         Command          | 04h
++--------------------------+-----------+--------------+
+|            Class Code                | Revision ID  | 08h
++-----------+--------------+-----------+--------------+
+|    BIST   |  Header Type |Latency Tmr| Cache Ln Size| 0Ch
++-----------+--------------+-----------+--------------+
+|               Base Address Registers                | 10h-
+|                                                     | 24h
++--------------------------+--------------------------+
+|                       Reserved                      | 28h-
+|                                                     | 2C
++--------------------------+--------------------------+
+|               Expansion ROM Base Address            | 30h
++--------------------------+--------------------------+
+|                       Reserved                      | 34h-
+|                                                     | 38h
++------------+-------------+------------+-------------+
+|   Max_lat  |   Min_gnt   |  Intr Pin  |  Intr Line  | 3Ch
++------------+-------------+------------+-------------+
+</PRE>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="pci_arb"></A>PCI Arbitration</H3></TD>
+<TD align=right valign=top><A HREF="#top_pcisa"><IMG SRC="../images/top_butn.gif"
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>Arbitration for the PCI bus is handled by a PAL chip and the PCI/ISA
+bridge chip.</P>
+
+<PRE>                                +---------+ 
+                    CPU REQ ----|         |-- CPU&nbsp;GNT
+                                |         | 
+PCI slot 4 REQ -----------------| PCI/ISA |-- Slot 4 GNT
+PCI slot 5 REQ -----------------|         |-- Slot 5 GNT
+PCI-to-PCI Bridge REQ ----------| Bridge  |-- PCI-to-PCI&nbsp;GNT
+                                |         | 
+          +-------+        REQ3 |         | 
+          |       |-------------|         |---+-- GNT3 
+ENET REQ -|       |             |         |   | 
+IDE REQ --|  PAL  |             |         |   |
+          |       |             +---------+   |
+          |       |--- ENET&nbsp;GNT               | 
+GNT3 -+---|       |--- IDE&nbsp;GNT                |
+      |   |       |                           |
+      |   +-------+                           |
+      +---------------------------------------+
+</PRE>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="isa_bus"></A>ISA Bus</H3></TD>
+<TD align=right valign=top><A HREF="#top_pcisa"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>The DIGITAL Personal Workstation <EM>a/au-Series</EM> system has two built-in ISA devices as well as slots for up to three additional ISA options (if the slots are
+not already occupied by PCI devices). The built-in devices are:</P>
+
+<UL>
+<LI>Super I/O chip (National PC87312) which provides controllers for the
+floppy disk bus, two serial lines, keyboard, mouse, and the bidirectional
+enhanced parallel port.</LI>
+
+<LI>ES1888 audio chip.</LI>
+</UL>
+
+</BODY>
+</HTML>

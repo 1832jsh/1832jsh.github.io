@@ -1,0 +1,52 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> SRM Firmware</TITLE>
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<h3>SRM ISACFG and ICONFIG Commands</H3>
+<P>
+ISA devices are not capable of being probed for configuration information by the DIGITAL UNIX or OpenVMS operating systems.  Therefore, you must configure ISA option information manually before installing a new ISA option module on your system.
+<P>
+There are two SRM utilities that you can use to configure ISA options: the ICONFIG utility and the ISACFG utility.
+
+<UL>
+  <LI>The ICONFIG utility is a subset of the ISACFG utility.  ICONFIG contains scripts to configure one module of each of the three following types: DE205 Ethernet card, PBXJA-AA sound card, and PB2GA-FB graphics card.
+
+  <LI>The ISACFG utility is a command-line utility.  It is useful for configuring more than one ISA module of each type; for example, a second DE205 card or two non-DIGITAL ISA options.
+</UL>
+
+The ICONFIG utility and the ISACFG utility are described in the following sections.
+
+<H4>ICONFIG Utility
+</H4>
+<P>
+To start the ICONFIG utility, type iconfig at the SRM console prompt.  The following display appears.  
+<P>
+<STRONG>NOTE: The ISA options shown below are factory-configured and cannot be deleted.
+</STRONG>
+<P>
+<TABLE ALIGN=Left BORDER=1 CELLSPACING=0 CELLPADDING=0 WIDTH="100%">
+<TR ALIGN=center VALIGN=top><TH>ISA Configuration Utility</TH></TR>
+<TR ALIGN=left VALIGN=top><TH>Name</TH><TH>I/O</TH><TH>IRQ</TH>   <TH>DMA</TH><TH>Mem</TH><TH>Length</TH><TH>Enabled</TH></TR>
+<TR ALIGN=center VALIGN=top><TD>MOUSE</TD><TD>60</TD><TD>12</TD><TD></TD><TD></TD><TD>
+</TD><TD>Y</TD></TR>
+<TR ALIGN=center VALIGN=top><TD>KBD</TD><TD>60</TD><TD>12</TD><TD></TD><TD></TD><TD>
+</TD><TD>Y</TD></TR>
+<TR ALIGN=center VALIGN=top><TD>COM1</TD><TD>3f8</TD><TD>4</TD><TD></TD><TD></TD><TD>
+</TD><TD>Y</TD></TR>
+<TR ALIGN=center VALIGN=top><TD>COM2</TD><TD>2f8</TD><TD>3</TD><TD></TD><TD></TD><TD>
+</TD><TD>Y</TD></TR>
+<TR ALIGN=center VALIGN=top><TD>LPT1</TD><TD>3bc</TD><TD>7</TD><TD></TD><TD></TD><TD>
+</TD><TD>Y</TD></TR>
+<TR ALIGN=center VALIGN=top><TD>FLOPPY</TD><TD>3f0</TD><TD>6</TD><TD>2</TD><TD></TD><TD></TD><TD>Y</TD></TR>
+</TABLE>
+
+
+
+</BODY>
+</HTML>

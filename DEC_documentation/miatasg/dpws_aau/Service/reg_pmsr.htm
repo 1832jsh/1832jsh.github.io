@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PYXIS Memory Error Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Memory Error Status Register (MEAR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8440<BR>
+The command, memory sequencer state, the data cycle at the time of an error, and the 
+remaining address field are locked into the MESR register upon a PYXIS error.  The error bits are write one to clear and clearing all error bits in the PYXIS_ERR register unlocks this register.  When the register is not locked, the contents of this register are not defined.</TD></TR>
+<TR VALIGN=TOP><TD><A NAME="seq_field">SEQ_STATE</A></TD><TD ALIGN=CENTER>&lt;31:25&gt;RW</TD>
+<TD>The <A HREF="#seq_cycle_types">memory sequencer-state</A> when the 
+nonexistent memory error occurred.</TD></TR>
+<TR VALIGN=TOP><TD><A NAME="data_field">DATA_CYCLE</A><BR>_TYPE</TD><TD ALIGN=CENTER>&lt;24:20&gt;RO</TD>
+<TD>The <A HREF="#data_cycle_types">type of data cycle</A> in progress when an ECC error occurred.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;19:18&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>OWORD_<BR>INDEX</TD><TD ALIGN=CENTER>&lt;17:16&gt;RO</TD>
+<TD>The data cycle within a memory access in which the data error was discovered.  
+There are normally four data cycles.  OWORD_INDEX = 0 is the first data cycle 
+corresponding to the error address captured in the ERROR_ADDR field.  The actual low-order bits of the error location are (ERROR_ADDR[5:4]+ OWORD_INDEX) mod 4.</TD></TR>
+<TR VALIGN=TOP><TD>TLBFILL_NXM</TD><TD ALIGN=CENTER>&lt;15&gt;RO</TD>
+<TD>Nonexistent memory trap during a scatter/gather translation buffer fill operation.</TD></TR>
+<TR VALIGN=TOP><TD>VICTIM_NXM</TD><TD ALIGN=CENTER>&lt;14&gt;RO</TD>
+<TD>Nonexistent memory trap during a BCACHE victim operation.</TD></TR>
+<TR VALIGN=TOP><TD>IO_WR_NXM</TD><TD ALIGN=CENTER>&lt;13&gt;RO</TD>
+<TD>Nonexistent memory trap during an I/O write.</TD></TR>
+<TR VALIGN=TOP><TD>IO_RD_NXM</TD><TD ALIGN=CENTER>&lt;12&gt;RO</TD>
+<TD>Nonexistent memory trap during an I/O read.</TD></TR>
+<TR VALIGN=TOP><TD>CPU_WR_NXM</TD><TD ALIGN=CENTER>&lt;11&gt;RO</TD>
+<TD>Nonexistent memory trap during a CPU write.</TD></TR>
+<TR VALIGN=TOP><TD>CPU_RD_NXM</TD><TD ALIGN=CENTER>&lt;10&gt;RO</TD>
+<TD>Nonexistent memory trap during a CPU read.</TD></TR>
+<TR VALIGN=TOP><TD>DMA_WR_NXM</TD><TD ALIGN=CENTER>&lt;9&gt;RO</TD>
+<TD>Nonexistent memory trap during a DMA write.</TD></TR>
+<TR VALIGN=TOP><TD>DMA_RD_NXM</TD><TD ALIGN=CENTER>&lt;8&gt;RO</TD>
+<TD>Nonexistent memory trap during a DMA read.</TD></TR>
+<TR VALIGN=TOP><TD>ERROR_ADDR<BR>&lt;39:32&gt;</TD><TD ALIGN=CENTER>&lt;7:0&gt;RO</TD>
+<TD>Contains address bits &lt;39:32&gt; of the error address in the Memory port when the 
+PYXIS detects an error.  Bits &lt;39:34&gt; are unpredictable on memory errors.  Only 
+bits &lt;33:32&gt; are are valid for that case.</TD></TR>
+</TABLE>
+<P></P>
+
+<HR>
+
+<TABLE BORDER=1>
+<A NAME="data_cycle_types"><CAPTION> <STRONG>Data</A>Cycle Type Encodings</STRONG>
+<BR><A HREF="#data_field"> (Return to bit descriptions.)</A></CAPTION>
+<TR><TH>DATA_<BR>CYCLE_<BR>TYPE</TH><TH>Description</TH></TR>
+<TR><TD>00</TD><TD>IDLE</TD></TR>
+<TR><TD>01</TD><TD>CPU_READ</TD></TR>
+<TR><TD>02</TD><TD>CPU_READ_VICTIM</TD></TR>
+<TR><TD>03</TD><TD>CPU_WRITE</TD></TR>
+<TR><TD>04</TD><TD>IO_READ</TD></TR>
+<TR><TD>05</TD><TD>FLASH_BYTE_READ</TD></TR>
+<TR><TD>06</TD><TD>PCI_READ</TD></TR>
+<TR><TD>07</TD><TD>IO_WRITE</TD></TR>
+<TR><TD>08</TD><TD>FLASH_BYTE_WRITE</TD></TR>
+<TR><TD>09</TD><TD>DMA_READ</TD></TR>
+<TR><TD>0A</TD><TD>DMA_READ_SCACHE</TD></TR>
+<TR><TD>0B</TD><TD>DMA_READ_BCACHE</TD></TR>
+<TR><TD>0C</TD><TD>DMA_READ_VICTIM</TD></TR>
+<TR><TD>0D</TD><TD>DMA_WRITE</TD></TR>
+<TR><TD>0E</TD><TD>DMA_MEM_MERGE</TD></TR>
+<TR><TD>0F</TD><TD>DMA_SCACHE_MERGE</TD></TR>
+<TR><TD>10</TD><TD>DMA_BCACHE_MERGE</TD></TR>
+<TR><TD>11</TD><TD>DMA_VICTIM_MERGE</TD></TR>
+<TR><TD>12</TD><TD>FLASH_READ</TD></TR>
+<TR><TD>13</TD><TD>VICTIM_WRITE</TD></TR>
+<TR><TD>14</TD><TD>DUMMY_READ</TD></TR>
+<TR><TD>15</TD><TD>VICTIM_EJECT</TD></TR>
+</TABLE>
+<P></P>
+
+<HR>
+
+<TABLE BORDER=1>
+<A NAME="seq_cycle_types"><CAPTION> <STRONG>Memory</A> 
+Sequencer State Encodings</STRONG>
+<BR><A HREF="#seq_field"> (Return to bit descriptions.)</A></CAPTION>
+<TR><TH>SEQ_STATE</TH><TH>Value</TH><TH>Description</TH></TR>
+<TR><TD>IDLE</TD><TD>00</TD><TD>Command dispatch</TD></TR>
+<TR><TD>WAIT</TD><TD>01</TD><TD>Wait until data transfer is idle</TD></TR>
+<TR><TD>WAIT1</TD><TD>02</TD><TD>Wait one cycle</TD></TR>
+<TR><TD>DMA_RD_START</TD><TD>03</TD><TD>Select DMA read address</TD></TR>
+<TR><TD>DMA_RD_PROBE</TD><TD>04</TD><TD>Assert RAS</TD></TR>
+<TR><TD>DMA_RD_SCACHE_DATA</TD><TD>05</TD><TD>Read Dirty data from Bcache</TD></TR>
+<TR><TD>DMA_RD_BCACHE_DATA</TD><TD>06</TD><TD>Read Dirty data from Bcache</TD></TR>
+<TR><TD>DMA_RD_CACHE_DATA</TD><TD>07</TD><TD>Read Dirty data from Bcache or Scache</TD></TR>
+<TR><TD>DMA_RD_RAS</TD><TD>08</TD><TD>Continue to assert RAS after cache miss</TD></TR>
+<TR><TD>DMA_RD_COL</TD><TD>09</TD><TD>wait for column access</TD></TR>
+<TR><TD>DMA_RD_VICTIM</TD><TD>0A</TD><TD>wait for memory data to blow by</TD></TR>
+<TR><TD>DMA_RD_NXM</TD><TD>0B</TD><TD>Assert error state for nonexistent memory</TD></TR>
+<TR><TD>DMA_WR_START</TD><TD>0C</TD><TD>Select DMA write address</TD></TR>
+<TR><TD>DMA_WR_WHOLE_RAS</TD><TD>0D</TD><TD>Start RAS for whole cache line write</TD></TR>
+<TR><TD>DMA_WR_WHOLE_DATA</TD><TD>0E</TD><TD>Watch the data go by</TD></TR>
+<TR><TD>DMA_WR_PROBE</TD><TD>0F</TD><TD>wait for probe result</TD></TR>
+<TR><TD>DMA_WR_SCACHE_COPY</TD><TD>10</TD><TD>Read Dirty data from Scache</TD></TR>
+<TR><TD>DMA_WR_BCACHE_COPY</TD><TD>11</TD><TD>Read Dirty data from Bcache</TD></TR>
+<TR><TD>DMA_WR_CACHE_COPY</TD><TD>12</TD><TD>Read Dirty data from Bcache or Scache</TD></TR>
+<TR><TD>DMA_WR_RAS</TD><TD>13</TD><TD>Continue to assert RAS after miss</TD></TR>
+<TR><TD>DMA_WR_PQ_RD_RAS</TD><TD>14</TD><TD>Assert RAS for partial octawords read</TD></TR>
+<TR><TD>DMA_WR_PQ_RD_COL</TD><TD>15</TD><TD>Wait for column access</TD></TR>
+<TR><TD>DMA_WR_PQ_RD_VICTIM</TD><TD>16</TD><TD>Wait for memory data to blow by</TD></TR>
+<TR><TD>DMA_WR_NXM</TD><TD>17</TD><TD>Assert error state for nonexistent memory</TD></TR>
+<TR><TD>DMA_WR_WHOLE_RASF</TD><TD>36</TD><TD>Start RAS for whole cache line write, BC flush pending</TD></TR>
+<TR><TD>DMA_WR_WHOLE_FLUSH</TD><TD>37</TD><TD>Watch the data go by</TD></TR>
+<TR><TD>CPU_EJECT</TD><TD>18</TD><TD>Eject victim and assert RAS for fill</TD></TR>
+<TR><TD>CPU_RD_START</TD><TD>19</TD><TD>Assert RAS for fill</TD></TR>
+<TR><TD>CPU_RD_COL</TD><TD>1A</TD><TD>Wait for column access</TD></TR>
+<TR><TD>CPU_RD_VICTIM</TD><TD>1B</TD><TD>Wait for DRAM data to blow by, then provide the REAL data</TD></TR>
+<TR><TD>CPU_RD_NXM</TD><TD>1C</TD><TD>Assert error state for nonexistent memory</TD></TR>
+<TR><TD>CPU_WR_START</TD><TD>1D</TD><TD>Assert RAS for Scache victim (no Bcache)</TD></TR>
+<TR><TD>CPU_WR_NXM</TD><TD>1E</TD><TD>Assert error state for nonexistent memory</TD></TR>
+<TR><TD>VICTIM_START</TD><TD>1F</TD><TD>Assert RAS for Bcache victim in Pyxis victim buffer</TD></TR>
+<TR><TD>VICTIM_NXM</TD><TD>20</TD><TD>Assert error state for nonexistent memory</TD></TR>
+<TR><TD>REFRESH_PRECHARGE</TD><TD>21</TD><TD>Deactivate all rows for refresh</TD></TR>
+<TR><TD>REFRESH_COMMAND</TD><TD>22</TD><TD>Assert refresh for all banks</TD></TR>
+<TR><TD>MODE_PRECHARGE</TD><TD>23</TD><TD>Deactivate all rows for "Mode" cycle</TD></TR>
+<TR><TD>MODE_COMMAND</TD><TD>24</TD><TD>Assert Mode cycle for all banks, join refresh flow</TD></TR>
+<TR><TD>CPU_IO_RD_ADDR</TD><TD>25</TD><TD>Send IO read address to select a target</TD></TR>
+<TR><TD>CPU_IO_RD_WAIT</TD><TD>26</TD><TD>Wait for return of read data (64-bit max)</TD></TR>
+<TR><TD>CPU_IO_RD_START</TD><TD>27</TD><TD>Start read data transfer</TD></TR>
+<TR><TD>CPU_FLASH_RD_WAIT</TD><TD>28</TD><TD>wait for flash byte read to complete</TD></TR>
+<TR><TD>UNREACHABLE_STATE</TD><TD>29</TD><TD>****** This state is not reachable ******</TD></TR>
+<TR><TD>CPU_PCI_RD_WAIT</TD><TD>2A</TD><TD>Wait for BC IDLE</TD></TR>
+<TR><TD>CPU_PCI_RD_START</TD><TD>2B</TD><TD>delay for data cycle</TD></TR>
+<TR><TD>CPU_IO_WR_ADDR</TD><TD>2C</TD><TD>Send I/O write address to select a target</TD></TR>
+<TR><TD>CPU_IO_WR_NXM</TD><TD>2D</TD><TD>Assert error state for nonexistent I/O address</TD></TR>
+<TR><TD>CPU_FLASH_WR_WAIT</TD><TD>2E</TD><TD>wait for flash byte write to complete</TD></TR>
+<TR><TD>CPU_FLASH_START</TD><TD>2F</TD><TD>Start a fill from flashROM</TD></TR>
+<TR><TD>CPU_FLASH_COL</TD><TD>30</TD><TD>Start a fill from flashROM</TD></TR>
+<TR><TD>CPU_FLASH_DATA</TD><TD>31</TD><TD>Wait for the Flash controller to deliver all the Flash data</TD></TR>
+<TR><TD>CPU_DUMMY_START</TD><TD>32</TD><TD>Start a fill from the dummy region</TD></TR>
+<TR><TD>CPU_DUMMY_COL</TD><TD>33</TD><TD>Start the dummy data transfer</TD></TR>
+<TR><TD>NO_BRAINER</TD><TD>34</TD><TD>issue CACK and ignore</TD></TR>
+<TR><TD>BAD_CPU_CMD</TD><TD>35</TD><TD>assert machine check</TD></TR>
+</TABLE>
+<A HREF="#seq_field"> Return to bit descriptions.</A>
+</BODY>
+</HTML>

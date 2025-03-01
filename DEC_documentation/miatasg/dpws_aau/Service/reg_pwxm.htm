@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Window Mask Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Window Mask Registers (Wx_MASK, x=0-3)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.6000.0440, 87.6000.0540, 87.6000.0640, 87.6000.0740<BR>
+The Window Mask Register (WMR) provides a mask corresponding to bits &lt;31:20&gt; of an 
+incoming PCI address. The size of each window can be programmed to be from 1 MB to 4 GB in powers of two (2) by masking bits of the incoming PCI address through the WMR as shown below.<P>
+ 
+There are four WMRs: W_MASK[0], W_MASK[1], W_MASK[2], and W_MASK[3].  The W_MASK[x] registers should not be modified unless software ensures that no PCI traffic is targeted for the window being modified.<P>
+To determine whether there is a hit in the target window, the incoming PCI address bits &lt;31:20&gt; are compared with the each of the four WBRs; where the W_MASK register determines which bits are involved in the comparison.  The Target Window is "Hit" when the masked addresses matches a valid WBR.
+</TD></TR>
+
+<TR VALIGN=TOP><TD>W_<BR>MASK</TD><TD ALIGN=CENTER>&lt;31:20&gt;<BR>RW</TD>
+<TD>W_MASK specifies the size of the PCI Target Window (see table below), and it 
+is used also to mask out address bits not used when determining a PCI Target 
+Window "hit."
+<TABLE BORDER=1>
+<TR><TH>W_MASK<BR>&lt;31:20&gt;</TH><TH>Size of Window</TH></TR>
+<TR><TD>0000 0000 0000</TD><TD>1 MB</TD></TR>
+<TR><TD>0000 0000 0001</TD><TD>2 MB</TD></TR>
+<TR><TD>0000 0000 0011</TD><TD>4 MB</TD></TR>
+<TR><TD>0000 0000 0111</TD><TD>8 MB</TD></TR>
+<TR><TD>0000 0000 1111</TD><TD>16 MB</TD></TR>
+<TR><TD>0000 0001 1111</TD><TD>32 MB</TD></TR>
+<TR><TD>0000 0011 1111</TD><TD>64 MB</TD></TR>
+<TR><TD>0000 0111 1111</TD><TD>128 MB</TD></TR>
+<TR><TD>0000 1111 1111</TD><TD>256 MB</TD></TR>
+<TR><TD>0001 1111 1111</TD><TD>512 MB</TD></TR>
+<TR><TD>0011 1111 1111</TD><TD>1 GB</TD></TR>
+<TR><TD>0111 1111 1111</TD><TD>2 GB</TD></TR>
+<TR><TD>1111 1111 1111</TD><TD>4 GB</TD></TR>
+<TR><TD>Otherwise</TD><TD>Not supported</TD></TR>
+</TABLE>
+</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;19:0&gt;<BR>RO</TD>
+<TD>N/A</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

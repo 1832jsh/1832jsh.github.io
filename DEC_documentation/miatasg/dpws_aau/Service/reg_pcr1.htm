@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PYXIS Control Register 1 Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Control Register 1 (PYXIS_CTRL1)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.0140<BR>
+The PYXIS Control register 1 register is a collection of bits that do not fit into any particular 
+category but needed to be put somewhere.  The original placement was based on 
+CIA features that were added in later revisions of the ASIC in support of 
+EV56 implementations.</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:13&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>LW_PAR_MODE</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>When set to a "1", PCA56 Longword parity mode is selected.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;11:9&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PCI_LINK_EN</TD><TD ALIGN=CENTER>&lt;8&gt;RW</TD>
+<TD>I/O write chaining enable.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;7:5&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PCI_MWIN_EN</TD><TD ALIGN=CENTER>&lt;4&gt;RW</TD>
+<TD>Monster window enable.  When set, gives full access to main memory.  
+The monster window can be access by DAC only with PCI address&lt;40&gt; set.  Memory 
+address &lt;33:0&gt; equals PCI address&lt;<33:0&gt;</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;3:1&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>IOA_BEN</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>Byte support enable.  When set to a 1, the address range, 88.0000.0000 through 
+EB.FFFF.FFFF are enable to provide byte, word, longword and quadword PCI addressing.  
+This is a newly architected requirement.  When set to 0, byte and word operations are 
+disabled and accessing the above-mentioned addresses results in an error or undefined 
+results.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

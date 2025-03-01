@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Pyxis Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Status Register (PYXIS_STAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8240<BR>
+The PYXIS_STATUS register contains information pertinent to the state of the PYXIS 
+at the time an error occurred.  You can use this register, along with the error registers, in isolating the error condition and determining a proper recovery action.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:12&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>TLB_MISS</TD><TD ALIGN=CENTER>&lt;11&gt;RO</TD>
+<TD>If set, then a TLB MISS refill was in progress when this error occurred.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;10:8&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>IOA_VALID<BR>&lt;3:0&gt;</TD><TD ALIGN=CENTER>&lt;7:4&gt;RO</TD>
+<TD>Valid bits for the I/O command/address queue.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;3:2&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PCI_STATUS&lt;1&gt;</TD><TD ALIGN=CENTER>&lt;1&gt;RO</TD>
+<TD>If set, then the PCI master state machine is active.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_STATUS&lt;0&gt;</TD><TD ALIGN=CENTER>&lt;0&gt;RO</TD>
+<TD>If set, then the PCI target state machine is active.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

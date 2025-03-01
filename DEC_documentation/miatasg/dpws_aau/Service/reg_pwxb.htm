@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Window Base Registers Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Window Base Registers (Wx_BASE, x=0-3)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.6000.0400, 87.6000.0500, 87.6000.0600, 87.6000.0700<BR>
+The Window Base Register (WBR) provides the base address for a particular target window.  
+There are four WBRs: W_BASE[0], W_BASE[1], W_BASE[2], and W_BASE[3].
+The W_BASE[x] registers should not be modified unless software insures that no 
+PCI traffic is targeted for the window being modified.<P>
+Determining a Hit in the Target Window:
+
+<UL>
+<LI>The incoming PCI address bits &lt;31:20&gt; are compared with the each of the four 
+WBRs, where the W_MASK register determines which bits are 
+involved in the comparison.
+<LI>The Target Window is "Hit" when the masked addresses match a valid WBRs.  If MEMCS_enable is set, then the "Hit" is further qualified by the MEMCS 
+input signal -- this is used if PC compatibility holes are required in the PYXIS.
+<LI>When DAC enable is set in Window 3, then W_DAC base register is used to compare PCI address&lt;39:32&gt; of a DAC cycle.
+</UL>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>W_BASE</TD><TD ALIGN=CENTER>&lt;31:20&gt;RW</TD>
+<TD>W_BASE specifies the PCI base address of the PCI Target Window and is 
+used to determine a hit in the window.  See MCES_ENABLE and DAC_ENABLE also.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;19:4&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DAC_<BR>ENABLE</TD><TD ALIGN=CENTER>&lt;3&gt;RW</TD>
+<TD>When the DAC_ENABLE bit is set, then the W_DAC register is compared against 
+PCI address&lt;39:32&gt; for a PCI DAC cycle.  If this compare "Hits," and the 32-bit portion of the PCI address "Hits," then a DAC cycle "Hit" occurs.</TD></TR>
+<TR VALIGN=TOP><TD>MEMCS_EN (only in W0_BASE)</TD><TD ALIGN=CENTER>&lt;2&gt;RW</TD>
+<TD>When the MEMCS_EN bit is set then the MEMCS signal from the PCI ISA or 
+PCI EISA bridge is ANDed with the normal window "Hit."</TD></TR>
+<TR VALIGN=TOP><TD>Wx_BASE<BR>_SG</TD><TD ALIGN=CENTER>&lt;1&gt;RW</TD>
+<TD>When the Scatter/Gather bit is cleared, the PCI Target Window uses direct mapping to 
+translate a PCI address to a CPU address.   When the SG bit is set, the PCI Target Window uses Scatter/Gather mapping to translate a PCI address to a physical memory address.</TD></TR>
+<TR VALIGN=TOP><TD>W_EN</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>When W_EN is cleared, the PCI Target Window is disabled and 
+will not be used to respond to PCI-initiated transfers.  When W_EN is set, the PCI Target Window is enabled and will be used to respond to PCI-initiated transfers that "Hit" in the address range of the Target Window.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

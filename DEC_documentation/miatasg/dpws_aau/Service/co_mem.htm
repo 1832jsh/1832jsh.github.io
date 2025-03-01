@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE></TITLE>
+   <META NAME="GENERATOR" CONTENT="Mozilla/3.0Gold (Win16; I) [Netscape]">
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<!-- Created Using HTML Notepad, Copyright (c) cranial software 1995-->
+<!-- This file created by Carmen Wheatcroft-->
+<!--  Workstation Doc Group - Digital Equipment Corporation Copyright (c) 1998-->
+
+<H3>Memory Configuration</H3>
+
+<P><IMG SRC="../images/membanks.gif" ALT="Memory Banks" HEIGHT=125 WIDTH=362 ALIGN=LEFT>The DIGITAL Personal Workstation <EM>a/au-Series</EM> system supports up to three banks of memory. Each
+bank contains two <EM>identical</EM> DIMMs. To ensure
+a match, the POST (power on self test) code use the I2C bus to read the characteristics of  each DIMM from a ROM on the DIMM. If identical pairs are not installed, the POST code may reject the DIMMs and flag the memory as unavailable.</P>
+<P>
+Memory banks can be populated in any order. The POST code automatically maps the
+largest banks to the lowest addresses starting at <TT>00.0000.0000</TT>.
+This prevents holes in the memory address space. </P>
+
+</BODY>
+</HTML>

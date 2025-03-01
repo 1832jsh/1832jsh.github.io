@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Diagnostic Control Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Diagnostic Control Register (PYXIS_DIAG)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.2000<BR>
+The PYXIS force error register is a diagnostic/debug register to 
+allow various errors to be tested.</TD></TR>
+
+<TR VALIGN=TOP><TD>FPE_TO_EV56</TD><TD ALIGN=CENTER>&lt;31&gt;RW</TD>
+<TD>When FPE_CPU_EV56 is set, a parity error is forced on the CPU address/CMD bus 
+when the PYXIS is the bus master.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;30&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>FPE_PCI</TD><TD ALIGN=CENTER>&lt;29:28&gt;RW</TD>
+<TD>
+<TABLE BORDER=1>
+<TR VALIGN=TOP><TD>00</TD><TD>Normal parity is output to the PCI.</TD></TR>
+<TR VALIGN=TOP><TD>01</TD><TD>Bad parity is forced onto the low 32 bits of the PCI during data cycles.</TD></TR>
+<TR VALIGN=TOP><TD>10</TD><TD>Bad parity is forced onto the high 32 bits of the PCI during data cycles.</TD></TR>
+<TR VALIGN=TOP><TD>11</TD><TD>Bad parity is forced onto the high and low 32 bits to the PCI during address and data cycles.</TD></TR>
+</TABLE>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;27:2&gt;RO</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>USE_CHECK</TD><TD ALIGN=CENTER>&lt;1&gt;RW</TD>
+<TD>When set, DMA write cycles and PCI I/O read cycles use the value in the 
+DIAG_CHECK register for ECC sent on the IOD Bus.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD><TD>N/A</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

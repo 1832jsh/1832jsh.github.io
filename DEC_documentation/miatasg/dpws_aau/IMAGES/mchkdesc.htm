@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<!-- This file created by Terry Donald and Carmen Wheatcroft-->
+<!--  Workstation Doc Group - Digital Equipment Corporation Copyright (c) 1997-->
+   <TITLE></TITLE>
+</HEAD>
+<BODY BGCOLOR=#c0c0c0>
+
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="80">80</A> - Bcache Tag Address Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>EI_STAT&lt;bc_tperr&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A Bcache read transaction encountered bad parity in the tag address RAM.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No Recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>EI_ADDR - contains the physical address associated with this
+error.<BR>
+BC_TAG_ADDR - contains the results of the Bcache tag read.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="82">82</A> - Bcache Tag Control Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>EI_STAT&lt;bc_tc_perr&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A Bcache read transaction encountered bad parity in the tag control RAM.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No Recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>EI_ADDR - contains the physical address associated with this
+error.<BR>
+BC_TAG_ADDR - contains the results of the Bcache tag read.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="86">86</A> - CPU-Detected Correctable ECC Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD>
+<TD>ISR&lt;crd&gt; = 1<BR>(note that EI_STAT&lt;unc_cor_err&gt; is not used)</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>The CPU detected a correctable ECC error.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>None required.  The operating system may choose to log this error.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>EI_ADDR - Contains the physical address of the octaword
+ associated with this error.<BR>
+BC_TAG_ADDR - contains the results of the Bcache tag read:
+<UL>
+<LI>If BC_TAG_ADDR&lt;12&gt; =0, the error is from a memory read
+<LI>If BC_TAG_ADDR&lt;12&gt; =1, the error is from a Bcache read
+</UL>
+FILL_SYN - contains the ECC syndrome bits for the two quadwords at this address.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache, DIMM</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="88">88</A> - CPU-Detected Noncorrectable ECC Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>EI_STAT&lt;unc_ecc_err&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>The CPU detected an uncorrectable ECC error.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>TBD</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>EI_ADDR - Contains the physical address of the octaword associated with this error.<BR>
+BC_TAG_ADDR - contains the results of the Bcache tag read; if BC_TAG_ADDR&lt;hit&gt; = 1, 
+the error is from a Bcache read, otherwise it is from a memory read.<BR>
+FILL_SYN - contains the ECC syndrome bits for the two quadwords at this address.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache, DIMM</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="8A">8A</A> - Unknown Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>If none of the errors 
+contain a bit that is set to indicate an error, an unknown error machine check will result.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="8E">8E</A> - Bugcheck</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>CALL_PAL BUGCHK</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>The operating system requested a BUGCHECK.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>Software.</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="90">90</A> - OS Bugcheck</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>This is the result of a 
+CALL_PAL to perform queue manipulation and catastrophe strikes resulting in an operating system bugcheck.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>Software, PAL code</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="92">92</A> - Dcache Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD>
+<TD>DC_PERR_STAT&lt;5:2&gt; not = 0</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A parity error was 
+received from Dcache.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No Recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>VA - contains the 
+effective virtual address associated with the error.<BR>
+VA_FORM - contains the virtual page table entry address associated with the error.<BR>
+DC_PERR_STAT - indicates the type of error:
+
+<UL>
+<LI>if dc_perr_stat&lt;dp0&gt; = 1, bank 0 data parity error
+<LI>if dc_perr_stat&lt;dp1&gt; = 1, bank 1 data parity error
+<LI>if dc_perr_stat&lt;tp0&gt; = 1, bank 0 tag parity error
+<LI>if dc_perr_stat&lt;tp1&gt; = 1, bank 1 tag parity error
+</UL>
+MMSTAT - contains more information on this error.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="94">94</A> - Icache Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>ICPERR_STAT&lt;12:11&gt; not = 0</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A parity error was received from Icache.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>ICPERR_STAT - indicates the type 
+of error:
+<UL>
+<LI>if ICPERR_STAT&lt;dpe&gt; = 1, data parity error
+<LI>if ICPERR_STAT&lt;tpe&gt; = 1, tag parity error
+</UL>
+</TD></TR>
+
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="96">96</A> - Istream Retryable Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>EI_STAT&lt;fil_ird&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>TDB</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>TDB</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>TBD</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>TBD</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="98">98</A> - CPU-Detected Machine Check</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD>
+<TD>
+ICPERR_STAT&lt;tmr&gt; = 1<BR>
+DC_PERR_STAT&lt;lock&gt; = 1<BR>
+EI_STAT&lt;bc_tperr&gt; = 1<BR>
+EI_STAT&lt;bc_tc_perr&gt; = 1<BR>
+EI_STAT&lt;ei_par_err&gt; = 1<BR>
+EI_STAT&lt;seo_hrd_err&gt; = 1<BR>
+EI_STAT&lt;unc_ecc_err&gt; = 1 .and.  EI_STAT&lt;fil_ird&gt; = 0<BR>
+SC_STAT&lt;2:0&gt; != 0 (sc_tperr)<BR>
+SC_STAT&lt;10:3&gt; != 0 .and.  SC_STAT&lt;15:11&gt; != 00001b<BR>
+SC_STAT&lt;scnd_err&gt; = 1
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>Machine check trap.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD>
+<TD>
+If ICPERR_STAT&lt;tmr&gt; is set, there was a timeout reset error or a cfail_h/no cack_h error<BR>
+If DC_PERR_STAT&lt;lock&gt; is set if a parity error was detected in the Dcache.  
+Bits &lt;5:2&gt; are locked against further updates.<BR>
+If EI_STAT&lt;bc_tperr&gt; is set, there was a parity error reading Bcache tag address RAM.
+If EI_STAT&lt;bc_tc_perr&gt; is set, there was a parity error reading Bcache tag control RAM.
+If EI_STAT&lt;ei_par_err&gt; is set, there was a parity error in an address and command 
+received by the CPU.<BR>
+If EI_STAT&lt;seo_hrd_err&gt; = 1, a fill from Bcache or main memory, or a system 
+address/command received by the CPU has a hard error while one of the hard 
+error bits is already set.<BR>
+If EI_STAT&lt;unc_ecc_err&gt; = 1 AND  EI_STAT&lt;fil_ird&gt; = 0, an uncorrectable ECC
+error occured during a Dstream fill.<BR>
+If SC_STAT&lt;2:0&gt; not = 0 (sc_tperr), there was a parity error reading Scache tags.<BR>
+If SC_STAT&lt;10:3&gt; not =  0 AND SC_STAT&lt;15:11&gt; not = 00001b, there was a parity
+error resulting from an Scache read, but not during an IREAD command.<BR>
+If SC_STAT&lt;scnd_err&gt; = 1, an Scache transaction resulted in an error while SC_TPERR
+or SC_DPERR was already set.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="201">201</A> - PYXIS-Detected Correctable ECC Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;cor_err&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>The PYXIS detected 
+a correctable single-bit error on a read from memory.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>Pyxis returns the 
+correct data. The operating system may choose to log this error.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD>
+<TD>The octaword address of the error, EA, can be determined from
+various registers:<BR>
+
+EA&lt;33:32&gt; = MESR&lt;01:00&gt;<BR>
+EA&lt;31:06&gt; = MEAR&lt;31:06&gt;<BR>
+EA&lt;05:04&gt; = (MEAR&lt;05:04&gt; + MESR&lt;17:16&gt;) MOD 4<BR>
+The quadword in error can be determined, note that both
+quadwords can incur simultaneous single-bit errors.<BR>
+
+PYXIS_SYN&lt;24&gt; set ==> low quadword (EA&lt;03&gt;=0)<BR>
+PYXIS_SYN&lt;25&gt; set ==> high quadword (EA&lt;03&gt;=1)<BR>
+
+PYXIS_SYN&lt;07:00&gt; is the syndrome for the low quadword.<BR>
+PYXIS_SYN&lt;15:08&gt; is the syndrome for the high quadword.<BR>
+MESR&lt;24:20&gt; is the DATA_CYCLE_TYPE in progress at the time of
+the error.
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD>
+<TD>MLB, Bcache, DIMM</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="203">203</A> - PYXIS-Detected Noncorrectable ECC Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;un_cor_err&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>PYXIS detected an uncorrectable error on a read from memory</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>The octaword address of 
+the error, EA, can be determined from various registers:<BR>
+EA&lt;33:32&gt; = MESR&lt;01:00&gt;<BR>
+EA&lt;31:06&gt; = MEAR&lt;31:06&gt;<BR>
+EA&lt;05:04&gt; = (MEAR&lt;05:04&gt; + MESR&lt;17:16&gt;) MOD 4<BR><BR>
+The quadword in error can be determined, note that both
+quadwords can incur simultaneous uncorrectable errors:<BR>
+PYXIS_SYN&lt;26&gt; set ==&gt; low quadword (EA&lt;03&gt;=0)<BR>
+PYXIS_SYN&lt;27&gt; set ==&gt; high quadword (EA&lt;03&gt;=1)<BR>
+MESR&lt;24:20&gt; is the DATA_CYCLE_TYPE in progress at the time of the error
+
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, Bcache, DIMM</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="205">205</A> - PYXIS-Detected Command Bus Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;cpu_pe&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>Parity error on the CPU/PYXIS command bus.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>PYXIS must not check parity on the CPU command bus, so
+either firmware failed to disable the check or PYXIS is broken.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>Firmware, MLB</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="207">207</A> - PYXIS-Detected Nonexistent Memory Reference</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;mem_nem&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>Indicates that a read or write occurred to an invalid 
+address which does not map to any memory bank, CSR or I/O quadrant.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>The octaword address 
+of the error, EA, can be determined from various registers:<BR>
+EA&lt;33:32&gt; = MESR&lt;01:00&gt;<BR>
+EA&lt;31:06&gt; = MEAR&lt;31:06&gt;<BR>
+EA&lt;05:04&gt; = (MEAR&lt;05:04&gt; + MESR&lt;17:16&gt;) MOD 4<BR><BR>
+The type of memory access which caused the failure can be
+determined from the MESR register:
+<UL>
+<LI>if MESR&lt;8&gt; = 1, PCI DMA read
+<LI>if MESR&lt;9&gt; = 1, PCI DMA write
+<LI>if MESR&lt;10&gt; = 1, CPU memory read
+<LI>if MESR&lt;11&gt; = 1, CPU memory write
+<LI>if MESR&lt;12&gt; = 1, I/O read
+<LI>if MESR&lt;13&gt; = 1, I/O write
+<LI>if MESR&lt;14&gt; = 1, victim eject
+<LI>if MESR&lt;15&gt; = 1, TLB read
+</UL>
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, software, firmware, PCI option, ISA option</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="209">209</A> - PCI System Error (SERR)</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;pci_serr&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A PCI SERR (system error) was reported.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>SERR is reported by any 
+PCI device when it detects a parity error on the PCI bus during an address cycle.  (PYXIS reports an address parity error through PYXIS_ERR&lt;6&gt;.) These errors are hard to trace, 
+but the following registers may have relevant information:
+<UL>
+<LI>PYXIS_STAT
+<LI>PCI_ERR0
+<LI>PCI_ERR1
+<LI>PCI_ERR2
+</UL>
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, riser, PCI option</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="20B">20B</A> - PCI Data Parity Error (PERR)</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;pci_perr&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A PCI parity error 
+occurred in the data phase of an I/O read/write transaction, or a PCI PERR (parity error) was
+reported.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>PERR is reported by 
+any PCI device when it detects a parity error on the PCI bus during a data cycle.  PYXIS
+reports a data parity error, which it detects here, too.  These errors are hard to trace, but 
+the following registers may have relevant information:
+<UL>
+<LI>PYXIS_STAT
+<LI>PCI_ERR0
+<LI>PCI_ERR1
+<LI>PCI_ERR2
+</UL>
+</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>PCI option, MLB, riser</TD></TR>
+</TABLE>
+<P><HR></P>
+
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="20D">20D</A> - PCI Address Parity Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;pci_addr_pe&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>PYXIS detected a 
+parity error in the address phase of PCI bus transaction.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>PCI_ERR0&lt;3:0&gt; 
+(dma_cmd) holds the C/BE command for this DMA transaction<BR>
+PCI_ERR0&lt;dac&gt; is set if this DMA transaction is a dual-address cycle<BR>
+PCI_ERR1 contains the DMA address<BR>
+PYXIS_STAT might have pertinent data also.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>PCI option, MLB, riser</TD></TR>
+</TABLE>
+<P><HR></P>
+
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="20F">20F</A> - PCI Master Abort</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;rcvd_mas_abt&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>PYXIS
+generated a PCI master abort cycle. Note that PYXIS does not report if a master ends a 
+transaction with a target abort. </TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>TBD</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>PCI option, MLB, riser</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="211">211</A> - PCI Target Abort</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;rcvd_tar_abt&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>A PCI target device 
+ended a transaction using the PCI target abort protocol. Note that PYXIS does not report if it 
+ends a transaction with a target abort.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>If PYXIS_STAT&lt;0&gt; = 1, 
+PYXIS PCI master state engine is active and:
+<UL>
+<LI>PCI_ERR0&lt;pci_cmd&gt; holds the C/BE command for this transaction
+<LI>PCI_ERR0&lt;pci_dac&gt; is set if this transaction is a dual-address cycle
+<LI>PCI_ERR2 contains the PCI address
+</UL>
+
+If PYXIS_STAT&lt;1&gt; = 1, PYXIS CI target state engine is active and:
+<UL>
+<LI>PCI_ERR0&lt;dma_cmd&gt; holds the C/BE command for this DMA transaction
+<LI>PCI_ERR0&lt;dma_dac&gt; is set if this DMA transaction is a dual-address cycle
+<LI>PCI_ERR1 contains the DMA address
+</UL>
+
+Read PCI Config Status Register for each PCI device:
+<UL>
+<LI>If STATUS&lt;15&gt; = 1 - device detected parity error
+<LI>If STATUS&lt;14&gt; = 1 - device signalled system error
+<LI>If STATUS&lt;13&gt; = 1 - device received master abort
+<LI>If STATUS&lt;12&gt; = 1 - device received target abort
+<LI>If STATUS&lt;11&gt; = 1 - device signalled target abort
+<LI>If STATUS&lt;8&gt; = 1 - Parity Error checking is enabled plus device asserted PERR or device observed PERR assert by the bus master.
+</UL>
+</TD></TR>
+
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>PCI option, ISA option</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="213">213</A> - Invalid Scatter/Gather TLB Entry</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;pa_pte_inv&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>Invalid page table 
+entry (PTE) on scatter/gather access. A read error on a TLB fill is reported elsewhere.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>PCI_ERR0&lt;dma_cmd&gt; 
+holds the C/BE command for this DMA transaction.<BR>
+PCI_ERR0&lt;dma_dac&gt; is set if this DMA transaction is a dual-address cycle.<BR>
+PCI_ERR1 contains the DMA address.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, DIMM, PCI option, software</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="215">215</A> - FlashROM Write Error</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>Not used on <EM>a-Series</EM></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="217">217</A> - PCI I/O Timeout</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>PYXIS_ERR&lt;ioa_timeout&gt; = 1</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>I/O read/write timed out.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No recovery</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>PCI_ERR0&lt;pci_cmd&gt; holds the 
+C/BE command for this transaction.<BR>
+PCI_ERR0&lt;pci_dac&gt; is set if this transaction is a dual-address cycle.<BR>
+PCI_ERR2 contains the PCI address.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>PCI option, ISA option, MLB, riser, software</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="219">219</A> - ISA NMI</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>Not used on <EM>a-Series</EM></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>&nbsp;</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="221">221</A> - Unexpected Interrupt At IPL23</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>The CPU detected an interrupt on a line that is not supposed to be connected in the DIGITAL Personal Workstation <EM>au-Series</EM>.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>MLB, firmware, software</TD></TR>
+</TABLE>
+
+<P><HR></P>
+<TABLE BORDER="1" WIDTH="100%">
+<TR><TD COLSPAN="2"><STRONG><A NAME="223">223</A> - Fan Failure</STRONG></TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Indicator:</STRONG></TD><TD>INT_REQ&lt;0&gt; = 1 (fan fault)</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Description:</STRONG></TD><TD>One or both of the system fans are either not properly connected to the riser, or have stopped spinning due to failure or obstruction.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Recovery:</STRONG></TD><TD>No Recovery. The 
+operating system should attempt to log this error to disk, then report the failure to the 
+console firmware which will turn off the power supply to prevent the system from 
+overheating.</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Analysis:</STRONG></TD><TD>&nbsp;</TD></TR>
+<TR><TD VALIGN="TOP"><STRONG>Faulting FRU:</STRONG></TD><TD>Fans, riser, MLB</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

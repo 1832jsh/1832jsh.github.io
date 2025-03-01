@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Pyxis Memory Error Address Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Memory Error Address Register (MEAR)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.8400<BR>
+The low-order address bits of the Memory Port Address bus are locked into this register 
+when a PYXIS-detected error occurs.  The contents are read only. Clearing all the error bits in the PYXIS_ERR register unlocks this register.  When the register is not locked, the contents of this register are not defined.</TD></TR>
+<TR VALIGN=TOP><TD>ERROR_ADDR&lt;31:4&gt;</TD><TD ALIGN=CENTER>&lt;31:4&gt;RO</TD>
+<TD>Contains the current address in the Memory Port when the PYXIS detects an 
+error.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;3:0&gt;RO</TD>
+<TD>N/A</TD></TR>
+
+</TABLE>
+
+</BODY>
+</HTML>

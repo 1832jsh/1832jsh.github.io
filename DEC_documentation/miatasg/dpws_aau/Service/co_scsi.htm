@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>DIGITAL Personal Workstation <EM>au-Series</EM> SCSI Configuration</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<A NAME="scsi_top"><H3>SCSI Configuration Guidelines</H3></A>
+
+<P>DIGITAL Personal Workstation <EM>a/au-Series</EM> systems that include a SCSI bus 
+currently use the Qlogic 1040UW Ultra Wide SCSI PCI host adapter. 
+At this time, DIGITAL supports up to four drives attached to the adapter's wide internal bus. 
+Narrow devices can be attached to that bus when a 68- to 50-pin adapter is used. <STRONG>No external devices are supported on the same adapter used for internal devices.</STRONG>
+Add another SCSI adapter if you need to attach external SCSI devices.
+<BR> 
+For more SCSI configuration information, see:</P>
+
+<UL>
+<LI><A HREF="#config_scsi">Configuring the SCSI Adapter</A> </LI>
+<LI><A HREF="#id_scsi">SCSI IDs</A> </LI>
+<LI><A HREF="#term_scsi">SCSI Termination</A> </LI>
+<LI><A HREF="#length_scsi">SCSI Length</A> </LI>
+<LI><A HREF="#glossary_scsi">Glossary of SCSI Terms</A> </LI>
+</UL>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><H3><A NAME="config_scsi">Configuring the SCSI Host Adapter</A></H3></TD>
+<TD align=right valign=top><A HREF="#top_scsi"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>The SCSI adapter is configured using the eeromcfg.exe utility.
+</P>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><A NAME="id_scsi"><H3>Configuring SCSI IDs</H3></A></TD>
+<TD align=right valign=top><A HREF="#top_scsi"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>The DIGITAL Personal Workstation <I>a Series</I> currently supports up to four
+internal SCSI devices. The adapter can support SCSI IDs ranging from 0 to 15. 
+Each SCSI device must have a unique SCSI ID. Typically, the host adapter is ID 7. </P>
+<P><B>Note: The CD-ROM drive is an ATAPI device attached to the IDE port.</B></P>
+
+<!-- <P> The adapter supports the following device connections:</P>
+<UL>
+<LI>Up to seven internal and external 8-bit SCSI devices.
+<LI>Up to 15 devices (seven 8-bit internal and eight wide (16-bit) internal or external 
+SCSI devices.
+<LI>Up to 15 wide internal and external SCSI devices.
+</UL>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><A NAME="term_scsi"></A><H3>SCSI Termination</H3></TD>
+<TD align=right valign=top><A HREF="#top_scsi"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>Termination on the host adapter is controlled by software
+commands through an adapter utility. The default setting is <I>Automatic.</I>
+In Automatic mode, the adapter detects attached cable(s)
+to either one or two of its three connectors (cables on all three connectors
+is an illegal configuration). The adapter then sets termination accordingly, as
+show in the following table:<BR><B>Note: You also can make these settings manually using the SCSI<EM>Select</EM> utility.</B></P>
+
+<TABLE BORDER=1 >
+<TR>
+<TH rowspan=2>Device Connected to the Adapter's:</TH>
+<TH colspan=2>Host Adapter Termination</TH>
+</TR>
+
+<TR>
+<TH>Low-Byte</TH>
+
+<TH>High-Byte</TH>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD align=left>68-pin internal connector only</TD>
+
+<TD>ON</TD>
+
+<TD>ON</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD align=left>68-pin external connector only</TD>
+
+<TD>ON</TD>
+
+<TD>ON</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD align=left>68-pin internal and external connectors</TD>
+
+<TD>OFF</TD>
+
+<TD>OFF</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD align=left>50-pin internal connector only</TD>
+
+<TD>ON</TD>
+
+<TD>ON</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD align=left>50-pin and 68-pin internal connectors</TD>
+
+<TD>OFF</TD>
+
+<TD>ON</TD>
+</TR>
+
+<TR ALIGN=CENTER>
+<TD>50-pin internal and 68-pin external connectors</TD>
+
+<TD>OFF</TD>
+
+<TD>ON</TD>
+</TR>
+</TABLE>
+
+<P>No internal SCSI devices should be terminated.  (Termination <I>must be disabled</I> 
+if a device is in the middle of the bus.) The internal SCSI bus is terminated 
+by the SCSI controller card at one end, and a SCSI terminator plug on the cable 
+at the other end. </P>
+
+<P>There are several ways to disable termination on SCSI devices, including
+removable resistor packs, switch settings, or a terminator plug. Refer
+to the device documentation for details.</P>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><A NAME="length_scsi"><H3>SCSI Bus Length</H3></A></TD>
+<TD align=right valign=top><A HREF="#top_scsi"><IMG SRC="../images/top_butn.gif"
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<P>For reliable operation of UltraSCSI devices, do not let the bus length exceed 1.5 meters 
+(4.9 feet).</P>
+
+<HR>
+<TABLE border=0 width=100%>
+<TR><TD align=left><A NAME="glossary_scsi"><H3>Glossary of SCSI Terms</H3></A></TD>
+<TD align=right valign=top><A HREF="#top_scsi"><IMG SRC="../images/top_butn.gif" 
+WIDTH=75 HEIGHT=20 border=0></A></TD></TR>
+</TABLE>
+
+<DL>
+<DT>Asynchronous SCSI</DT>
+
+<DD>A method of sending data over the SCSI bus. The initiator sends a command
+or data over the bus and then waits for a reply (REQ/ACK
+handshake). </DD>
+
+<DT>Differential</DT>
+
+<DD>Uses two wires to drive one signal. This reduces common mode signal
+noise and lets the SCSI bus run faster with more length and reliability.
+It is electrically incompatible with single-ended devices. </DD>
+
+<DT>Fast SCSI</DT>
+
+<DD>Allows faster synchronous operation on the bus (10 Mbps instead of
+5 Mbps; up to 40 Mbps when combined with Wide SCSI). </DD>
+
+<DT>Narrow SCSI</DT>
+
+<DD>A term atrributed to 8-bit SCSI devices. </DD>
+
+<DT>Single-ended</DT>
+
+<DD>&quot;Normal&quot; electrical signals. Uses open connector to the SCSI
+bus. </DD>
+
+<DT>Synchronous SCSI</DT>
+
+<DD>Rather than waiting for a reply (ACK), devices that support synchronous
+SCSI can send multiple commands over the bus. </DD>
+
+<DT>Terminator (active)</DT>
+
+<DD>Uses one or more voltage regulators to provide a more accurate termination
+voltage than a passive teminator, which uses resistor voltage dividers.
+</DD>
+
+<DT>Termination (passive)</DT>
+
+<DD>A group of resistors on the physical end of a single-ended SCSI bus
+that dampens signals on the bus. Each terminated signal is connected by
+220 ohms to +5V (TERMPWR) and 330 ohms to ground. </DD>
+
+<DT>UltraSCSI</DT>
+
+<DD>Allows up to 20 megatransfer timing on the bus. </DD>
+
+<DT>Wide SCSI</DT>
+
+<DD> Uses a 68-pin cable to send data 16-bits wide (instead of 8
+bits). </DD>
+</DL>
+
+</BODY>
+</HTML>

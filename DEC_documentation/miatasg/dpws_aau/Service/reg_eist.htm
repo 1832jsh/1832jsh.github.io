@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>External Interface Status Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>External Interface Status Register (EI_STAT)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>Address: IPR CBU, FF.FFF0.0168<BR>
+The EI_STAT register is a read-only register.  Fill data from Bcache or main memory could 
+have correctable or uncorrectable errors.  System address/command parity errors are 
+treated as uncorrectable hard errors.  The register is locked on the first uncorrectable error.  
+The register bits are locked until the EI_STAT register is read.</TD></TR>
+
+<TR VALIGN=TOP><TD>SEO_HRD_ERR</TD><TD ALIGN=CENTER>&lt;35&gt;R</TD>
+<TD>Set when an errors occurs while one of the error bits in this register is set already.</TD></TR>
+<TR VALIGN=TOP><TD>FIL_IRD</TD><TD ALIGN=CENTER>&lt;34&gt;R</TD>
+<TD>When set, this bit indicates that the error occurred during an I-ref fill.  
+When clear, the error occurred during a D-ref fill.  This bit is meaningful only when an 
+ECC error bit is set.</TD></TR>
+<TR VALIGN=TOP><TD>EI_PAR_ERR</TD><TD ALIGN=CENTER>&lt;33&gt;R</TD>
+<TD>When set, an address/command received by the CPU had a parity error.</TD></TR>
+<TR VALIGN=TOP><TD>UNC_ECC_ERR</TD><TD ALIGN=CENTER>&lt;32&gt;R</TD>
+<TD>When set, fill data received from outside the CPU contained an uncorrectable 
+ECC error.</TD></TR>
+<TR VALIGN=TOP><TD>COR_ECC_ERR</TD><TD ALIGN=CENTER>&lt;31&gt;R</TD>
+<TD>When set, fill data received from outside the CPU contained a correctable ECC error.</TD></TR>
+<TR VALIGN=TOP><TD>EI_ES</TD><TD ALIGN=CENTER>&lt;30&gt;R</TD>
+<TD>When set, this bit indicates that the error source is fill data from main memory 
+or a system address/command parity error.  When clear, the error source is fill data 
+from the Bcache.  This bit is meaningful only when COR_ECC_ERR, UNC_ECC_ERR, 
+or EI_PAR_ERR is set.</TD></TR>
+<TR VALIGN=TOP><TD>BC_TC_PERR</TD><TD ALIGN=CENTER>&lt;29&gt;R</TD>
+<TD>Indicates that a Bcache read transaction encountered bad parity in the tag 
+control RAM.</TD></TR>
+<TR VALIGN=TOP><TD>BC_TPERR</TD><TD ALIGN=CENTER>&lt;28&gt;R</TD>
+<TD>Indicates that a Bcache read transaction encountered bad parity in the tag 
+address RAM.</TD></TR>
+<TR VALIGN=TOP><TD>CHIP_ID&lt;3:0&gt;</TD><TD ALIGN=CENTER>&lt;27:24&gt;R</TD>
+<TD>Chip revision (currently, "4").</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

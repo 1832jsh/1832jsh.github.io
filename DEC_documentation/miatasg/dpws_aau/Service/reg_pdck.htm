@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Diagnostic Check Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Diagnostic Check Register (DIAG_CHECK)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.3000<BR>
+The DIAG_CHECK is used for diagnostic DMA writes to write a known ECC pattern into 
+memory and to provide the ECC pattern on any PCI I/O read operation.  This register 
+provides the ECC that gets written to memory or appended to the I/O read operation if 
+the USE_CHECK bit is set in the PYXIS_DIAG CSR.  The primary use for this is to verify 
+the error paths.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31:8&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>DIAG_CHECK</TD><TD ALIGN=CENTER>&lt;7:0&gt;RW</TD>
+<TD>For diagnostic DMA writes and PCI I/O reads,  the DIAG_CHECK register 
+provides the quadword ECC.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

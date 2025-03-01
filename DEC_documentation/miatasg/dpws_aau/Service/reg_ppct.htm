@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Performance Control Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>Performance Control Register (PERF_CONTROL)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.4040<BR>
+The PERF_CONTROL CSR controls the performance monitor.</TD></TR>
+
+<TR VALIGN=TOP><TD>HIGH_COUNT<BR>_START</TD><TD ALIGN=CENTER>&lt;31&gt;RW</TD>
+<TD>0: Do not count.  Keep current values.<BR>
+1: Start counting.</TD></TR>
+<TR VALIGN=TOP><TD>HIGH_ERR<BR>_STOP</TD><TD ALIGN=CENTER>&lt;30&gt;RW</TD>
+<TD>If PYXIS detects an error and this bit is set, then stop counting.</TD></TR>
+<TR VALIGN=TOP><TD>HIG_COUNT<BR>_CLR</TD><TD ALIGN=CENTER>&lt;29&gt;WO</TD>
+<TD>Write a 1 to clear the high counter.</TD></TR>
+<TR VALIGN=TOP><TD>HIGH_COUNT<BR>_CYCLES</TD><TD ALIGN=CENTER>&lt;28&gt;RW</TD>
+<TD>When set to a one, the number of cycles that the high_select event is asserted is 
+counted.  When set to zero, the number of low to high transitions are counted.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;27:19&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>HIGH_SELECT</TD><TD ALIGN=CENTER>&lt;18:16&gt;RW</TD>
+<TD>Enables certain debug features. </TD></TR>
+<TR VALIGN=TOP><TD>LOW_COUNT<BR>_START</TD><TD ALIGN=CENTER>&lt;15&gt;RW</TD>
+<TD>0: Do not count.  Keep current values.<BR>
+1: Start counting.</TD></TR>
+<TR VALIGN=TOP><TD>LOW_ERR<BR>_STOP</TD><TD ALIGN=CENTER>&lt;14&gt;RW</TD>
+<TD>If PYXIS detects an error and this bit is set, then stop counting.</TD></TR>
+<TR VALIGN=TOP><TD>LOW_COUNT<BR>_CLR</TD><TD ALIGN=CENTER>&lt;13&gt;WO</TD>
+<TD>Write a 1 (one) to clear the low counter.</TD></TR>
+<TR VALIGN=TOP><TD>LOW_COUNT<BR>_CYCLES</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>When set to a1 (one), the number of cycles that the low_select event is asserted is 
+counted.  When set to 0 (zero), the number of low to high transitions are counted.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;11:3&gt;RO</TD>
+<TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>LOW_SELECT</TD><TD ALIGN=CENTER>&lt;2:0&gt;RW</TD>
+<TD>Enables certain debug features. </TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,125 @@
+<HTML>
+<!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+<!-- Copyright (c) 1998 Digital Equipment Corporation-->
+
+<HEAD>
+<TITLE>DIGITAL Personal Workstation <EM>a/au-Series</EM> SRM Firmware</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+<H2>SRM Firmware</H2>
+<P>
+This section covers the following topics:
+<UL>
+  <A HREF="#con_sec"><LI>SRM Console Security Features</A>
+  <A HREF="#con_pass"><LI>Setting the Console Password</A>
+  <A HREF="#con_secure"><LI>Setting the Console to Secure Mode</A>
+  <A HREF="#con_sess"><LI>Turning Off Security During a Console Session</A>
+  <A HREF="#forget"><LI>If You Forget the Password</A>
+</UL>
+
+<A NAME="con_sec"><h3>SRM Console Security Features</H3></A>
+<P>
+<HR>
+The SRM console firmware has security features intended to prevent unauthorized persons from modifying the system parameters or otherwise tampering with the system from the console.  The security features include a secure mode and commands to set console security.
+<HR>
+<P>
+The SRM console has two modes:
+<UL>
+  <LI>User mode allows use of all SRM console commands.  User mode is the default console mode.
+  <LI>Secure mode allows use of only a few SRM console commands: start, continue, and boot.  These commands allow you to start or continue executing a program on a specified CPU and boot the operating system.  The boot command cannot take command-line parameters when the console is in secure mode.  The console boots the operating system using the environment variables stored in NVRAM (boot_file, bootdef_dev, boot_flags).
+</UL>
+<P>
+The set password and set secure commands are used to set secure mode.
+<P>
+The login command turns off console security for the current console session.  Once you enter the login command in secure mode, you can enter any SRM command as usual.  The system automatically returns to secure mode when you enter the boot, continue, or start command or when you reset the system.
+<P>
+<EM>NOTE: The security features work only if access to the system hardware is denied to unauthorized personnel.  
+</EM>
+
+<A NAME="con_pass"><h3>Setting the Console Password</H3></A>
+<P>
+<HR>
+Set the console password with the <STRONG>set password</STRONG> command.  A password is required for operating the system in secure mode.  The syntax is <STRONG>set password</STRONG>.
+<HR>
+
+<H4>Example 1: Set Password Command</H4>
+
+<TABLE  BORDER=1>
+<TR>
+<TD  VALIGN=TOP>P00>>>set password</TD>
+<TD></TD>
+</TR>
+	
+<TR><TD  VALIGN=TOP>Please enter the password:</TD>
+<TD>#Password not echoed.</TD>
+</TR>
+	
+<TR><TD  VALIGN=TOP>Please enter the password again:<BR>P00>>></TD>
+<TD>#Validation is not echoed.</TD>
+</TR>
+
+
+<TR><TD  VALIGN=TOP>P00>>>set password</TD>
+<TD>#Changing a password.</TD>
+</TR>
+
+
+<TR><TD  VALIGN=TOP>Please enter the password:</TD>
+<TD></TD>
+</TR>
+
+<TR><TD  VALIGN=TOP>Please enter the password again:</TD>
+<TD></TD>
+</TR>
+
+<TR><TD  VALIGN=TOP>Now enter the old password:<BR>P00>>></TD>
+<TD></TD>
+</TR>
+
+
+<TR><TD  VALIGN=TOP>P00>>>set password</TD>
+<TD>#Password entered is too short.</TD>
+</TR>
+
+<TR><TD  VALIGN=TOP>Please enter the password:</TD>
+<TD></TD>
+</TR>
+
+<TR><TD  VALIGN=TOP>Password length must be between 15 and 30 characters<BR>P00>>></TD>
+<TD></TD>
+</TR>
+
+</TABLE>
+
+<P>
+The <STRONG>set password</STRONG> command sets the console password for the first time or changes an existing password.  It is necessary to set the password only if the system is going to operate in secure mode.
+<P>
+If a password has not been set and the <STRONG>set password</STRONG> command is issued, the console prompts for a password and verification.
+<P>
+If a password has been set and the <STRONG>set password</STRONG> command is issued, the console prompts for the new password and verification, then prompts for the old password.  The password is unchanged if the validation password does not match the existing password in the NVRAM.
+<P>
+The password length must be between 15 and 30 characters.  Any characters entered after the 30th character are not stored.
+
+<A NAME="con_secure"><h3>Setting the Console to Secure Mode</H3></A>
+<P>
+<HR>
+To set the console to secure mode, first set the password.  Then enter the <STRONG>set secure</STRONG> command.  The <STRONG>set secure</STRONG> command enables secure mode without requiring a restart of the console.  The syntax is <STRONG>set secure</STRONG>.
+<HR>
+<P>
+The <STRONG>set secure</STRONG> command enables secure mode without requiring a restart of the console.  If the password has been set, the console will be secured and only the <STRONG>start, continue, boot</STRONG> (using the stored parameters), and <STRONG>login</STRONG> commands can be performed.  If no password has been set, you are prompted to set the password.
+
+<A NAME="con_sess"><h3>Turning Off Security During a Console Session</H3></A>
+<P>
+<HR>
+The login command turns off the security features, enabling access to all SRM console commands during the current console session.  The system automatically returns to secure mode as soon as the boot, continue, or start command is entered or when the system is initialized.
+<HR>
+<P>
+When you enter the <STRONG>login</STRONG> command, you are prompted for the current system password.  If a password has not been set, a message is displayed indicated that there is no password in NVRAM.  If a password has been set, the following prompt is displayed:<BR>
+Please enter the password:<BR>
+If the password entered matches the password in NVRAM when the prompt is re-displayed, the console is no longer in secure mode and all console commands can be performed.
+
+<A NAME="forget"><h3>If You Forget the Password</H3></A>
+<P>
+Contact the Customer Support Center at DIGITAL Equipment Corporation: 1-800-354-9000 (USA) or 1-800-267-5251 (Canada).
+</BODY>
+</HTML>

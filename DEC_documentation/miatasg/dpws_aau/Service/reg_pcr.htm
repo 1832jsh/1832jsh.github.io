@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>PYXIS Control Register Bit Descriptions</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<TABLE BORDER=1 >
+<CAPTION><A NAME=""><STRONG>PYXIS Control Register (PYXIS_CTRL)</STRONG></A></CAPTION>
+<TR><TD COLSPAN=3>
+Address: 87.4000.0100<BR>
+</TD></TR>
+
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;31&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>RM_USE_HISTORY</TD><TD ALIGN=CENTER>&lt;30&gt;RW</TD>
+<TD>When set, causes any translation buffer miss to use the prefetch algorithm in 
+RM_TYPE and any translation buffer hit uses the length of the preceding DMA as the 
+prefetch length.</TD></TR>
+<TR VALIGN=TOP><TD>RM_TYPE</TD><TD ALIGN=CENTER>&lt;29:28&gt;RW</TD>
+<TD>This field controls the prefetch algorithm used for PCI memory read multiple 
+command. <BR>
+
+<A NAME="prefetch_table"><TABLE border=1></A>
+<CAPTION><STRONG>PCI Read Prefetch Algorithm</STRONG></CAPTION>
+<TR VALIGN=TOP><TH>Value</TH><TH>Description</TH></TR>
+<TR VALIGN=TOP><TD>0 0</TD><TD>No prefetch</TD></TR>
+<TR VALIGN=TOP><TD>0 1</TD><TD>Fetch two cache lines.  The operation will not cross an 8-KB boundary.</TD></TR>
+<TR VALIGN=TOP><TD>1 0</TD><TD>Fetch four cache lines.  The operation will not cross an 8-KB boundary.</TD></TR>
+<TR VALIGN=TOP><TD>1 1</TD><TD>Fetch eight cache lines.  The operation will not cross an 8-KB boundary.</TD></TR>
+</TABLE>
+
+</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;27&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>RL_USE_HISTORY</TD><TD ALIGN=CENTER>&lt;26&gt;RW</TD>
+<TD>When set, causes any translation buffer miss to use the prefetch algorithm in 
+RL_TYPE and any translation buffer hit uses the length of the preceding DMA as the 
+prefetch length.</TD></TR>
+<TR VALIGN=TOP><TD>RL_TYPE</TD><TD ALIGN=CENTER>&lt;25:24&gt;RW</TD>
+<TD>This field controls the prefetch algorithm used for PCI memory read line command. 
+<A HREF="#prefetch_table">See the PCI Read Prefetch Algorithm table.</A></TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;23&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>RD_USE_HISTORY</TD><TD ALIGN=CENTER>&lt;22&gt;RW</TD>
+<TD>When set, causes any translation buffer miss to use the prefetch algorithm in 
+RD_TYPE and any translation buffer hit uses the length of the preceding DMA as 
+the prefetch length.</TD></TR>
+<TR VALIGN=TOP><TD>RD_TYPE</TD><TD ALIGN=CENTER>&lt;21:20&gt;RW</TD>
+<TD>This field controls the prefetch algorithm used for PCI memory read command.  
+<A HREF="#prefetch_table">See the PCI Read Prefetch Algorithm table.</A></TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;19:14&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>ASSERT_IDLE_BC</TD><TD ALIGN=CENTER>&lt;13&gt;RW</TD>
+<TD>0 - PYXIS will not assert IDLE BC pin while waiting for PCI read data.<BR>
+<BR>1 - PYXIS will assert IDLE_BC pin while waiting for PCI read data.</TD></TR>
+<TR VALIGN=TOP><TD>ECC_CHK_EN</TD><TD ALIGN=CENTER>&lt;12&gt;RW</TD>
+<TD>0 - PYXIS will not check IOD Data.<BR>
+<BR>1 - PYXIS will check the IOD Data.</TD></TR>
+<TR VALIGN=TOP><TD>MCHK_ERR_EN</TD><TD ALIGN=CENTER>&lt;11&gt;RW</TD>
+<TD>0 - PYXIS will not assert the ERROR Pin.<BR>
+<BR>1 - PYXIS will assert the ERROR pin to report system machine check conditions.</TD></TR>
+<TR VALIGN=TOP><TD>FILL_ERR_EN</TD><TD ALIGN=CENTER>&lt;10&gt;RW</TD>
+<TD>0 - PYXIS will not assert FILL_ERROR.<BR>
+<BR>l - PYXIS will assert FILL_ERROR, if an error occurs during a EV56 read miss.</TD></TR>
+<TR VALIGN=TOP><TD>PERR_EN</TD><TD ALIGN=CENTER>&lt;9&gt;RW</TD>
+<TD>0 - PYXIS will not check PCI data parity errors.<BR>
+<BR>1 - PYXIS will check PCI data parity errors.</TD></TR>
+<TR VALIGN=TOP><TD>ADDR_PE_EN</TD><TD ALIGN=CENTER>&lt;8&gt;RW</TD>
+<TD>0 - PYXIS will not check PCI address parity errors.<BR>
+<BR>1 - PYXIS will check PCI address parity errors.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_ACK64_EN</TD><TD ALIGN=CENTER>&lt;7&gt;RW</TD>
+<TD>0 - PYXIS will not accept 64-bit PCI data transactions.<BR>
+<BR>1 - PYXIS will accept 64-bit PCI data transactions.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_REQ64_EN</TD><TD ALIGN=CENTER>&lt;6&gt;RW</TD>
+<TD>0 - PYXIS will not request 64-bit PCI data transactions.<BR>
+<BR>1 - PYXIS will request 64-bit PCI data transactions.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_MEM_EN</TD><TD ALIGN=CENTER>&lt;5&gt;RW</TD>
+<TD>0 - PYXIS will not respond to PCI transactions.<BR>
+<BR>1 - PYXIS will respond to PCI transactions.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_MST_EN</TD><TD ALIGN=CENTER>&lt;4&gt;RW</TD>
+<TD>0 - PYXIS will not initiate PCI transactions.<BR>
+<BR>1 - PYXIS will initiate PCI transactions.</TD></TR>
+<TR VALIGN=TOP><TD>FST_BB_EN</TD><TD ALIGN=CENTER>&lt;3&gt;RW</TD>
+<TD>0 - PYXIS will not initiate fast back-to-back PCI transactions.<BR>
+<BR>1 - PYXIS will initiate fast back to-back PCI transactions.</TD></TR>
+<TR VALIGN=TOP><TD>PCI_LOOP_EN</TD><TD ALIGN=CENTER>&lt;2&gt;RW</TD>
+<TD>0 - PYXIS will not respond as a target when it is the master.<BR>
+<BR>1 - PYXIS will respond as a target when it is the master.</TD></TR>
+<TR VALIGN=TOP><TD>Reserved</TD><TD ALIGN=CENTER>&lt;1&gt;</TD><TD>N/A</TD></TR>
+<TR VALIGN=TOP><TD>PCI_EN</TD><TD ALIGN=CENTER>&lt;0&gt;RW</TD>
+<TD>0 - PYXIS asserts reset to the PCI<BR>1 - PYXIS does not assert reset to the PCI.</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

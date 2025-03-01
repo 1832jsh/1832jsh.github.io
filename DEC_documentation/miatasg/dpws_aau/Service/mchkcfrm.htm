@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+   <TITLE>Corrected Error Frame</TITLE>
+   <!-- This file created by Carmen Wheatcroft - Workstation Doc Group-->
+   <!-- Copyright (c) 1998 Digital Equipment Corporation-->
+</HEAD>
+
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF">
+
+<H3>Corrected Error Frame</H3>
+
+<P>The following is the format of the Corrected Error Frame built by the
+console firmware for correctable errors vectored through SCB entries
+620 and 630.</P>
+<P>The &quot;r&quot; in the table below indicates that the error can be retried when set.<BR>
+The &quot;s&quot; in the table below indicates that this is the second error.</P>
+<H4>Corrected Error Frame: Header</H4>
+
+<PRE>
+ 6 6 6                     3 3                         0
+ 3 2 1                     2 1                         0 offset
++-+-+-----------------------+---------------------------+ 
+|r|s|        SBZ            |           bytes           | 000h
++-+-+-----------------------+---------------------------+
+|       system offset       |         CPU offset        | 008h
++---------------------------+---------------------------+
+|                        MCHK code                      | 010h
++-------------------------------------------------------+
+</PRE>
+
+<P>CPU data is meaningless when the MCHK code is for a system-corrected error.</P>
+
+
+<H4>Corrected Error Frame: CPU Data</H4>
+
+<PRE>
++-------------------------------------------------------+
+|                        ei_addr                        | 018h
++-------------------------------------------------------+
+|                       fill_syn                        | 020h
++-------------------------------------------------------+
+|                        ei_stat                        | 028h
++-------------------------------------------------------+
+|                          isr                          | 030h
++-------------------------------------------------------+
+</PRE>
+
+<P>System data is meaningless when the MCHK code is for a CPU-corrected error.</P>
+
+
+<H4>Corrected Error Frame: System Data</H4>
+
+<PRE>
++-------------------------------------------------------+
+|                      pyxis_syn                        | 038h
++-------------------------------------------------------+
+|                      pyxis_mear                       | 040h
++-------------------------------------------------------+
+|                      pyxis_mesr                       | 048h
++-------------------------------------------------------+
+|                      pyxis_stat                       | 050h
++-------------------------------------------------------+
+|                      pyxis_err                        | 058h
++-------------------------------------------------------+
+|                       reserved                        | 060h
++-------------------------------------------------------+
+</PRE>
+
+</BODY>
+</HTML>
