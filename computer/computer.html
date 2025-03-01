@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <html>
-  <body style="background-color:#FFFFFF;">
+  <body style="background-color:#333333;">
   </body>
 </html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Computer Inventory</title>
+    <title>1832jsh</title>
     <style>
         main{
             background-color: silver;
@@ -58,13 +57,14 @@
             max-width: 1500px;
             
         }
+    
 	main img{
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 	}
 	header{
-            background-color: cadetblue;
+        background-image: linear-gradient(to right, rgb(255, 108, 63), rgb(255, 228, 74));
             padding: 1rem;
             min-width: 400px;
 	max-width: 1000px;
@@ -74,11 +74,8 @@
         }
 	header h1{
 		margin: auto;
-	
-		 
-            background-color: cadetblue;
 		color: black;
-            
+        text-align: center;
 	}
 	header h1:nth-child(1){
             min-width: 400px;
@@ -90,7 +87,7 @@
 	header h4{
 		margin: auto;
 		
-		background-color: cadetblue;
+		
 		color: black;
 	}
 header h4:nth-child(1){
@@ -100,6 +97,121 @@ header h4:nth-child(1){
         header h4:nth-child(2){
             max-width: 1500px;
 	}
+    
+    main h4{
+        padding: 1rem;
+            min-width: 400px;
+	    max-width: 1000px;
+            /* width means fixed */
+	    margin: auto;
+        font-size: 20px;
+        text-align: left;
+        color: black;
+        font-family: Helvetica;
+        }
+
+    main h6{
+        background-color: darkslategray;
+            padding: 1rem;
+            min-width: 400px;
+	    max-width: 1000px;
+            /* width means fixed */
+	    margin: auto;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        font-family: Helvetica;
+        }
+    main h6 p{
+        margin: 1rem auto;
+        padding: 1rem;
+        font-size: 20px;
+        background-color: darkslategray;
+    }
+    main h6 p img{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+        background-color: darkslategray;
+	}
+    .navbutton {
+        background-color: #333333;
+        border: 5px;
+        border-color: gainsboro;
+        color: white;
+        padding-block: 20px;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 0px;
+        cursor: pointer;
+        width: 24.7%;
+        font-family: Helvetica;
+    }
+
+    .navbutton_selected {
+        background-color: #0f0f0f;
+        border: 5px;
+        border-color: gainsboro;
+        color: white;
+        padding-block: 20px;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 0px;
+        cursor: pointer;
+        width: 24.7%;
+        font-family: Helvetica;
+    }
+
+    .fullbutton {
+        background-color: rgb(104, 0, 0);
+        border: 5px;
+        border-color: gainsboro;
+        color: white;
+        padding-block: 20px;
+        text-align: center;
+        vertical-align: middle;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 0px;
+        cursor: pointer;
+        width: 100%;
+        font-family: Helvetica;
+    }
+
+    .footerbutton {
+        background-color: darkslategray;
+        border: 5px;
+        border-color: gainsboro;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        text-decoration: none;
+        font-size: 25px;
+        cursor: pointer;
+        width: 40%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: Helvetica;
+        vertical-align: middle;
+    }
+    footer {
+        background-image: linear-gradient(to right, rgb(255, 108, 63), rgb(255, 228, 74));
+        padding: 1rem;
+        min-width: 400px;
+	    max-width: 1000px;
+        margin: auto;
+    }
+    footer h1{
+        
+    }
     </style>
 </head>
 <body>
@@ -108,6 +220,12 @@ header h4:nth-child(1){
         <h1>Computer Inventory</h1>
 </header>
  <main> 
+	<br>
+    <a class="navbutton" href="../test_equipment/test_equipment.html">Test Equipment</a>
+    <a class="navbutton" href="../computer/computer.html">Computers</a>
+    <a class="navbutton" href="https://web.archive.org/web/20241007050720/https://wiki.calcverse.net/index.php/User:Js">Calculators</a>
+    <a class="navbutton" href="../DEC_documentation/miatasg/Service/Aaudpwssg.htm">DEC documentation</a>
+    <br>
 <p>I have a lot of computers, so it may take some time to get them all on this list</p>  
 <h2>Desktop Computers and Workstations</h2>
 <center><h4>x86 Workstations and Servers</h4></center>
@@ -644,4 +762,7 @@ header h4:nth-child(1){
 	</tbody>
 </table>
 </body>
+<footer>
+    <h4>Thanks for visiting</h4>
+</footer>
 </html>
